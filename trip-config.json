@@ -1,802 +1,802 @@
 {
-"tripMeta": {
-"title": "2026 Tokyo / Ito / Yokohama Family Trip",
-"subtitle": "帶家人東京＋伊東溫泉＋橫濱散策",
-"startDate": "2026-02-11",
-"endDate": "2026-02-19",
-"baseCity": "Tokyo / Ito / Yokohama",
-"timezone": "Asia/Tokyo",
-"locale": "zh-TW"
-},
-"flights": [
-{
-"id": "outbound",
-"direction": "outbound",
-"airline": "Starlux (JX)",
-"flightNo": "JX804",
-"from": {
-"city": "Taipei",
-"airport": "Taoyuan International Airport",
-"code": "TPE",
-"terminal": "1"
-},
-"to": {
-"city": "Tokyo",
-"airport": "Narita International Airport",
-"code": "NRT",
-"terminal": "2"
-},
-"departure": "2026-02-11T15:00:00+08:00",
-"arrival": "2026-02-11T19:00:00+09:00"
-},
-{
-"id": "inbound",
-"direction": "inbound",
-"airline": "Cathay Pacific (CX)",
-"flightNo": "CX451",
-"from": {
-"city": "Tokyo",
-"airport": "Narita International Airport",
-"code": "NRT",
-"terminal": null
-},
-"to": {
-"city": "Taipei",
-"airport": "Taoyuan International Airport",
-"code": "TPE",
-"terminal": null
-},
-"departure": "2026-02-19T15:30:00+09:00",
-"arrival": "2026-02-19T18:40:00+08:00"
-}
-],
-"stays": [
-{
-"id": "ueno",
-"name": "MONday Apart 上野新禦徒町",
-"checkIn": "2026-02-11",
-"checkOut": "2026-02-14",
-"city": "Tokyo",
-"area": "Ueno / Okachimachi",
-"address": "",
-"links": {
-"maps": "",
-"booking": ""
-},
-"notes": "適合市區逛街、博物館、秋葉原。"
-},
-{
-"id": "ito",
-"name": "Laforet Ito Onsen",
-"checkIn": "2026-02-14",
-"checkOut": "2026-02-16",
-"city": "Ito",
-"area": "伊東溫泉",
-"address": "",
-"links": {
-"maps": "",
-"booking": ""
-},
-"notes": "溫泉＋大室山＋城崎海岸的據點。"
-},
-{
-"id": "yokohama",
-"name": "Richmond Hotel Yokohama Ekimae",
-"checkIn": "2026-02-16",
-"checkOut": "2026-02-19",
-"city": "Yokohama",
-"area": "Yokohama Station",
-"address": "",
-"links": {
-"maps": "",
-"booking": ""
-},
-"notes": "後段橫濱散步＋回程前一晚。"
-}
-],
-"checklists": {
-"packing": [
-{
-"id": "passport",
-"label": "護照（所有人）"
-},
-{
-"id": "cash-jpy",
-"label": "日幣現金"
-},
-{
-"id": "ic-card",
-"label": "IC 卡 / Suica / Pasmo"
-},
-{
-"id": "sim-esim",
-"label": "網卡 / eSIM 資訊"
-},
-{
-"id": "insurance",
-"label": "旅平險保單 & 緊急聯絡電話"
-},
-{
-"id": "kids-stuff",
-"label": "小孩日常用品（尿布、濕紙巾、奶粉、備用衣物）"
-}
-],
-"dailyBags": {
-"travelDay": [
-"護照 & 機票 / QR Code",
-"錢包 & 日幣現金",
-"手機 & 行動電源 & 充電線",
-"輕便外套",
-"重要文件影本（紙本或雲端）"
-],
-"tokyoMuseumAkiba": [
-"相機 / 手機",
-"零食 & 水壺",
-"薄外套",
-"雨具（視天氣）",
-"悠遊卡 / Suica / Pasmo"
-],
-"mineralFestaItoMove": [
-"礦石展現金 & 小包",
-"可裝戰利品的托特包 / 收納盒",
-"行李移動相關文件",
-"車票 / 交通 IC 卡",
-"行動電源"
-],
-"itoOutdoor": [
-"防風外套 / 保暖衣物",
-"好走的鞋",
-"相機 / 手機",
-"簡單急救包（OK 繃等）",
-"小零食 & 水壺"
-],
-"yokohamaDay": [
-"相機 / 手機",
-"折疊傘",
-"薄外套",
-"藥妝 & 補貨清單",
-"行動電源"
-]
-}
-},
-"phrasebook": [
-{
-"id": "ask-elevator",
-"category": "找電梯",
-"label": "電梯在哪裡？",
-"jp": "エレベーターはどこですか？",
-"note": ""
-},
-{
-"id": "for-taxi-hotel-ueno",
-"category": "計程車用",
-"label": "請帶我們到 MONday Apart 上野新禦徒町。",
-"jp": "MONday Apart 上野新御徒町までお願いします。",
-"note": "給計程車司機看。"
-},
-{
-"id": "for-taxi-ito-hotel",
-"category": "計程車用",
-"label": "請帶我們到 Laforet 伊東溫泉飯店。",
-"jp": "ラフォーレ伊東温泉ホテルまでお願いします。",
-"note": ""
-},
-{
-"id": "for-taxi-yokohama-hotel",
-"category": "計程車用",
-"label": "請帶我們到 橫濱站前里士滿飯店。",
-"jp": "リッチモンドホテル横浜駅前までお願いします。",
-"note": ""
-}
-],
-"budget": {
-"currency": "JPY",
-"days": [
-{
-"date": "2026-02-11",
-"label": "D1 抵達東京"
-},
-{
-"date": "2026-02-12",
-"label": "D2 上野博物館＋秋葉原"
-},
-{
-"date": "2026-02-13",
-"label": "D3 東京自由安排"
-},
-{
-"date": "2026-02-14",
-"label": "D4 礦石展＋移動伊東"
-},
-{
-"date": "2026-02-15",
-"label": "D5 大室山＋城崎海岸"
-},
-{
-"date": "2026-02-16",
-"label": "D6 移動橫濱"
-},
-{
-"date": "2026-02-17",
-"label": "D7 橫濱一日"
-},
-{
-"date": "2026-02-18",
-"label": "D8 橫濱 / 東京補貨日"
-},
-{
-"date": "2026-02-19",
-"label": "D9 回程"
-}
-]
-},
-"days": [
-{
-"date": "2026-02-11",
-"label": "D1",
-"title": "台北 → 東京成田 → 上野 MONday Apart",
-"stayId": "ueno",
-"todayBagChecklistId": "travelDay",
-"segments": [
-{
-"timeOfDay": "afternoon",
-"type": "flight",
-"title": "JX804 台北 → 東京成田",
-"flightId": "outbound",
-"notes": [
-"提早 2~3 小時到桃園機場 T1，預留托運與安檢時間。",
-"辦理托運、換日幣零錢、簡單在機場用餐。"
-]
-},
-{
-"timeOfDay": "evening",
-"type": "transport",
-"title": "成田機場 → 上野 MONday Apart 上野新禦徒町",
-"routes": [
-{
-"label": "成田 T2/T3 → 上野（Skyliner）＋步行/地鐵到飯店",
-"mode": "transit",
-"origin": {
-"name": "Narita Airport Terminal 2·3",
-"mapsQuery": "Narita Airport Terminal 2"
-},
-"destination": {
-"name": "上野站",
-"mapsQuery": "Ueno Station"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=Ueno+Station&travelmode=transit",
-"estimatedDurationMinutes": 60,
-"estimatedDistanceKm": 70,
-"via": [
-"成田機場搭 Skyliner 直達上野站",
-"上野站轉地鐵或步行前往飯店（約 10~15 分鐘）"
-],
-"scheduleNotes": "依實際班次為準，晚班機注意 Skyliner 末班車時間。"
-}
-],
-"notes": [
-"行李多時，可考慮從上野站搭計程車到飯店。",
-"抵達後先確認附近超商、藥妝、地鐵入口位置。"
-]
-},
-{
-"timeOfDay": "night",
-"type": "free",
-"title": "入住、附近覓食 & 探路",
-"notes": [
-"簡單在飯店附近超商、拉麵或食堂吃晚餐。",
-"早點休息，調整時差與體力。"
-]
-}
-]
-},
-{
-"date": "2026-02-12",
-"label": "D2",
-"title": "上野博物館＋上野公園＋秋葉原",
-"stayId": "ueno",
-"todayBagChecklistId": "tokyoMuseumAkiba",
-"segments": [
-{
-"timeOfDay": "morning",
-"type": "activity",
-"title": "上野公園散步＋博物館/美術館",
-"details": {
-"spots": [
-"國立科學博物館",
-"東京國立博物館",
-"上野動物園（視時間彈性安排）"
-],
-"tips": [
-"建議只挑一個主要博物館＋上野公園散步即可，避免行程過滿。",
-"早上先進博物館，人較少且室內不怕冷。"
-]
-}
-},
-{
-"timeOfDay": "noon",
-"type": "meal",
-"title": "上野午餐",
-"details": {
-"candidates": [
-"阿美橫町周邊餐廳",
-"百貨美食街（PARCO / Marui 等）",
-"簡單拉麵 / 丼飯"
-]
-}
-},
-{
-"timeOfDay": "afternoon",
-"type": "transport",
-"title": "上野 → 秋葉原",
-"routes": [
-{
-"label": "上野 → 秋葉原（JR 山手線 / 京浜東北線）",
-"mode": "train",
-"origin": {
-"name": "上野站",
-"mapsQuery": "Ueno Station"
-},
-"destination": {
-"name": "秋葉原站",
-"mapsQuery": "Akihabara Station"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Akihabara+Station&travelmode=transit",
-"estimatedDurationMinutes": 5,
-"estimatedDistanceKm": 2,
-"via": [
-"JR 山手線 / 京浜東北線一站即可抵達秋葉原",
-"秋葉原站中央出口出站後即可往各商場"
-],
-"scheduleNotes": "班次非常密集，幾乎不用看時刻表。"
-}
-],
-"notes": [
-"可依耳機 / 電子產品 / 模型等興趣安排店家順序。",
-"注意戰利品重量，後面還要移動到伊東與橫濱。"
-]
-},
-{
-"timeOfDay": "afternoon",
-"type": "activity",
-"title": "秋葉原逛街",
-"details": {
-"spots": [
-"e☆イヤホン 秋葉原本店（耳機）",
-"Yodobashi Akiba（家電、玩具）",
-"其他二手店 / 模型店"
-],
-"tips": [
-"可以先在 e☆イヤホン試聽目標耳機，再去其他店比較價差。",
-"若人多或小孩累，可分頭行動後約定集合點。"
-]
-}
-},
-{
-"timeOfDay": "night",
-"type": "free",
-"title": "回飯店休息 / 上野晚餐",
-"notes": [
-"可在阿美橫町附近吃晚餐，順便補貨。",
-"早點回去休息，隔天還有東京自由行或其他安排。"
-]
-}
-]
-},
-{
-"date": "2026-02-13",
-"label": "D3",
-"title": "東京市區自由安排（預留機動日）",
-"stayId": "ueno",
-"todayBagChecklistId": "tokyoMuseumAkiba",
-"segments": [
-{
-"timeOfDay": "flex",
-"type": "free",
-"title": "預留一日彈性：依天氣 / 體力決定行程",
-"notes": [
-"可選：淺草＋晴空塔 / 表參道＋原宿 / 台場 / 再逛上野等。",
-"也可以當成『補眠＋慢慢逛街』的 Chill Day，不一定要排滿。"
-]
-}
-]
-},
-{
-"date": "2026-02-14",
-"label": "D4",
-"title": "第17回ミネラルフェスタ in 東京 ＋ 移動伊東溫泉",
-"stayId": "ito",
-"todayBagChecklistId": "mineralFestaItoMove",
-"segments": [
-{
-"timeOfDay": "morning",
-"type": "transport",
-"title": "MONday Apart 上野新禦徒町 → 馬喰横山 礦石展會場",
-"routes": [
-{
-"label": "飯店 → 馬喰横山站 A3 出口",
-"mode": "transit",
-"origin": {
-"name": "MONday Apart 上野新禦徒町",
-"mapsQuery": "MONday Apart Ueno Shin-Okachimachi"
-},
-"destination": {
-"name": "馬喰横山站 A3 出口",
-"mapsQuery": "Bakuroyokoyama Station A3"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=MONday+Apart+Ueno+Shin-Okachimachi&destination=Bakuroyokoyama+Station&travelmode=transit",
-"estimatedDurationMinutes": 20,
-"estimatedDistanceKm": 5,
-"via": [
-"依 Google Maps 建議搭乘地鐵 / JR 轉乘。",
-"出站後依指示走到 A3 出口，步行約 3 分鐘可達會場附近。"
-],
-"scheduleNotes": "尖峰時段人多，預留多一點轉乘時間。"
-}
-],
-"notes": [
-"出門前先確認官方網站當日開放時間與入場方式。",
-"建議攜帶可保護礦石的小盒子或包裝材料。"
-]
-},
-{
-"timeOfDay": "morning",
-"type": "activity",
-"title": "第17回ミネラルフェスタ in 東京",
-"details": {
-"spot": "礦石展會場（馬喰横山站附近）",
-"tips": [
-"帶好現金、小包裝材料，避免戰利品互撞。",
-"拍照記錄攤位資訊，方便之後查詢商家或品項。"
-]
-}
-},
-{
-"timeOfDay": "noon",
-"type": "meal",
-"title": "會場附近簡單午餐",
-"notes": [
-"視逛展時間與人潮彈性安排午餐地點。",
-"避免吃太飽或排太久，以免影響下午移動伊東。"
-]
-},
-{
-"timeOfDay": "afternoon",
-"type": "transport",
-"title": "東京 → 伊東（入住 Laforet Ito Onsen）",
-"routes": [
-{
-"label": "東京站 → 伊東站（特急踊り子直達）",
-"mode": "train",
-"origin": {
-"name": "東京站",
-"mapsQuery": "Tokyo Station"
-},
-"destination": {
-"name": "伊東站",
-"mapsQuery": "Ito Station"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit",
-"estimatedDurationMinutes": 120,
-"estimatedDistanceKm": 150,
-"via": [
-"東京站搭乘特急踊り子直達伊東（實際車種與班次以查詢為準）。"
-],
-"scheduleNotes": "建議事先查好特急踊り子班次，若無座位可改走熱海轉乘方案。"
-},
-{
-"label": "備案：東京站 → 熱海 → 伊東",
-"mode": "train",
-"origin": {
-"name": "東京站",
-"mapsQuery": "Tokyo Station"
-},
-"destination": {
-"name": "伊東站",
-"mapsQuery": "Ito Station"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit",
-"estimatedDurationMinutes": 140,
-"estimatedDistanceKm": 150,
-"via": [
-"東京 → 熱海（東海道線 / 新幹線）",
-"熱海 → 伊東（伊東線）"
-],
-"scheduleNotes": "若特急滿位或時間不合，可改採此轉乘路線。"
-}
-],
-"notes": [
-"抵達伊東後依指示前往 Laforet Ito Onsen，可搭計程車或飯店接駁（若有）。"
-]
-},
-{
-"timeOfDay": "night",
-"type": "activity",
-"title": "Check-in ＋ 溫泉旅館晚餐＆泡湯",
-"notes": [
-"確認晚餐時間、溫泉開放時間與規則。",
-"簡單整理戰利品與行李，隔天專心玩大室山＋城崎海岸。"
-]
-}
-]
-},
-{
-"date": "2026-02-15",
-"label": "D5",
-"title": "大室山 + 城崎海岸 一日遊",
-"stayId": "ito",
-"todayBagChecklistId": "itoOutdoor",
-"segments": [
-{
-"timeOfDay": "morning",
-"type": "transport",
-"title": "伊東 → 大室山",
-"routes": [
-{
-"label": "伊東站 / 飯店 → 大室山（公車 / 計程車）",
-"mode": "transit",
-"origin": {
-"name": "伊東站 或 Laforet Ito Onsen",
-"mapsQuery": "Ito Station"
-},
-"destination": {
-"name": "大室山纜車站",
-"mapsQuery": "Omuroyama Lift"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Omuroyama+Lift&travelmode=transit",
-"estimatedDurationMinutes": 40,
-"estimatedDistanceKm": 15,
-"via": [
-"可選搭公車至大室山站，再步行至纜車處。",
-"或直接搭計程車，時間較省但費用較高。"
-],
-"scheduleNotes": "若搭公車，記得查回程末班時間。"
-}
-],
-"notes": [
-"山上風大，要注意保暖與防風。",
-"建議事先確認纜車營運狀況與天氣。"
-]
-},
-{
-"timeOfDay": "morning",
-"type": "activity",
-"title": "大室山（纜車＋火山口環走）",
-"details": {
-"tips": [
-"天氣好時景色非常漂亮，記得充飽相機 / 手機。",
-"環走路線注意腳步，小朋友旁邊要多留心。"
-]
-}
-},
-{
-"timeOfDay": "noon",
-"type": "meal",
-"title": "大室山周邊 or 回伊東市區午餐",
-"notes": [
-"可選擇在大室山附近用餐，或回伊東市區再吃。",
-"建議避開正中午尖峰時段，以免久候。"
-]
-},
-{
-"timeOfDay": "afternoon",
-"type": "transport",
-"title": "大室山 → 城崎海岸（城ヶ崎海岸）",
-"routes": [
-{
-"label": "大室山 → 城崎海岸（公車 / 計程車）",
-"mode": "transit",
-"origin": {
-"name": "大室山周邊",
-"mapsQuery": "Omuroyama Lift"
-},
-"destination": {
-"name": "城ヶ崎海岸",
-"mapsQuery": "Jogasaki Coast"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Omuroyama+Lift&destination=Jogasaki+Coast&travelmode=transit",
-"estimatedDurationMinutes": 30,
-"estimatedDistanceKm": 10,
-"via": [
-"依當地公車路線規劃或搭計程車。",
-"可先查最近的城崎海岸步道入口。"
-],
-"scheduleNotes": "若當天風浪較大或天候不佳，需視情況調整。"
-}
-],
-"notes": [
-"沿岸步道留意安全，不要太靠近崖邊。",
-"若要撿石頭，注意潮汐與時間，避免太晚還在礫灘。"
-]
-},
-{
-"timeOfDay": "afternoon",
-"type": "activity",
-"title": "城崎海岸散步＆海岸地形觀察",
-"details": {
-"tips": [
-"可以拍攝玄武岩節理、海蝕地形等景觀。",
-"撿石頭時注意不要破壞環境，也注意自身安全。"
-]
-}
-},
-{
-"timeOfDay": "night",
-"type": "transport",
-"title": "城崎海岸 → 伊東（回旅館）",
-"routes": [
-{
-"label": "城崎海岸 → 伊東（公車 / 計程車）",
-"mode": "transit",
-"origin": {
-"name": "城ヶ崎海岸",
-"mapsQuery": "Jogasaki Coast"
-},
-"destination": {
-"name": "Laforet Ito Onsen",
-"mapsQuery": "Laforet Ito Onsen"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Jogasaki+Coast&destination=Laforet+Ito+Onsen&travelmode=transit",
-"estimatedDurationMinutes": 40,
-"estimatedDistanceKm": 15,
-"via": [
-"可視時間選擇公車回伊東站再轉計程車到旅館，或直接計程車。"
-],
-"scheduleNotes": "晚間公車班次可能較少，注意最晚班次時間。"
-}
-],
-"notes": [
-"回旅館後泡湯放鬆，順便整理今天的石頭戰利品。",
-"檢查隔天移動橫濱所需的車票與行李排列。"
-]
-}
-]
-},
-{
-"date": "2026-02-16",
-"label": "D6",
-"title": "伊東 → 橫濱 Richmond Hotel Yokohama Ekimae",
-"stayId": "yokohama",
-"todayBagChecklistId": "yokohamaDay",
-"segments": [
-{
-"timeOfDay": "morning",
-"type": "transport",
-"title": "伊東 → 橫濱",
-"routes": [
-{
-"label": "伊東 → 熱海 → 橫濱",
-"mode": "train",
-"origin": {
-"name": "伊東站",
-"mapsQuery": "Ito Station"
-},
-"destination": {
-"name": "橫濱站",
-"mapsQuery": "Yokohama Station"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit",
-"estimatedDurationMinutes": 90,
-"estimatedDistanceKm": 110,
-"via": [
-"伊東 → 熱海（伊東線）",
-"熱海 → 橫濱（東海道本線 / 新幹線＋在橫濱附近接續）"
-],
-"scheduleNotes": "建議避開通勤尖峰時段，人潮較多。"
-}
-],
-"notes": [
-"提早整理行李，避免趕車。",
-"抵達橫濱後先熟悉車站出口與飯店位置。"
-]
-},
-{
-"timeOfDay": "afternoon",
-"type": "activity",
-"title": "橫濱車站周邊踩點",
-"details": {
-"tips": [
-"先找到附近的藥妝店、超市與幾家晚餐口袋名單。",
-"視體力再決定是否延伸到港未來一帶散步。"
-]
-}
-},
-{
-"timeOfDay": "night",
-"type": "meal",
-"title": "橫濱站附近晚餐",
-"notes": [
-"百貨美食街或車站地下街選擇眾多，可依當日心情挑選。",
-"吃完早點回飯店休息，隔天再衝橫濱景點。"
-]
-}
-]
-},
-{
-"date": "2026-02-17",
-"label": "D7",
-"title": "橫濱一日（港未來 / 紅磚倉庫等）",
-"stayId": "yokohama",
-"todayBagChecklistId": "yokohamaDay",
-"segments": [
-{
-"timeOfDay": "flex",
-"type": "free",
-"title": "橫濱市區自由行",
-"notes": [
-"可排：港未來、紅磚倉庫、山下公園、杯麵博物館、拉麵博物館等。",
-"依天氣與家人氣氛彈性調整，不一定要全部跑完。"
-]
-}
-]
-},
-{
-"date": "2026-02-18",
-"label": "D8",
-"title": "橫濱 / 東京補貨日 ＋ 收心整理行李",
-"stayId": "yokohama",
-"todayBagChecklistId": "yokohamaDay",
-"segments": [
-{
-"timeOfDay": "flex",
-"type": "free",
-"title": "藥妝 & 耳機 & 礦石相關補貨日",
-"notes": [
-"安排藥妝、超市、耳機 / 電子產品、礦石相關最後採購。",
-"盡量在今天把行李整理到『明天直接拖著走』的狀態。"
-]
-}
-]
-},
-{
-"date": "2026-02-19",
-"label": "D9",
-"title": "橫濱 → 成田 → 台北",
-"stayId": null,
-"todayBagChecklistId": "travelDay",
-"segments": [
-{
-"timeOfDay": "morning",
-"type": "transport",
-"title": "橫濱站 → 成田機場",
-"routes": [
-{
-"label": "橫濱站 → 成田機場（N'EX 或 其他機場交通）",
-"mode": "transit",
-"origin": {
-"name": "橫濱站",
-"mapsQuery": "Yokohama Station"
-},
-"destination": {
-"name": "成田機場第2航廈",
-"mapsQuery": "Narita Airport Terminal 2"
-},
-"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Narita+Airport+Terminal+2&travelmode=transit",
-"estimatedDurationMinutes": 90,
-"estimatedDistanceKm": 100,
-"via": [
-"可選：成田特快（N'EX）或其他機場巴士 / 列車路線。",
-"依實際時刻與票券安排，至少預留 3 小時以上緩衝到機場。"
-],
-"scheduleNotes": "注意列車 / 巴士時刻，避免誤點導致趕機壓力。"
-}
-],
-"notes": [
-"建議提早出發，包含移動＋報到＋安檢＋午餐時間。",
-"最後再確認護照、機票、貴重物品是否在隨身包中。"
-]
-},
-{
-"timeOfDay": "afternoon",
-"type": "flight",
-"title": "CX451 東京成田 → 台北",
-"flightId": "inbound",
-"notes": [
-"在成田機場簡單用餐、購買最後的伴手禮。",
-"注意登機時間與登機門，避免逛太嗨錯過廣播。"
-]
-}
-]
-}
-]
+  "tripMeta": {
+    "title": "2026 Tokyo / Ito / Yokohama Family Trip",
+    "subtitle": "帶家人東京＋伊東溫泉＋橫濱散策",
+    "startDate": "2026-02-11",
+    "endDate": "2026-02-19",
+    "baseCity": "Tokyo / Ito / Yokohama",
+    "timezone": "Asia/Tokyo",
+    "locale": "zh-TW"
+  },
+  "flights": [
+    {
+      "id": "outbound",
+      "direction": "outbound",
+      "airline": "Starlux (JX)",
+      "flightNo": "JX804",
+      "from": {
+        "city": "Taipei",
+        "airport": "Taoyuan International Airport",
+        "code": "TPE",
+        "terminal": "1"
+      },
+      "to": {
+        "city": "Tokyo",
+        "airport": "Narita International Airport",
+        "code": "NRT",
+        "terminal": "2"
+      },
+      "departure": "2026-02-11T15:00:00+08:00",
+      "arrival": "2026-02-11T19:00:00+09:00"
+    },
+    {
+      "id": "inbound",
+      "direction": "inbound",
+      "airline": "Cathay Pacific (CX)",
+      "flightNo": "CX451",
+      "from": {
+        "city": "Tokyo",
+        "airport": "Narita International Airport",
+        "code": "NRT",
+        "terminal": null
+      },
+      "to": {
+        "city": "Taipei",
+        "airport": "Taoyuan International Airport",
+        "code": "TPE",
+        "terminal": null
+      },
+      "departure": "2026-02-19T15:30:00+09:00",
+      "arrival": "2026-02-19T18:40:00+08:00"
+    }
+  ],
+  "stays": [
+    {
+      "id": "ueno",
+      "name": "MONday Apart 上野新禦徒町",
+      "checkIn": "2026-02-11",
+      "checkOut": "2026-02-14",
+      "city": "Tokyo",
+      "area": "Ueno / Okachimachi",
+      "address": "",
+      "links": {
+        "maps": "",
+        "booking": ""
+      },
+      "notes": "適合市區逛街、博物館、秋葉原。"
+    },
+    {
+      "id": "ito",
+      "name": "Laforet Ito Onsen",
+      "checkIn": "2026-02-14",
+      "checkOut": "2026-02-16",
+      "city": "Ito",
+      "area": "伊東溫泉",
+      "address": "",
+      "links": {
+        "maps": "",
+        "booking": ""
+      },
+      "notes": "溫泉＋大室山＋城崎海岸的據點。"
+    },
+    {
+      "id": "yokohama",
+      "name": "Richmond Hotel Yokohama Ekimae",
+      "checkIn": "2026-02-16",
+      "checkOut": "2026-02-19",
+      "city": "Yokohama",
+      "area": "Yokohama Station",
+      "address": "",
+      "links": {
+        "maps": "",
+        "booking": ""
+      },
+      "notes": "後段橫濱散步＋回程前一晚。"
+    }
+  ],
+  "checklists": {
+    "packing": [
+      {
+        "id": "passport",
+        "label": "護照（所有人）"
+      },
+      {
+        "id": "cash-jpy",
+        "label": "日幣現金"
+      },
+      {
+        "id": "ic-card",
+        "label": "IC 卡 / Suica / Pasmo"
+      },
+      {
+        "id": "sim-esim",
+        "label": "網卡 / eSIM 資訊"
+      },
+      {
+        "id": "insurance",
+        "label": "旅平險保單 & 緊急聯絡電話"
+      },
+      {
+        "id": "kids-stuff",
+        "label": "小孩日常用品（尿布、濕紙巾、奶粉、備用衣物）"
+      }
+    ],
+    "dailyBags": {
+      "travelDay": [
+        "護照 & 機票 / QR Code",
+        "錢包 & 日幣現金",
+        "手機 & 行動電源 & 充電線",
+        "輕便外套",
+        "重要文件影本（紙本或雲端）"
+      ],
+      "tokyoMuseumAkiba": [
+        "相機 / 手機",
+        "零食 & 水壺",
+        "薄外套",
+        "雨具（視天氣）",
+        "悠遊卡 / Suica / Pasmo"
+      ],
+      "mineralFestaItoMove": [
+        "礦石展現金 & 小包",
+        "可裝戰利品的托特包 / 收納盒",
+        "行李移動相關文件",
+        "車票 / 交通 IC 卡",
+        "行動電源"
+      ],
+      "itoOutdoor": [
+        "防風外套 / 保暖衣物",
+        "好走的鞋",
+        "相機 / 手機",
+        "簡單急救包（OK 繃等）",
+        "小零食 & 水壺"
+      ],
+      "yokohamaDay": [
+        "相機 / 手機",
+        "折疊傘",
+        "薄外套",
+        "藥妝 & 補貨清單",
+        "行動電源"
+      ]
+    }
+  },
+  "phrasebook": [
+    {
+      "id": "ask-elevator",
+      "category": "找電梯",
+      "label": "電梯在哪裡？",
+      "jp": "エレベーターはどこですか？",
+      "note": ""
+    },
+    {
+      "id": "for-taxi-hotel-ueno",
+      "category": "計程車用",
+      "label": "請帶我們到 MONday Apart 上野新禦徒町。",
+      "jp": "MONday Apart 上野新御徒町までお願いします。",
+      "note": "給計程車司機看。"
+    },
+    {
+      "id": "for-taxi-ito-hotel",
+      "category": "計程車用",
+      "label": "請帶我們到 Laforet 伊東溫泉飯店。",
+      "jp": "ラフォーレ伊東温泉ホテルまでお願いします。",
+      "note": ""
+    },
+    {
+      "id": "for-taxi-yokohama-hotel",
+      "category": "計程車用",
+      "label": "請帶我們到 橫濱站前里士滿飯店。",
+      "jp": "リッチモンドホテル横浜駅前までお願いします。",
+      "note": ""
+    }
+  ],
+  "budget": {
+    "currency": "JPY",
+    "days": [
+      {
+        "date": "2026-02-11",
+        "label": "D1 抵達東京"
+      },
+      {
+        "date": "2026-02-12",
+        "label": "D2 上野博物館＋秋葉原"
+      },
+      {
+        "date": "2026-02-13",
+        "label": "D3 東京自由安排"
+      },
+      {
+        "date": "2026-02-14",
+        "label": "D4 礦石展＋移動伊東"
+      },
+      {
+        "date": "2026-02-15",
+        "label": "D5 大室山＋城崎海岸"
+      },
+      {
+        "date": "2026-02-16",
+        "label": "D6 移動橫濱"
+      },
+      {
+        "date": "2026-02-17",
+        "label": "D7 橫濱一日"
+      },
+      {
+        "date": "2026-02-18",
+        "label": "D8 橫濱 / 東京補貨日"
+      },
+      {
+        "date": "2026-02-19",
+        "label": "D9 回程"
+      }
+    ]
+  },
+  "days": [
+    {
+      "date": "2026-02-11",
+      "label": "D1",
+      "title": "台北 → 東京成田 → 上野 MONday Apart",
+      "stayId": "ueno",
+      "todayBagChecklistId": "travelDay",
+      "segments": [
+        {
+          "timeOfDay": "afternoon",
+          "type": "flight",
+          "title": "JX804 台北 → 東京成田",
+          "flightId": "outbound",
+          "notes": [
+            "提早 2~3 小時到桃園機場 T1，預留托運與安檢時間。",
+            "辦理托運、換日幣零錢、簡單在機場用餐。"
+          ]
+        },
+        {
+          "timeOfDay": "evening",
+          "type": "transport",
+          "title": "成田機場 → 上野 MONday Apart 上野新禦徒町",
+          "routes": [
+            {
+              "label": "成田 T2/T3 → 上野（Skyliner）＋步行/地鐵到飯店",
+              "mode": "transit",
+              "origin": {
+                "name": "Narita Airport Terminal 2·3",
+                "mapsQuery": "Narita Airport Terminal 2"
+              },
+              "destination": {
+                "name": "上野站",
+                "mapsQuery": "Ueno Station"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=Ueno+Station&travelmode=transit",
+              "estimatedDurationMinutes": 60,
+              "estimatedDistanceKm": 70,
+              "via": [
+                "成田機場搭 Skyliner 直達上野站",
+                "上野站轉地鐵或步行前往飯店（約 10~15 分鐘）"
+              ],
+              "scheduleNotes": "依實際班次為準，晚班機注意 Skyliner 末班車時間。"
+            }
+          ],
+          "notes": [
+            "行李多時，可考慮從上野站搭計程車到飯店。",
+            "抵達後先確認附近超商、藥妝、地鐵入口位置。"
+          ]
+        },
+        {
+          "timeOfDay": "night",
+          "type": "free",
+          "title": "入住、附近覓食 & 探路",
+          "notes": [
+            "簡單在飯店附近超商、拉麵或食堂吃晚餐。",
+            "早點休息，調整時差與體力。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-12",
+      "label": "D2",
+      "title": "上野博物館＋上野公園＋秋葉原",
+      "stayId": "ueno",
+      "todayBagChecklistId": "tokyoMuseumAkiba",
+      "segments": [
+        {
+          "timeOfDay": "morning",
+          "type": "activity",
+          "title": "上野公園散步＋博物館/美術館",
+          "details": {
+            "spots": [
+              "國立科學博物館",
+              "東京國立博物館",
+              "上野動物園（視時間彈性安排）"
+            ],
+            "tips": [
+              "建議只挑一個主要博物館＋上野公園散步即可，避免行程過滿。",
+              "早上先進博物館，人較少且室內不怕冷。"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "noon",
+          "type": "meal",
+          "title": "上野午餐",
+          "details": {
+            "candidates": [
+              "阿美橫町周邊餐廳",
+              "百貨美食街（PARCO / Marui 等）",
+              "簡單拉麵 / 丼飯"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "transport",
+          "title": "上野 → 秋葉原",
+          "routes": [
+            {
+              "label": "上野 → 秋葉原（JR 山手線 / 京浜東北線）",
+              "mode": "train",
+              "origin": {
+                "name": "上野站",
+                "mapsQuery": "Ueno Station"
+              },
+              "destination": {
+                "name": "秋葉原站",
+                "mapsQuery": "Akihabara Station"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Akihabara+Station&travelmode=transit",
+              "estimatedDurationMinutes": 5,
+              "estimatedDistanceKm": 2,
+              "via": [
+                "JR 山手線 / 京浜東北線一站即可抵達秋葉原",
+                "秋葉原站中央出口出站後即可往各商場"
+              ],
+              "scheduleNotes": "班次非常密集，幾乎不用看時刻表。"
+            }
+          ],
+          "notes": [
+            "可依耳機 / 電子產品 / 模型等興趣安排店家順序。",
+            "注意戰利品重量，後面還要移動到伊東與橫濱。"
+          ]
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "activity",
+          "title": "秋葉原逛街",
+          "details": {
+            "spots": [
+              "e☆イヤホン 秋葉原本店（耳機）",
+              "Yodobashi Akiba（家電、玩具）",
+              "其他二手店 / 模型店"
+            ],
+            "tips": [
+              "可以先在 e☆イヤホン試聽目標耳機，再去其他店比較價差。",
+              "若人多或小孩累，可分頭行動後約定集合點。"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "night",
+          "type": "free",
+          "title": "回飯店休息 / 上野晚餐",
+          "notes": [
+            "可在阿美橫町附近吃晚餐，順便補貨。",
+            "早點回去休息，隔天還有東京自由行或其他安排。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-13",
+      "label": "D3",
+      "title": "東京市區自由安排（預留機動日）",
+      "stayId": "ueno",
+      "todayBagChecklistId": "tokyoMuseumAkiba",
+      "segments": [
+        {
+          "timeOfDay": "flex",
+          "type": "free",
+          "title": "預留一日彈性：依天氣 / 體力決定行程",
+          "notes": [
+            "可選：淺草＋晴空塔 / 表參道＋原宿 / 台場 / 再逛上野等。",
+            "也可以當成『補眠＋慢慢逛街』的 Chill Day，不一定要排滿。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-14",
+      "label": "D4",
+      "title": "第17回ミネラルフェスタ in 東京 ＋ 移動伊東溫泉",
+      "stayId": "ito",
+      "todayBagChecklistId": "mineralFestaItoMove",
+      "segments": [
+        {
+          "timeOfDay": "morning",
+          "type": "transport",
+          "title": "MONday Apart 上野新禦徒町 → 馬喰横山 礦石展會場",
+          "routes": [
+            {
+              "label": "飯店 → 馬喰横山站 A3 出口",
+              "mode": "transit",
+              "origin": {
+                "name": "MONday Apart 上野新禦徒町",
+                "mapsQuery": "MONday Apart Ueno Shin-Okachimachi"
+              },
+              "destination": {
+                "name": "馬喰横山站 A3 出口",
+                "mapsQuery": "Bakuroyokoyama Station A3"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=MONday+Apart+Ueno+Shin-Okachimachi&destination=Bakuroyokoyama+Station&travelmode=transit",
+              "estimatedDurationMinutes": 20,
+              "estimatedDistanceKm": 5,
+              "via": [
+                "依 Google Maps 建議搭乘地鐵 / JR 轉乘。",
+                "出站後依指示走到 A3 出口，步行約 3 分鐘可達會場附近。"
+              ],
+              "scheduleNotes": "尖峰時段人多，預留多一點轉乘時間。"
+            }
+          ],
+          "notes": [
+            "出門前先確認官方網站當日開放時間與入場方式。",
+            "建議攜帶可保護礦石的小盒子或包裝材料。"
+          ]
+        },
+        {
+          "timeOfDay": "morning",
+          "type": "activity",
+          "title": "第17回ミネラルフェスタ in 東京",
+          "details": {
+            "spot": "礦石展會場（馬喰横山站附近）",
+            "tips": [
+              "帶好現金、小包裝材料，避免戰利品互撞。",
+              "拍照記錄攤位資訊，方便之後查詢商家或品項。"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "noon",
+          "type": "meal",
+          "title": "會場附近簡單午餐",
+          "notes": [
+            "視逛展時間與人潮彈性安排午餐地點。",
+            "避免吃太飽或排太久，以免影響下午移動伊東。"
+          ]
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "transport",
+          "title": "東京 → 伊東（入住 Laforet Ito Onsen）",
+          "routes": [
+            {
+              "label": "東京站 → 伊東站（特急踊り子直達）",
+              "mode": "train",
+              "origin": {
+                "name": "東京站",
+                "mapsQuery": "Tokyo Station"
+              },
+              "destination": {
+                "name": "伊東站",
+                "mapsQuery": "Ito Station"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit",
+              "estimatedDurationMinutes": 120,
+              "estimatedDistanceKm": 150,
+              "via": [
+                "東京站搭乘特急踊り子直達伊東（實際車種與班次以查詢為準）。"
+              ],
+              "scheduleNotes": "建議事先查好特急踊り子班次，若無座位可改走熱海轉乘方案。"
+            },
+            {
+              "label": "備案：東京站 → 熱海 → 伊東",
+              "mode": "train",
+              "origin": {
+                "name": "東京站",
+                "mapsQuery": "Tokyo Station"
+              },
+              "destination": {
+                "name": "伊東站",
+                "mapsQuery": "Ito Station"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit",
+              "estimatedDurationMinutes": 140,
+              "estimatedDistanceKm": 150,
+              "via": [
+                "東京 → 熱海（東海道線 / 新幹線）",
+                "熱海 → 伊東（伊東線）"
+              ],
+              "scheduleNotes": "若特急滿位或時間不合，可改採此轉乘路線。"
+            }
+          ],
+          "notes": [
+            "抵達伊東後依指示前往 Laforet Ito Onsen，可搭計程車或飯店接駁（若有）。"
+          ]
+        },
+        {
+          "timeOfDay": "night",
+          "type": "activity",
+          "title": "Check-in ＋ 溫泉旅館晚餐＆泡湯",
+          "notes": [
+            "確認晚餐時間、溫泉開放時間與規則。",
+            "簡單整理戰利品與行李，隔天專心玩大室山＋城崎海岸。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-15",
+      "label": "D5",
+      "title": "大室山 + 城崎海岸 一日遊",
+      "stayId": "ito",
+      "todayBagChecklistId": "itoOutdoor",
+      "segments": [
+        {
+          "timeOfDay": "morning",
+          "type": "transport",
+          "title": "伊東 → 大室山",
+          "routes": [
+            {
+              "label": "伊東站 / 飯店 → 大室山（公車 / 計程車）",
+              "mode": "transit",
+              "origin": {
+                "name": "伊東站 或 Laforet Ito Onsen",
+                "mapsQuery": "Ito Station"
+              },
+              "destination": {
+                "name": "大室山纜車站",
+                "mapsQuery": "Omuroyama Lift"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Omuroyama+Lift&travelmode=transit",
+              "estimatedDurationMinutes": 40,
+              "estimatedDistanceKm": 15,
+              "via": [
+                "可選搭公車至大室山站，再步行至纜車處。",
+                "或直接搭計程車，時間較省但費用較高。"
+              ],
+              "scheduleNotes": "若搭公車，記得查回程末班時間。"
+            }
+          ],
+          "notes": [
+            "山上風大，要注意保暖與防風。",
+            "建議事先確認纜車營運狀況與天氣。"
+          ]
+        },
+        {
+          "timeOfDay": "morning",
+          "type": "activity",
+          "title": "大室山（纜車＋火山口環走）",
+          "details": {
+            "tips": [
+              "天氣好時景色非常漂亮，記得充飽相機 / 手機。",
+              "環走路線注意腳步，小朋友旁邊要多留心。"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "noon",
+          "type": "meal",
+          "title": "大室山周邊 or 回伊東市區午餐",
+          "notes": [
+            "可選擇在大室山附近用餐，或回伊東市區再吃。",
+            "建議避開正中午尖峰時段，以免久候。"
+          ]
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "transport",
+          "title": "大室山 → 城崎海岸（城ヶ崎海岸）",
+          "routes": [
+            {
+              "label": "大室山 → 城崎海岸（公車 / 計程車）",
+              "mode": "transit",
+              "origin": {
+                "name": "大室山周邊",
+                "mapsQuery": "Omuroyama Lift"
+              },
+              "destination": {
+                "name": "城ヶ崎海岸",
+                "mapsQuery": "Jogasaki Coast"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Omuroyama+Lift&destination=Jogasaki+Coast&travelmode=transit",
+              "estimatedDurationMinutes": 30,
+              "estimatedDistanceKm": 10,
+              "via": [
+                "依當地公車路線規劃或搭計程車。",
+                "可先查最近的城崎海岸步道入口。"
+              ],
+              "scheduleNotes": "若當天風浪較大或天候不佳，需視情況調整。"
+            }
+          ],
+          "notes": [
+            "沿岸步道留意安全，不要太靠近崖邊。",
+            "若要撿石頭，注意潮汐與時間，避免太晚還在礫灘。"
+          ]
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "activity",
+          "title": "城崎海岸散步＆海岸地形觀察",
+          "details": {
+            "tips": [
+              "可以拍攝玄武岩節理、海蝕地形等景觀。",
+              "撿石頭時注意不要破壞環境，也注意自身安全。"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "night",
+          "type": "transport",
+          "title": "城崎海岸 → 伊東（回旅館）",
+          "routes": [
+            {
+              "label": "城崎海岸 → 伊東（公車 / 計程車）",
+              "mode": "transit",
+              "origin": {
+                "name": "城ヶ崎海岸",
+                "mapsQuery": "Jogasaki Coast"
+              },
+              "destination": {
+                "name": "Laforet Ito Onsen",
+                "mapsQuery": "Laforet Ito Onsen"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Jogasaki+Coast&destination=Laforet+Ito+Onsen&travelmode=transit",
+              "estimatedDurationMinutes": 40,
+              "estimatedDistanceKm": 15,
+              "via": [
+                "可視時間選擇公車回伊東站再轉計程車到旅館，或直接計程車。"
+              ],
+              "scheduleNotes": "晚間公車班次可能較少，注意最晚班次時間。"
+            }
+          ],
+          "notes": [
+            "回旅館後泡湯放鬆，順便整理今天的石頭戰利品。",
+            "檢查隔天移動橫濱所需的車票與行李排列。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-16",
+      "label": "D6",
+      "title": "伊東 → 橫濱 Richmond Hotel Yokohama Ekimae",
+      "stayId": "yokohama",
+      "todayBagChecklistId": "yokohamaDay",
+      "segments": [
+        {
+          "timeOfDay": "morning",
+          "type": "transport",
+          "title": "伊東 → 橫濱",
+          "routes": [
+            {
+              "label": "伊東 → 熱海 → 橫濱",
+              "mode": "train",
+              "origin": {
+                "name": "伊東站",
+                "mapsQuery": "Ito Station"
+              },
+              "destination": {
+                "name": "橫濱站",
+                "mapsQuery": "Yokohama Station"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit",
+              "estimatedDurationMinutes": 90,
+              "estimatedDistanceKm": 110,
+              "via": [
+                "伊東 → 熱海（伊東線）",
+                "熱海 → 橫濱（東海道本線 / 新幹線＋在橫濱附近接續）"
+              ],
+              "scheduleNotes": "建議避開通勤尖峰時段，人潮較多。"
+            }
+          ],
+          "notes": [
+            "提早整理行李，避免趕車。",
+            "抵達橫濱後先熟悉車站出口與飯店位置。"
+          ]
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "activity",
+          "title": "橫濱車站周邊踩點",
+          "details": {
+            "tips": [
+              "先找到附近的藥妝店、超市與幾家晚餐口袋名單。",
+              "視體力再決定是否延伸到港未來一帶散步。"
+            ]
+          }
+        },
+        {
+          "timeOfDay": "night",
+          "type": "meal",
+          "title": "橫濱站附近晚餐",
+          "notes": [
+            "百貨美食街或車站地下街選擇眾多，可依當日心情挑選。",
+            "吃完早點回飯店休息，隔天再衝橫濱景點。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-17",
+      "label": "D7",
+      "title": "橫濱一日（港未來 / 紅磚倉庫等）",
+      "stayId": "yokohama",
+      "todayBagChecklistId": "yokohamaDay",
+      "segments": [
+        {
+          "timeOfDay": "flex",
+          "type": "free",
+          "title": "橫濱市區自由行",
+          "notes": [
+            "可排：港未來、紅磚倉庫、山下公園、杯麵博物館、拉麵博物館等。",
+            "依天氣與家人氣氛彈性調整，不一定要全部跑完。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-18",
+      "label": "D8",
+      "title": "橫濱 / 東京補貨日 ＋ 收心整理行李",
+      "stayId": "yokohama",
+      "todayBagChecklistId": "yokohamaDay",
+      "segments": [
+        {
+          "timeOfDay": "flex",
+          "type": "free",
+          "title": "藥妝 & 耳機 & 礦石相關補貨日",
+          "notes": [
+            "安排藥妝、超市、耳機 / 電子產品、礦石相關最後採購。",
+            "盡量在今天把行李整理到『明天直接拖著走』的狀態。"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-19",
+      "label": "D9",
+      "title": "橫濱 → 成田 → 台北",
+      "stayId": null,
+      "todayBagChecklistId": "travelDay",
+      "segments": [
+        {
+          "timeOfDay": "morning",
+          "type": "transport",
+          "title": "橫濱站 → 成田機場",
+          "routes": [
+            {
+              "label": "橫濱站 → 成田機場（N'EX 或 其他機場交通）",
+              "mode": "transit",
+              "origin": {
+                "name": "橫濱站",
+                "mapsQuery": "Yokohama Station"
+              },
+              "destination": {
+                "name": "成田機場第2航廈",
+                "mapsQuery": "Narita Airport Terminal 2"
+              },
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Narita+Airport+Terminal+2&travelmode=transit",
+              "estimatedDurationMinutes": 90,
+              "estimatedDistanceKm": 100,
+              "via": [
+                "可選：成田特快（N'EX）或其他機場巴士 / 列車路線。",
+                "依實際時刻與票券安排，至少預留 3 小時以上緩衝到機場。"
+              ],
+              "scheduleNotes": "注意列車 / 巴士時刻，避免誤點導致趕機壓力。"
+            }
+          ],
+          "notes": [
+            "建議提早出發，包含移動＋報到＋安檢＋午餐時間。",
+            "最後再確認護照、機票、貴重物品是否在隨身包中。"
+          ]
+        },
+        {
+          "timeOfDay": "afternoon",
+          "type": "flight",
+          "title": "CX451 東京成田 → 台北",
+          "flightId": "inbound",
+          "notes": [
+            "在成田機場簡單用餐、購買最後的伴手禮。",
+            "注意登機時間與登機門，避免逛太嗨錯過廣播。"
+          ]
+        }
+      ]
+    }
+  ]
 }
