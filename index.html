@@ -103,9 +103,14 @@
       .day-header {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         gap: 8px;
         margin-bottom: 6px;
+      }
+      .day-title-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
       }
       .day-label {
         font-weight: 600;
@@ -183,15 +188,10 @@
         background: transparent;
         border: 1px solid #374151;
       }
-      .two-cols {
-        display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-        gap: 12px;
-      }
-      @media (max-width: 768px) {
-        .two-cols {
-          grid-template-columns: minmax(0, 1fr);
-        }
+      .btn.small-btn {
+        padding: 2px 8px;
+        font-size: 0.75rem;
+        margin-top: 0;
       }
       .small {
         font-size: 0.8rem;
@@ -200,6 +200,53 @@
       .code {
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
           "Liberation Mono", "Courier New", monospace;
+      }
+      .budget-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 4px 0;
+        border-bottom: 1px dashed #1f2937;
+        font-size: 0.85rem;
+      }
+      .budget-row:last-child {
+        border-bottom: none;
+      }
+      .budget-amount {
+        font-weight: 600;
+      }
+      .budget-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .budget-inputs input {
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid #374151;
+        background: #020617;
+        color: #e5e7eb;
+        font-size: 0.8rem;
+      }
+      .budget-inputs input:focus {
+        outline: none;
+        border-color: #2563eb;
+      }
+      select {
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid #374151;
+        background: #020617;
+        color: #e5e7eb;
+        font-size: 0.8rem;
+      }
+      @media (max-width: 768px) {
+        .day-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
       }
     </style>
   </head>
@@ -247,7 +294,7 @@
               :class="{ active: activeTab === 'budget' }"
               @click="activeTab = 'budget'"
             >
-              💰 記帳日期
+              💰 記帳
             </button>
             <button
               class="tab-btn"
@@ -319,19 +366,92 @@
           </section>
         </main>
 
-        <!-- Tab: Budget -->
+        <!-- Tab: Budget with localStorage -->
         <main v-else-if="activeTab === 'budget'">
           <section class="section">
-            <div class="section-title">💰 記帳日期概覽</div>
+            <div class="section-title">💰 旅遊記帳（localStorage）</div>
             <div class="small">
-              幣別：{{ config.budget.currency }}（實際記帳邏輯可以在另一個頁面或
-              localStorage 完成）
+              幣別：{{ config.budget.currency }} ·
+              所有記帳資料會存在瀏覽器 localStorage（同一台裝置 / 瀏覽器才看得到）。
             </div>
-            <ul class="list" style="margin-top: 8px">
-              <li v-for="d in config.budget.days" :key="d.date">
-                {{ d.date }} · {{ d.label }}
-              </li>
-            </ul>
+
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap">
+              <div class="small">選擇日期：</div>
+              <select v-model="activeBudgetDate">
+                <option
+                  v-for="d in config.budget.days"
+                  :value="d.date"
+                  :key="d.date"
+                >
+                  {{ d.label }}（{{ d.date }}）
+                </option>
+              </select>
+            </div>
+
+            <div v-if="activeBudgetDate" style="margin-top: 12px">
+              <div class="small">
+                今日總支出：
+                <span class="budget-amount">
+                  {{ dayTotal(activeBudgetDate) }}
+                  {{ config.budget.currency }}
+                </span>
+              </div>
+
+              <div class="budget-inputs">
+                <input
+                  type="number"
+                  min="0"
+                  step="1"
+                  v-model="budgetForm.amount"
+                  placeholder="金額"
+                />
+                <input
+                  type="text"
+                  v-model="budgetForm.note"
+                  placeholder="項目說明"
+                />
+                <button class="btn small-btn" @click="addBudgetEntry">
+                  ➕ 新增支出
+                </button>
+              </div>
+
+              <div style="margin-top: 10px">
+                <div v-if="budgetEntriesFor(activeBudgetDate).length === 0"
+                     class="small">
+                  目前尚未記錄支出。
+                </div>
+                <div
+                  v-for="entry in budgetEntriesFor(activeBudgetDate)"
+                  :key="entry.id"
+                  class="budget-row"
+                >
+                  <div>
+                    <div class="budget-amount">
+                      {{ entry.amount }} {{ config.budget.currency }}
+                    </div>
+                    <div class="small" v-if="entry.note">{{ entry.note }}</div>
+                  </div>
+                  <button
+                    class="btn outline small-btn"
+                    @click="removeBudgetEntry(activeBudgetDate, entry.id)"
+                  >
+                    刪除
+                  </button>
+                </div>
+              </div>
+
+              <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap">
+                <button
+                  class="btn outline small-btn"
+                  @click="clearBudgetForDay(activeBudgetDate)"
+                >
+                  清除此日所有紀錄
+                </button>
+                <button class="btn outline small-btn" @click="clearAllBudget">
+                  ⚠️ 清除全部記帳資料
+                </button>
+              </div>
+            </div>
           </section>
         </main>
 
@@ -340,23 +460,32 @@
           <section class="section">
             <div class="section-title">🗓 每日行程（含 Google Maps 路線）</div>
             <div class="small" style="margin-bottom: 8px">
-              任何有「🚆 交通」的段落，下面都會列出可點開的 Google Maps 路線卡片。
+              點右上的「收合 / 展開」可以折疊某一天；有「🚆 交通」的段落會顯示可點開的 Google
+              Maps 路線卡片。
             </div>
 
             <div v-for="day in config.days" :key="day.date" class="day-card">
               <div class="day-header">
-                <div>
+                <div class="day-title-wrap">
                   <div class="day-label">
                     {{ day.label }} · {{ day.date }}
                   </div>
                   <div class="day-title">{{ day.title }}</div>
                 </div>
-                <div class="pill" v-if="day.stayId">
-                  住宿：{{ stayName(day.stayId) || day.stayId }}
+                <div style="display: flex; gap: 8px; align-items: center">
+                  <div class="pill" v-if="day.stayId">
+                    住宿：{{ stayName(day.stayId) || day.stayId }}
+                  </div>
+                  <button
+                    class="btn outline small-btn"
+                    @click="toggleDay(day.date)"
+                  >
+                    {{ isDayExpanded(day.date) ? "收合" : "展開" }}
+                  </button>
                 </div>
               </div>
 
-              <div>
+              <div v-if="isDayExpanded(day.date)">
                 <div
                   v-for="(seg, idx) in day.segments"
                   :key="idx"
@@ -425,7 +554,9 @@
 
     <!-- Vue 3 (ESM) from CDN -->
     <script type="module">
-      import { createApp, computed } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+      const BUDGET_KEY = "trip-budget-v1";
+
+      import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
       createApp({
         data() {
@@ -433,6 +564,15 @@
             config: null,
             loading: true,
             activeTab: "days",
+            // 行程摺疊
+            expandedDayDates: [],
+            // 記帳
+            budgetData: {}, // { [date]: [{id, amount, note}] }
+            activeBudgetDate: "",
+            budgetForm: {
+              amount: "",
+              note: "",
+            },
           };
         },
         computed: {
@@ -467,11 +607,114 @@
                 return "✨";
             }
           },
+          // ---- 行程摺疊相關 ----
+          initExpandedDays() {
+            this.expandedDayDates = this.config.days.map((d) => d.date);
+          },
+          isDayExpanded(date) {
+            return this.expandedDayDates.includes(date);
+          },
+          toggleDay(date) {
+            if (this.isDayExpanded(date)) {
+              this.expandedDayDates = this.expandedDayDates.filter(
+                (d) => d !== date
+              );
+            } else {
+              this.expandedDayDates.push(date);
+            }
+          },
+          // ---- 記帳相關 ----
+          loadBudget() {
+            try {
+              const raw = localStorage.getItem(BUDGET_KEY);
+              if (raw) {
+                this.budgetData = JSON.parse(raw);
+              } else {
+                this.budgetData = {};
+              }
+            } catch (e) {
+              console.warn("讀取 budget localStorage 失敗", e);
+              this.budgetData = {};
+            }
+
+            // 確保 config 裡有的每一天都至少有一個陣列
+            this.config.budget.days.forEach((d) => {
+              if (!this.budgetData[d.date]) {
+                this.budgetData[d.date] = [];
+              }
+            });
+
+            // 預設選第一天
+            if (!this.activeBudgetDate && this.config.budget.days.length > 0) {
+              this.activeBudgetDate = this.config.budget.days[0].date;
+            }
+          },
+          saveBudget() {
+            try {
+              localStorage.setItem(BUDGET_KEY, JSON.stringify(this.budgetData));
+            } catch (e) {
+              console.warn("寫入 budget localStorage 失敗", e);
+            }
+          },
+          budgetEntriesFor(date) {
+            return this.budgetData[date] || [];
+          },
+          dayTotal(date) {
+            return this.budgetEntriesFor(date)
+              .reduce((sum, e) => sum + Number(e.amount || 0), 0)
+              .toFixed(0);
+          },
+          addBudgetEntry() {
+            if (!this.activeBudgetDate) return;
+            const amountNum = Number(this.budgetForm.amount);
+            if (!amountNum || amountNum <= 0) {
+              alert("請輸入大於 0 的金額");
+              return;
+            }
+            const entry = {
+              id: Date.now() + Math.random(),
+              amount: amountNum,
+              note: this.budgetForm.note?.trim() || "",
+            };
+            if (!this.budgetData[this.activeBudgetDate]) {
+              this.budgetData[this.activeBudgetDate] = [];
+            }
+            this.budgetData[this.activeBudgetDate].push(entry);
+            this.saveBudget();
+            this.budgetForm.amount = "";
+            this.budgetForm.note = "";
+          },
+          removeBudgetEntry(date, id) {
+            if (!this.budgetData[date]) return;
+            this.budgetData[date] = this.budgetData[date].filter(
+              (e) => e.id !== id
+            );
+            this.saveBudget();
+          },
+          clearBudgetForDay(date) {
+            if (!confirm(`確定要清除 ${date} 的所有記帳資料嗎？`)) return;
+            this.budgetData[date] = [];
+            this.saveBudget();
+          },
+          clearAllBudget() {
+            if (!confirm("⚠️ 確定要清除所有日期的記帳資料嗎？")) return;
+            this.budgetData = {};
+            this.config.budget.days.forEach((d) => {
+              this.budgetData[d.date] = [];
+            });
+            this.saveBudget();
+          },
         },
         async mounted() {
           try {
-            const res = await fetch("./trip-config.json");
+            // 加上時間戳避免 cache
+            const res = await fetch(
+              "./trip-config.json?ts=" + Date.now().toString()
+            );
             this.config = await res.json();
+            // 初始化摺疊狀態 & 記帳
+            this.initExpandedDays();
+            this.loadBudget();
           } catch (e) {
             console.error("載入 trip-config.json 失敗", e);
             alert("載入 trip-config.json 失敗，請確認檔案有放在根目錄。");
