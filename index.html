@@ -2,150 +2,318 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
-    <title>Family Trip Planner</title>
+    <title>2026 東京家庭旅行</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
+      :root {
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
       body {
         margin: 0;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
         background: #0f172a;
-        color: #e5e7eb;
+        color: #0f172a;
       }
-      a {
-        color: #93c5fd;
+      .page {
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #b91c1c 0, #b91c1c 220px, #0f172a 220px, #0f172a 100%);
       }
       .app {
-        max-width: 1080px;
+        max-width: 1100px;
         margin: 0 auto;
-        padding: 16px;
+        padding: 12px 12px 32px;
       }
-      .header {
-        border-bottom: 1px solid #1f2937;
-        padding-bottom: 12px;
-        margin-bottom: 16px;
+      /* Header */
+      .hero-card {
+        background: transparent;
+        color: #fee2e2;
+        text-align: center;
+        padding: 4px 0 12px;
       }
-      .header-title {
-        font-size: 1.4rem;
-        font-weight: 700;
+      .hero-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
       }
-      .header-subtitle {
+      .hero-subtitle {
+        margin-top: 4px;
         font-size: 0.9rem;
-        color: #9ca3af;
+        opacity: 0.9;
       }
-      .tabs {
-        display: flex;
+      .hero-date {
+        display: inline-flex;
+        align-items: center;
         gap: 8px;
-        margin: 12px 0 16px;
-        flex-wrap: wrap;
-      }
-      .tab-btn {
-        padding: 6px 12px;
-        font-size: 0.9rem;
+        margin-top: 8px;
+        padding: 4px 10px;
         border-radius: 999px;
-        border: 1px solid #374151;
-        background: #020617;
-        color: #e5e7eb;
-        cursor: pointer;
+        background: rgba(15, 23, 42, 0.25);
+        font-size: 0.82rem;
       }
-      .tab-btn.active {
-        background: #2563eb;
-        border-color: #2563eb;
-      }
-      .pill {
-        display: inline-block;
-        padding: 2px 8px;
+      .hero-date-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
         border-radius: 999px;
-        background: #1f2937;
+        background: #0f172a;
+        color: #f97316;
         font-size: 0.8rem;
-        color: #9ca3af;
       }
-      .section {
-        margin-bottom: 24px;
-        padding: 16px;
-        border-radius: 16px;
-        background: #020617;
-        border: 1px solid #111827;
+      /* Tabs strip */
+      .tabs-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        padding: 8px 6px 0;
+      }
+      .tab-pill {
+        min-width: 54px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.4);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e5e7eb;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .tab-pill span.small {
+        font-size: 0.7rem;
+        opacity: 0.8;
+      }
+      .tab-pill.active {
+        background: #f97316;
+        border-color: #f97316;
+        color: #111827;
+      }
+      .tab-pill.secondary {
+        background: rgba(15, 23, 42, 0.9);
+      }
+      /* Main card area */
+      .content-shell {
+        margin-top: 14px;
+      }
+      .main-card {
+        background: #f9fafb;
+        border-radius: 20px;
+        padding: 18px 14px 18px;
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.45);
+      }
+      @media (min-width: 768px) {
+        .main-card {
+          padding: 22px 24px 24px;
+        }
       }
       .section-title {
-        font-size: 1.05rem;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-      .badge-row {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111827;
         display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+      .section-title-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: #fee2e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #b91c1c;
+        font-size: 0.8rem;
+      }
+      .subtext {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+      /* Flight card */
+      .flight-card {
+        border-radius: 18px;
+        background: #ecfdf5;
+        padding: 14px 16px;
+        margin-bottom: 14px;
+      }
+      .flight-header {
+        font-size: 0.85rem;
+        color: #047857;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .flight-row {
+        display: grid;
+        grid-template-columns: 1.3fr auto 1.3fr;
+        gap: 6px;
+        align-items: center;
+        padding: 8px 0;
+      }
+      .flight-col {
+        font-size: 0.9rem;
+        color: #111827;
+      }
+      .flight-airport {
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      .flight-airport-sub {
+        font-size: 0.78rem;
+        color: #6b7280;
+      }
+      .flight-mid {
+        text-align: center;
+        font-size: 0.8rem;
+      }
+      .flight-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #0f766e;
+        color: #ecfdf5;
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+      .flight-time {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+      .flight-date {
+        font-size: 0.78rem;
+        color: #6b7280;
+      }
+      .tip-box {
+        margin-top: 8px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: #fef3c7;
+        font-size: 0.8rem;
+        color: #92400e;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .tip-icon {
+        font-size: 1rem;
+        margin-top: 1px;
+      }
+      /* Stays */
+      .stay-list {
+        display: grid;
         gap: 8px;
-        flex-wrap: wrap;
         margin-top: 4px;
+      }
+      .stay-item {
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: #eff6ff;
+        border: 1px solid #dbeafe;
+      }
+      .stay-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1e3a8a;
+      }
+      .stay-meta {
+        font-size: 0.8rem;
+        color: #4b5563;
+      }
+      /* Day view */
+      .day-header-card {
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #e5e7eb;
+        margin-bottom: 12px;
+      }
+      .day-title-line {
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: #111827;
+      }
+      .day-sub-line {
+        font-size: 0.82rem;
+        color: #6b7280;
+        margin-top: 2px;
+      }
+      .day-badges {
+        margin-top: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
       }
       .badge {
         padding: 2px 8px;
         border-radius: 999px;
-        background: #111827;
-        font-size: 0.8rem;
-        color: #9ca3af;
+        background: #e5e7eb;
+        font-size: 0.75rem;
+        color: #4b5563;
       }
-      .list {
-        margin: 0;
-        padding-left: 18px;
-        font-size: 0.9rem;
-      }
-      .list li {
-        margin: 2px 0;
-      }
-      .day-card {
-        margin-bottom: 16px;
-        padding: 14px;
-        border-radius: 16px;
-        background: #020617;
-        border: 1px solid #1f2937;
-      }
-      .day-header {
-        display: flex;
-        justify-content: space-between;
+      .btn {
+        border-radius: 999px;
+        border: none;
+        padding: 5px 10px;
+        font-size: 0.78rem;
+        cursor: pointer;
+        background: #2563eb;
+        color: #f9fafb;
+        display: inline-flex;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 6px;
+        gap: 4px;
       }
-      .day-title-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
+      .btn.outline {
+        background: #ffffff;
+        color: #1f2937;
+        border: 1px solid #d1d5db;
       }
-      .day-label {
-        font-weight: 600;
+      .btn.sm {
+        padding: 3px 8px;
+        font-size: 0.72rem;
       }
-      .day-title {
-        font-size: 0.95rem;
-        color: #d1d5db;
+      .btn-danger {
+        background: #dc2626;
+        color: #fee2e2;
       }
       .segment {
         margin-top: 10px;
         padding-top: 8px;
-        border-top: 1px dashed #1f2937;
+        border-top: 1px dashed #e5e7eb;
       }
-      .segment-header {
+      .segment-title-row {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 8px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
       .segment-title {
-        font-size: 0.95rem;
-        font-weight: 500;
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: #111827;
       }
       .segment-chip {
-        font-size: 0.75rem;
-        padding: 2px 8px;
+        font-size: 0.72rem;
+        padding: 2px 7px;
         border-radius: 999px;
-        background: #111827;
-        color: #9ca3af;
+        background: #e5e7eb;
+        color: #4b5563;
       }
       .segment-notes {
         margin: 0;
         padding-left: 18px;
-        font-size: 0.85rem;
-        color: #9ca3af;
+        font-size: 0.8rem;
+        color: #4b5563;
       }
       .routes {
         margin-top: 6px;
@@ -153,422 +321,622 @@
         gap: 8px;
       }
       .route-card {
-        padding: 8px 10px;
         border-radius: 12px;
-        background: #020617;
-        border: 1px solid #1f2937;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+        padding: 8px 9px;
       }
       .route-header {
-        font-size: 0.9rem;
-        font-weight: 500;
-        margin-bottom: 2px;
+        font-size: 0.86rem;
+        font-weight: 600;
       }
       .route-meta {
-        font-size: 0.8rem;
-        color: #9ca3af;
-        margin-bottom: 4px;
+        font-size: 0.78rem;
+        color: #6b7280;
+        margin-top: 2px;
       }
       .route-steps {
-        margin: 0;
+        margin: 4px 0 0;
         padding-left: 18px;
-        font-size: 0.8rem;
-        color: #9ca3af;
+        font-size: 0.78rem;
+        color: #6b7280;
       }
-      .btn {
-        margin-top: 6px;
-        padding: 4px 10px;
-        font-size: 0.8rem;
-        border-radius: 999px;
-        border: none;
-        cursor: pointer;
-        background: #2563eb;
-        color: #e5e7eb;
+      /* Budget block */
+      .budget-card {
+        margin-top: 8px;
+        padding: 8px 10px;
+        border-radius: 14px;
+        background: #fefce8;
+        border: 1px solid #fef3c7;
       }
-      .btn.outline {
-        background: transparent;
-        border: 1px solid #374151;
-      }
-      .btn.small-btn {
-        padding: 2px 8px;
-        font-size: 0.75rem;
-        margin-top: 0;
-      }
-      .small {
-        font-size: 0.8rem;
-        color: #9ca3af;
-      }
-      .code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-      }
-      .budget-row {
+      .budget-header {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         gap: 8px;
-        padding: 4px 0;
-        border-bottom: 1px dashed #1f2937;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        color: #92400e;
       }
-      .budget-row:last-child {
-        border-bottom: none;
-      }
-      .budget-amount {
-        font-weight: 600;
+      .budget-total {
+        font-weight: 700;
+        font-size: 0.9rem;
       }
       .budget-inputs {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        margin-top: 8px;
+        margin-top: 6px;
       }
       .budget-inputs input {
         padding: 4px 8px;
         border-radius: 999px;
-        border: 1px solid #374151;
-        background: #020617;
-        color: #e5e7eb;
-        font-size: 0.8rem;
+        border: 1px solid #e5e7eb;
+        font-size: 0.78rem;
       }
-      .budget-inputs input:focus {
-        outline: none;
-        border-color: #2563eb;
+      .budget-list {
+        margin-top: 6px;
+        max-height: 130px;
+        overflow-y: auto;
       }
-      select {
-        padding: 4px 8px;
-        border-radius: 999px;
-        border: 1px solid #374151;
-        background: #020617;
-        color: #e5e7eb;
-        font-size: 0.8rem;
+      .budget-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 0;
+        border-bottom: 1px dashed #fde68a;
+        font-size: 0.78rem;
+        color: #78350f;
       }
-      @media (max-width: 768px) {
-        .day-header {
-          align-items: flex-start;
-          flex-direction: column;
+      .budget-row:last-child {
+        border-bottom: none;
+      }
+      /* Phrasebook & emergency */
+      .phrase-grid {
+        display: grid;
+        gap: 8px;
+      }
+      .phrase-item {
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: #eef2ff;
+        border: 1px solid #e0e7ff;
+        font-size: 0.83rem;
+      }
+      .phrase-label {
+        font-weight: 600;
+        color: #1e3a8a;
+      }
+      .phrase-jp {
+        margin-top: 2px;
+        color: #4b5563;
+      }
+      .phrase-note {
+        margin-top: 2px;
+        font-size: 0.76rem;
+        color: #6b7280;
+      }
+      .emergency-list {
+        padding-left: 18px;
+        font-size: 0.83rem;
+        color: #4b5563;
+      }
+      .small-muted {
+        font-size: 0.78rem;
+        color: #6b7280;
+      }
+      @media (max-width: 640px) {
+        .flight-row {
+          grid-template-columns: 1fr;
+          text-align: left;
+        }
+        .flight-mid {
+          text-align: left;
         }
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <div class="app" v-if="loading">
-        正在載入行程設定...
-      </div>
-
-      <div class="app" v-else>
-        <!-- Header -->
-        <header class="header">
-          <div class="header-title">{{ config.tripMeta.title }}</div>
-          <div class="header-subtitle">
-            {{ config.tripMeta.subtitle }} ·
-            <span class="code">
-              {{ config.tripMeta.startDate }} → {{ config.tripMeta.endDate }}
-            </span>
+      <div class="page">
+        <div class="app" v-if="loading">
+          <div class="hero-card">
+            <div class="hero-title">2026 東京家庭旅行</div>
+            <p style="color:#fee2e2;margin-top:6px;">載入行程設定中...</p>
           </div>
-          <div class="badge-row" style="margin-top: 6px">
-            <span class="badge">城市：{{ config.tripMeta.baseCity }}</span>
-            <span class="badge">時區：{{ config.tripMeta.timezone }}</span>
-            <span class="badge"
-              >共 {{ totalDays }} 天（{{ config.days.length }} 個行程日）</span
-            >
-          </div>
+        </div>
 
-          <div class="tabs">
-            <button
-              class="tab-btn"
-              :class="{ active: activeTab === 'info' }"
-              @click="activeTab = 'info'"
-            >
-              ℹ️ 概覽
-            </button>
-            <button
-              class="tab-btn"
-              :class="{ active: activeTab === 'packing' }"
-              @click="activeTab = 'packing'"
-            >
-              🎒 行前打包
-            </button>
-            <button
-              class="tab-btn"
-              :class="{ active: activeTab === 'budget' }"
-              @click="activeTab = 'budget'"
-            >
-              💰 記帳
-            </button>
-            <button
-              class="tab-btn"
-              :class="{ active: activeTab === 'days' }"
-              @click="activeTab = 'days'"
-            >
-              🗓 行程（含 Google Maps）
-            </button>
-          </div>
-        </header>
-
-        <!-- Tab: Info -->
-        <main v-if="activeTab === 'info'">
-          <section class="section">
-            <div class="section-title">✈️ 航班資訊</div>
-            <div v-for="f in config.flights" :key="f.id" style="margin-top: 8px">
+        <div class="app" v-else>
+          <!-- Hero header -->
+          <header class="hero-card">
+            <div class="hero-title">{{ config.tripMeta.title }}</div>
+            <div class="hero-subtitle">{{ config.tripMeta.subtitle }}</div>
+            <div class="hero-date">
+              <div class="hero-date-icon">📅</div>
               <div>
-                <strong>{{ f.direction === 'outbound' ? '去程' : '回程' }}</strong>
-                · {{ f.airline }} · {{ f.flightNo }}
-              </div>
-              <div class="small">
-                {{ f.from.city }} ({{ f.from.code }})
-                →
-                {{ f.to.city }} ({{ f.to.code }})
-              </div>
-              <div class="small">
-                出發：{{ f.departure }}<br />
-                抵達：{{ f.arrival }}
+                {{ config.tripMeta.startDate }} -
+                {{ config.tripMeta.endDate }}
               </div>
             </div>
-          </section>
+          </header>
 
-          <section class="section">
-            <div class="section-title">🏨 住宿分段</div>
-            <div v-for="s in config.stays" :key="s.id" style="margin-top: 8px">
-              <div><strong>{{ s.name }}</strong></div>
-              <div class="small">
-                {{ s.city }} · {{ s.area }}<br />
-                {{ s.checkIn }} → {{ s.checkOut }}
-              </div>
-              <div class="small" v-if="s.notes">{{ s.notes }}</div>
-            </div>
-          </section>
-        </main>
-
-        <!-- Tab: Packing -->
-        <main v-else-if="activeTab === 'packing'">
-          <section class="section">
-            <div class="section-title">📦 行前打包清單</div>
-            <ul class="list">
-              <li v-for="item in config.checklists.packing" :key="item.id">
-                {{ item.label }}
-              </li>
-            </ul>
-          </section>
-
-          <section class="section">
-            <div class="section-title">🎒 每日「今日隨身包」建議</div>
-            <div
-              v-for="(items, key) in config.checklists.dailyBags"
-              :key="key"
-              style="margin-top: 10px"
+          <!-- Top tabs -->
+          <nav class="tabs-strip">
+            <button
+              class="tab-pill"
+              :class="{ active: activeKind === 'overview' }"
+              @click="activeKind = 'overview'"
             >
-              <div class="pill">{{ key }}</div>
-              <ul class="list">
-                <li v-for="it in items" :key="it">{{ it }}</li>
-              </ul>
-            </div>
-          </section>
-        </main>
+              總覽
+            </button>
 
-        <!-- Tab: Budget with localStorage -->
-        <main v-else-if="activeTab === 'budget'">
-          <section class="section">
-            <div class="section-title">💰 旅遊記帳（localStorage）</div>
-            <div class="small">
-              幣別：{{ config.budget.currency }} ·
-              所有記帳資料會存在瀏覽器 localStorage（同一台裝置 / 瀏覽器才看得到）。
-            </div>
+            <button
+              v-for="day in config.days"
+              :key="day.date"
+              class="tab-pill"
+              :class="{
+                active: activeKind === 'day' && activeDayDate === day.date
+              }"
+              @click="selectDay(day.date)"
+            >
+              <span>{{ shortDate(day.date) }}</span>
+              <span class="small">{{ day.label }}</span>
+            </button>
 
-            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap">
-              <div class="small">選擇日期：</div>
-              <select v-model="activeBudgetDate">
-                <option
-                  v-for="d in config.budget.days"
-                  :value="d.date"
-                  :key="d.date"
-                >
-                  {{ d.label }}（{{ d.date }}）
-                </option>
-              </select>
-            </div>
+            <button
+              class="tab-pill secondary"
+              :class="{ active: activeKind === 'phrase' }"
+              @click="activeKind = 'phrase'"
+            >
+              日語
+            </button>
 
-            <div v-if="activeBudgetDate" style="margin-top: 12px">
-              <div class="small">
-                今日總支出：
-                <span class="budget-amount">
-                  {{ dayTotal(activeBudgetDate) }}
-                  {{ config.budget.currency }}
-                </span>
-              </div>
+            <button
+              class="tab-pill secondary"
+              :class="{ active: activeKind === 'emergency' }"
+              @click="activeKind = 'emergency'"
+            >
+              緊急
+            </button>
 
-              <div class="budget-inputs">
-                <input
-                  type="number"
-                  min="0"
-                  step="1"
-                  v-model="budgetForm.amount"
-                  placeholder="金額"
-                />
-                <input
-                  type="text"
-                  v-model="budgetForm.note"
-                  placeholder="項目說明"
-                />
-                <button class="btn small-btn" @click="addBudgetEntry">
-                  ➕ 新增支出
-                </button>
-              </div>
+            <button
+              class="tab-pill secondary"
+              :class="{ active: activeKind === 'budget' }"
+              @click="activeKind = 'budget'"
+            >
+              記帳
+            </button>
+          </nav>
 
-              <div style="margin-top: 10px">
-                <div v-if="budgetEntriesFor(activeBudgetDate).length === 0"
-                     class="small">
-                  目前尚未記錄支出。
+          <!-- Main content -->
+          <div class="content-shell">
+            <div class="main-card" v-if="activeKind === 'overview'">
+              <section>
+                <div class="section-title">
+                  <span class="section-title-icon">✈️</span>
+                  航班資訊
                 </div>
-                <div
-                  v-for="entry in budgetEntriesFor(activeBudgetDate)"
-                  :key="entry.id"
-                  class="budget-row"
-                >
-                  <div>
-                    <div class="budget-amount">
-                      {{ entry.amount }} {{ config.budget.currency }}
+                <div class="subtext">
+                  去程 {{ outbound.flightNo }} / 回程 {{ inbound.flightNo }}
+                </div>
+
+                <!-- Outbound -->
+                <div class="flight-card" v-if="outbound">
+                  <div class="flight-header">去程航班</div>
+                  <div class="flight-row">
+                    <div class="flight-col">
+                      <div class="flight-airport">
+                        {{ outbound.from.code }}
+                      </div>
+                      <div class="flight-airport-sub">
+                        {{ outbound.from.airport }}<br />
+                        Terminal {{ outbound.from.terminal || "-" }}
+                      </div>
                     </div>
-                    <div class="small" v-if="entry.note">{{ entry.note }}</div>
-                  </div>
-                  <button
-                    class="btn outline small-btn"
-                    @click="removeBudgetEntry(activeBudgetDate, entry.id)"
-                  >
-                    刪除
-                  </button>
-                </div>
-              </div>
-
-              <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap">
-                <button
-                  class="btn outline small-btn"
-                  @click="clearBudgetForDay(activeBudgetDate)"
-                >
-                  清除此日所有紀錄
-                </button>
-                <button class="btn outline small-btn" @click="clearAllBudget">
-                  ⚠️ 清除全部記帳資料
-                </button>
-              </div>
-            </div>
-          </section>
-        </main>
-
-        <!-- Tab: Days -->
-        <main v-else-if="activeTab === 'days'">
-          <section class="section">
-            <div class="section-title">🗓 每日行程（含 Google Maps 路線）</div>
-            <div class="small" style="margin-bottom: 8px">
-              點右上的「收合 / 展開」可以折疊某一天；有「🚆 交通」的段落會顯示可點開的 Google
-              Maps 路線卡片。
-            </div>
-
-            <div v-for="day in config.days" :key="day.date" class="day-card">
-              <div class="day-header">
-                <div class="day-title-wrap">
-                  <div class="day-label">
-                    {{ day.label }} · {{ day.date }}
-                  </div>
-                  <div class="day-title">{{ day.title }}</div>
-                </div>
-                <div style="display: flex; gap: 8px; align-items: center">
-                  <div class="pill" v-if="day.stayId">
-                    住宿：{{ stayName(day.stayId) || day.stayId }}
-                  </div>
-                  <button
-                    class="btn outline small-btn"
-                    @click="toggleDay(day.date)"
-                  >
-                    {{ isDayExpanded(day.date) ? "收合" : "展開" }}
-                  </button>
-                </div>
-              </div>
-
-              <div v-if="isDayExpanded(day.date)">
-                <div
-                  v-for="(seg, idx) in day.segments"
-                  :key="idx"
-                  class="segment"
-                >
-                  <div class="segment-header">
-                    <div class="segment-title">
-                      {{ segmentEmoji(seg.type) }} {{ seg.title }}
+                    <div class="flight-mid">
+                      <div class="flight-pill">{{ outbound.flightNo }}</div>
+                      <div
+                        style="font-size:0.8rem;color:#6b7280;margin-top:3px;"
+                      >
+                        ✈️ 直飛
+                      </div>
                     </div>
-                    <div class="segment-chip">
-                      {{ seg.timeOfDay || 'flex' }} · {{ seg.type }}
+                    <div class="flight-col" style="text-align:right;">
+                      <div class="flight-airport">
+                        {{ outbound.to.code }}
+                      </div>
+                      <div class="flight-airport-sub">
+                        {{ outbound.to.airport }}<br />
+                        Terminal {{ outbound.to.terminal || "-" }}
+                      </div>
                     </div>
                   </div>
-
-                  <!-- 交通段落：顯示 routes + Google Maps -->
                   <div
-                    v-if="seg.type === 'transport' && seg.routes && seg.routes.length"
-                    class="routes"
+                    style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4b5563;margin-top:4px;"
                   >
+                    <div>
+                      出發：
+                      <span class="flight-time">{{
+                        timeOnly(outbound.departure)
+                      }}</span>
+                      <span class="flight-date">
+                        {{ dateOnly(outbound.departure) }}
+                      </span>
+                    </div>
+                    <div style="text-align:right;">
+                      抵達：
+                      <span class="flight-time">{{
+                        timeOnly(outbound.arrival)
+                      }}</span>
+                      <span class="flight-date">
+                        {{ dateOnly(outbound.arrival) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Inbound -->
+                <div class="flight-card" v-if="inbound">
+                  <div class="flight-header">回程航班</div>
+                  <div class="flight-row">
+                    <div class="flight-col">
+                      <div class="flight-airport">
+                        {{ inbound.from.code }}
+                      </div>
+                      <div class="flight-airport-sub">
+                        {{ inbound.from.airport }}<br />
+                        Terminal {{ inbound.from.terminal || "-" }}
+                      </div>
+                    </div>
+                    <div class="flight-mid">
+                      <div class="flight-pill">{{ inbound.flightNo }}</div>
+                      <div
+                        style="font-size:0.8rem;color:#6b7280;margin-top:3px;"
+                      >
+                        ✈️ 直飛
+                      </div>
+                    </div>
+                    <div class="flight-col" style="text-align:right;">
+                      <div class="flight-airport">
+                        {{ inbound.to.code }}
+                      </div>
+                      <div class="flight-airport-sub">
+                        {{ inbound.to.airport }}<br />
+                        Terminal {{ inbound.to.terminal || "-" }}
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4b5563;margin-top:4px;"
+                  >
+                    <div>
+                      出發：
+                      <span class="flight-time">{{
+                        timeOnly(inbound.departure)
+                      }}</span>
+                      <span class="flight-date">
+                        {{ dateOnly(inbound.departure) }}
+                      </span>
+                    </div>
+                    <div style="text-align:right;">
+                      抵達：
+                      <span class="flight-time">{{
+                        timeOnly(inbound.arrival)
+                      }}</span>
+                      <span class="flight-date">
+                        {{ dateOnly(inbound.arrival) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tip-box">
+                  <div class="tip-icon">⚠️</div>
+                  <div>
+                    建議出發前至少 <strong>2.5 小時</strong> 抵達機場辦理報到與托運。
+                  </div>
+                </div>
+              </section>
+
+              <section style="margin-top:16px;">
+                <div class="section-title">
+                  <span class="section-title-icon">🏨</span>
+                  住宿分段
+                </div>
+                <div class="stay-list">
+                  <div
+                    class="stay-item"
+                    v-for="s in config.stays"
+                    :key="s.id"
+                  >
+                    <div class="stay-name">{{ s.name }}</div>
+                    <div class="stay-meta">
+                      {{ s.city }} · {{ s.area }}<br />
+                      {{ s.checkIn }} → {{ s.checkOut }}
+                    </div>
                     <div
-                      v-for="route in seg.routes"
-                      :key="route.label"
-                      class="route-card"
+                      class="stay-meta"
+                      v-if="s.notes"
+                      style="margin-top:2px;"
                     >
-                      <div class="route-header">{{ route.label }}</div>
-                      <div class="route-meta">
-                        <span v-if="route.estimatedDurationMinutes">
-                          約 {{ route.estimatedDurationMinutes }} 分
-                        </span>
-                        <span
-                          v-if="route.estimatedDistanceKm"
-                          style="margin-left: 4px"
-                        >
-                          · 約 {{ route.estimatedDistanceKm }} km
+                      {{ s.notes }}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Day view -->
+            <div class="main-card" v-else-if="activeKind === 'day'">
+              <div v-if="currentDay">
+                <div class="day-header-card">
+                  <div class="day-title-line">
+                    {{ currentDay.label }} · {{ currentDay.date }}
+                  </div>
+                  <div class="day-sub-line">
+                    {{ currentDay.title }}
+                  </div>
+                  <div class="day-badges">
+                    <span class="badge" v-if="currentDay.stayId">
+                      住宿：{{ stayName(currentDay.stayId) || currentDay.stayId }}
+                    </span>
+                    <span class="badge">
+                      今日支出：{{ dayTotal(currentDay.date) }}
+                      {{ config.budget.currency }}
+                    </span>
+                    <button
+                      class="btn sm outline"
+                      @click="toggleDayCollapse(currentDay.date)"
+                    >
+                      {{ isDayCollapsed(currentDay.date) ? "展開行程" : "收合行程" }}
+                    </button>
+                  </div>
+
+                  <!-- 小型記帳區塊 -->
+                  <div class="budget-card">
+                    <div class="budget-header">
+                      <div>
+                        今日記帳 ·
+                        <span class="budget-total">
+                          {{ dayTotal(currentDay.date) }}
+                          {{ config.budget.currency }}
                         </span>
                       </div>
-                      <ul
-                        v-if="route.via && route.via.length"
-                        class="route-steps"
-                      >
-                        <li v-for="step in route.via" :key="step">
-                          {{ step }}
-                        </li>
-                      </ul>
                       <button
-                        v-if="route.gmapsUrl"
-                        class="btn"
-                        @click="openMaps(route.gmapsUrl)"
+                        class="btn sm outline"
+                        @click="clearBudgetForDay(currentDay.date)"
                       >
-                        在 Google Maps 開啟
+                        清除此日
                       </button>
                     </div>
+                    <div class="budget-inputs">
+                      <input
+                        type="number"
+                        min="0"
+                        step="1"
+                        v-model="budgetForm.amount"
+                        placeholder="金額"
+                      />
+                      <input
+                        type="text"
+                        v-model="budgetForm.note"
+                        placeholder="說明"
+                      />
+                      <button class="btn sm" @click="addBudgetEntryFor(currentDay.date)">
+                        ➕ 記一筆
+                      </button>
+                    </div>
+                    <div class="budget-list">
+                      <div
+                        v-for="entry in budgetEntriesFor(currentDay.date)"
+                        :key="entry.id"
+                        class="budget-row"
+                      >
+                        <div>
+                          <div style="font-weight:600;">
+                            {{ entry.amount }} {{ config.budget.currency }}
+                          </div>
+                          <div v-if="entry.note" class="small-muted">
+                            {{ entry.note }}
+                          </div>
+                        </div>
+                        <button
+                          class="btn sm outline"
+                          @click="removeBudgetEntry(currentDay.date, entry.id)"
+                        >
+                          刪除
+                        </button>
+                      </div>
+                      <div
+                        v-if="budgetEntriesFor(currentDay.date).length === 0"
+                        class="small-muted"
+                      >
+                        目前尚未記錄支出。
+                      </div>
+                    </div>
                   </div>
+                </div>
 
-                  <!-- 一般備註 -->
-                  <ul v-if="seg.notes && seg.notes.length" class="segment-notes">
-                    <li v-for="n in seg.notes" :key="n">{{ n }}</li>
-                  </ul>
+                <!-- 行程內容 -->
+                <div v-if="!isDayCollapsed(currentDay.date)">
+                  <div
+                    v-for="(seg, idx) in currentDay.segments"
+                    :key="idx"
+                    class="segment"
+                  >
+                    <div class="segment-title-row">
+                      <div class="segment-title">
+                        {{ segmentEmoji(seg.type) }} {{ seg.title }}
+                      </div>
+                      <div class="segment-chip">
+                        {{ seg.timeOfDay || 'flex' }} · {{ seg.type }}
+                      </div>
+                    </div>
+
+                    <div
+                      v-if="seg.type === 'transport' && seg.routes && seg.routes.length"
+                      class="routes"
+                    >
+                      <div
+                        v-for="route in seg.routes"
+                        :key="route.label"
+                        class="route-card"
+                      >
+                        <div class="route-header">{{ route.label }}</div>
+                        <div class="route-meta">
+                          <span v-if="route.estimatedDurationMinutes">
+                            約 {{ route.estimatedDurationMinutes }} 分
+                          </span>
+                          <span
+                            v-if="route.estimatedDistanceKm"
+                            style="margin-left:4px;"
+                          >
+                            · 約 {{ route.estimatedDistanceKm }} km
+                          </span>
+                        </div>
+                        <ul
+                          v-if="route.via && route.via.length"
+                          class="route-steps"
+                        >
+                          <li v-for="s in route.via" :key="s">{{ s }}</li>
+                        </ul>
+                        <button
+                          v-if="route.gmapsUrl"
+                          class="btn sm"
+                          @click="openMaps(route.gmapsUrl)"
+                        >
+                          在 Google Maps 開啟
+                        </button>
+                      </div>
+                    </div>
+
+                    <ul
+                      v-if="seg.notes && seg.notes.length"
+                      class="segment-notes"
+                    >
+                      <li v-for="n in seg.notes" :key="n">{{ n }}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  v-else
+                  class="small-muted"
+                  style="margin-top:10px;font-style:italic;"
+                >
+                  今日行程已收合，點「展開行程」可再次顯示所有細節。
                 </div>
               </div>
             </div>
-          </section>
-        </main>
+
+            <!-- Phrasebook -->
+            <div class="main-card" v-else-if="activeKind === 'phrase'">
+              <section>
+                <div class="section-title">
+                  <span class="section-title-icon">🗣️</span>
+                  手指日文
+                </div>
+                <p class="small-muted" style="margin-bottom:8px;">
+                  在日本只要把手機遞給對方、指著這些句子就能溝通。
+                </p>
+                <div class="phrase-grid">
+                  <div
+                    class="phrase-item"
+                    v-for="p in config.phrasebook"
+                    :key="p.id"
+                  >
+                    <div class="phrase-label">{{ p.label }}</div>
+                    <div class="phrase-jp">{{ p.jp }}</div>
+                    <div v-if="p.note" class="phrase-note">{{ p.note }}</div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Emergency -->
+            <div class="main-card" v-else-if="activeKind === 'emergency'">
+              <section>
+                <div class="section-title">
+                  <span class="section-title-icon">🚨</span>
+                  緊急 & 生病
+                </div>
+                <ul class="emergency-list">
+                  <li>日本緊急電話：警察 110，消防/救護車 119。</li>
+                  <li>看病時可以說：「子どもが熱があります。」（小孩發燒了）。</li>
+                  <li>可在藥局尋找「小児用 解熱鎮痛薬」或退熱貼。</li>
+                  <li>記得攜帶護照與保險文件，方便醫院登記。</li>
+                </ul>
+                <p class="small-muted" style="margin-top:8px;">
+                  （你可以依實際行程，把常用醫院、藥局的 Google Maps 連結補到
+                  trip-config.json 或直接寫在這裡）
+                </p>
+              </section>
+            </div>
+
+            <!-- 全域記帳頁 -->
+            <div class="main-card" v-else-if="activeKind === 'budget'">
+              <section>
+                <div class="section-title">
+                  <span class="section-title-icon">💰</span>
+                  旅遊記帳總覽
+                </div>
+                <p class="small-muted">
+                  幣別：{{ config.budget.currency }} ·
+                  所有資料保存在這台裝置的 localStorage（不會上傳）。
+                </p>
+
+                <div style="margin-top:10px;">
+                  <div
+                    v-for="d in config.budget.days"
+                    :key="d.date"
+                    style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed #e5e7eb;"
+                  >
+                    <div
+                      style="display:flex;justify-content:space-between;align-items:center;gap:8px;"
+                    >
+                      <div>
+                        <strong>{{ d.label }}</strong>
+                        <span class="small-muted">（{{ d.date }}）</span>
+                      </div>
+                      <div class="budget-total">
+                        {{ dayTotal(d.date) }} {{ config.budget.currency }}
+                      </div>
+                    </div>
+                    <div class="small-muted" style="margin-top:2px;">
+                      紀錄 {{ budgetEntriesFor(d.date).length }} 筆
+                    </div>
+                  </div>
+                  <div style="margin-top:4px;">
+                    <button
+                      class="btn btn-danger sm"
+                      @click="clearAllBudget"
+                    >
+                      ⚠️ 清除所有記帳資料
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Vue 3 (ESM) from CDN -->
+    <!-- Vue 3 ESM -->
     <script type="module">
       const BUDGET_KEY = "trip-budget-v1";
 
-      import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+      import { createApp, computed } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
       createApp({
         data() {
           return {
             config: null,
             loading: true,
-            activeTab: "days",
-            // 行程摺疊
-            expandedDayDates: [],
-            // 記帳
+            activeKind: "overview",
+            activeDayDate: "",
+            collapsedDays: {},
+
             budgetData: {}, // { [date]: [{id, amount, note}] }
-            activeBudgetDate: "",
             budgetForm: {
               amount: "",
               note: "",
@@ -576,18 +944,37 @@
           };
         },
         computed: {
-          totalDays() {
-            if (!this.config || !this.config.tripMeta) return 0;
-            const start = new Date(this.config.tripMeta.startDate);
-            const end = new Date(this.config.tripMeta.endDate);
-            const diff = end - start;
-            return Math.round(diff / (1000 * 60 * 60 * 24)) + 1;
+          outbound() {
+            return this.config.flights.find((f) => f.direction === "outbound");
+          },
+          inbound() {
+            return this.config.flights.find((f) => f.direction === "inbound");
+          },
+          currentDay() {
+            return this.config.days.find((d) => d.date === this.activeDayDate);
           },
         },
         methods: {
+          shortDate(dateStr) {
+            // "2026-02-11" -> "2/11"
+            const [y, m, d] = dateStr.split("-");
+            return Number(m) + "/" + Number(d);
+          },
+          dateOnly(iso) {
+            // 簡單切掉 T 之後
+            return iso.split("T")[0];
+          },
+          timeOnly(iso) {
+            const t = iso.split("T")[1] || "";
+            return t.substring(0, 5);
+          },
           stayName(id) {
             const s = this.config.stays.find((x) => x.id === id);
             return s ? s.name : null;
+          },
+          selectDay(date) {
+            this.activeKind = "day";
+            this.activeDayDate = date;
           },
           openMaps(url) {
             window.open(url, "_blank");
@@ -607,79 +994,55 @@
                 return "✨";
             }
           },
-          // ---- 行程摺疊相關 ----
-          initExpandedDays() {
-            this.expandedDayDates = this.config.days.map((d) => d.date);
+          // --- 摺疊 ---
+          isDayCollapsed(date) {
+            return !!this.collapsedDays[date];
           },
-          isDayExpanded(date) {
-            return this.expandedDayDates.includes(date);
+          toggleDayCollapse(date) {
+            this.collapsedDays[date] = !this.collapsedDays[date];
           },
-          toggleDay(date) {
-            if (this.isDayExpanded(date)) {
-              this.expandedDayDates = this.expandedDayDates.filter(
-                (d) => d !== date
-              );
-            } else {
-              this.expandedDayDates.push(date);
-            }
-          },
-          // ---- 記帳相關 ----
+          // --- 記帳 ---
           loadBudget() {
             try {
               const raw = localStorage.getItem(BUDGET_KEY);
-              if (raw) {
-                this.budgetData = JSON.parse(raw);
-              } else {
-                this.budgetData = {};
-              }
-            } catch (e) {
-              console.warn("讀取 budget localStorage 失敗", e);
+              this.budgetData = raw ? JSON.parse(raw) : {};
+            } catch {
               this.budgetData = {};
             }
-
-            // 確保 config 裡有的每一天都至少有一個陣列
+            // 確保每個日期都有陣列
             this.config.budget.days.forEach((d) => {
-              if (!this.budgetData[d.date]) {
-                this.budgetData[d.date] = [];
-              }
+              if (!this.budgetData[d.date]) this.budgetData[d.date] = [];
             });
-
-            // 預設選第一天
-            if (!this.activeBudgetDate && this.config.budget.days.length > 0) {
-              this.activeBudgetDate = this.config.budget.days[0].date;
-            }
           },
           saveBudget() {
             try {
               localStorage.setItem(BUDGET_KEY, JSON.stringify(this.budgetData));
-            } catch (e) {
-              console.warn("寫入 budget localStorage 失敗", e);
-            }
+            } catch {}
           },
           budgetEntriesFor(date) {
             return this.budgetData[date] || [];
           },
           dayTotal(date) {
-            return this.budgetEntriesFor(date)
-              .reduce((sum, e) => sum + Number(e.amount || 0), 0)
-              .toFixed(0);
+            const list = this.budgetEntriesFor(date);
+            const sum = list.reduce(
+              (acc, e) => acc + Number(e.amount || 0),
+              0
+            );
+            return sum.toFixed(0);
           },
-          addBudgetEntry() {
-            if (!this.activeBudgetDate) return;
-            const amountNum = Number(this.budgetForm.amount);
-            if (!amountNum || amountNum <= 0) {
+          addBudgetEntryFor(date) {
+            const amt = Number(this.budgetForm.amount);
+            if (!amt || amt <= 0) {
               alert("請輸入大於 0 的金額");
               return;
             }
             const entry = {
               id: Date.now() + Math.random(),
-              amount: amountNum,
+              amount: amt,
               note: this.budgetForm.note?.trim() || "",
             };
-            if (!this.budgetData[this.activeBudgetDate]) {
-              this.budgetData[this.activeBudgetDate] = [];
-            }
-            this.budgetData[this.activeBudgetDate].push(entry);
+            if (!this.budgetData[date]) this.budgetData[date] = [];
+            this.budgetData[date].push(entry);
             this.saveBudget();
             this.budgetForm.amount = "";
             this.budgetForm.note = "";
@@ -707,13 +1070,17 @@
         },
         async mounted() {
           try {
-            // 加上時間戳避免 cache
             const res = await fetch(
               "./trip-config.json?ts=" + Date.now().toString()
             );
             this.config = await res.json();
-            // 初始化摺疊狀態 & 記帳
-            this.initExpandedDays();
+
+            // 初始化 active day
+            if (this.config.days.length > 0) {
+              this.activeDayDate = this.config.days[0].date;
+            }
+
+            // 初始化記帳
             this.loadBudget();
           } catch (e) {
             console.error("載入 trip-config.json 失敗", e);
