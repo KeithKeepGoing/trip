@@ -264,7 +264,7 @@
 "name": "上野站",
 "mapsQuery": "Ueno Station"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=Ueno+Station&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=Ueno+Station&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=Ueno+Station&travelmode=transit",
 "estimatedDurationMinutes": 60,
 "estimatedDistanceKm": 70,
 "via": [
@@ -341,7 +341,7 @@
 "name": "秋葉原站",
 "mapsQuery": "Akihabara Station"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Akihabara+Station&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Akihabara+Station&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Akihabara+Station&travelmode=transit",
 "estimatedDurationMinutes": 5,
 "estimatedDistanceKm": 2,
 "via": [
@@ -424,7 +424,7 @@
 "name": "馬喰横山站 A3 出口",
 "mapsQuery": "Bakuroyokoyama Station A3"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=MONday+Apart+Ueno+Shin-Okachimachi&destination=Bakuroyokoyama+Station&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=MONday+Apart+Ueno+Shin-Okachimachi&destination=Bakuroyokoyama+Station&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=MONday+Apart+Ueno+Shin-Okachimachi&destination=Bakuroyokoyama+Station&travelmode=transit",
 "estimatedDurationMinutes": 20,
 "estimatedDistanceKm": 5,
 "via": [
@@ -476,7 +476,7 @@
 "name": "伊東站",
 "mapsQuery": "Ito Station"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit",
 "estimatedDurationMinutes": 120,
 "estimatedDistanceKm": 150,
 "via": [
@@ -495,7 +495,7 @@
 "name": "伊東站",
 "mapsQuery": "Ito Station"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit",
 "estimatedDurationMinutes": 140,
 "estimatedDistanceKm": 150,
 "via": [
@@ -543,7 +543,7 @@
 "name": "大室山纜車站",
 "mapsQuery": "Omuroyama Lift"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Omuroyama+Lift&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Omuroyama+Lift&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Omuroyama+Lift&travelmode=transit",
 "estimatedDurationMinutes": 40,
 "estimatedDistanceKm": 15,
 "via": [
@@ -594,7 +594,7 @@
 "name": "城ヶ崎海岸",
 "mapsQuery": "Jogasaki Coast"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Omuroyama+Lift&destination=Jogasaki+Coast&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Omuroyama+Lift&destination=Jogasaki+Coast&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Omuroyama+Lift&destination=Jogasaki+Coast&travelmode=transit",
 "estimatedDurationMinutes": 30,
 "estimatedDistanceKm": 10,
 "via": [
@@ -636,7 +636,7 @@
 "name": "Laforet Ito Onsen",
 "mapsQuery": "Laforet Ito Onsen"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Jogasaki+Coast&destination=Laforet+Ito+Onsen&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Jogasaki+Coast&destination=Laforet+Ito+Onsen&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Jogasaki+Coast&destination=Laforet+Ito+Onsen&travelmode=transit",
 "estimatedDurationMinutes": 40,
 "estimatedDistanceKm": 15,
 "via": [
@@ -675,7 +675,7 @@
 "name": "橫濱站",
 "mapsQuery": "Yokohama Station"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit",
 "estimatedDurationMinutes": 90,
 "estimatedDistanceKm": 110,
 "via": [
@@ -771,7 +771,7 @@
 "name": "成田機場第2航廈",
 "mapsQuery": "Narita Airport Terminal 2"
 },
-"gmapsUrl": "[https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Narita+Airport+Terminal+2&travelmode=transit](https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Narita+Airport+Terminal+2&travelmode=transit)",
+"gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Narita+Airport+Terminal+2&travelmode=transit",
 "estimatedDurationMinutes": 90,
 "estimatedDistanceKm": 100,
 "via": [
