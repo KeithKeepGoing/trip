@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Family Trip Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #0f172a;
+        color: #e5e7eb;
+      }
+      a {
+        color: #93c5fd;
+      }
+      .app {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      .header {
+        border-bottom: 1px solid #1f2937;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+      }
+      .header-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      .header-subtitle {
+        font-size: 0.9rem;
+        color: #9ca3af;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin: 12px 0 16px;
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        border-radius: 999px;
+        border: 1px solid #374151;
+        background: #020617;
+        color: #e5e7eb;
+        cursor: pointer;
+      }
+      .tab-btn.active {
+        background: #2563eb;
+        border-color: #2563eb;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #1f2937;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+      .section {
+        margin-bottom: 24px;
+        padding: 16px;
+        border-radius: 16px;
+        background: #020617;
+        border: 1px solid #111827;
+      }
+      .section-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .badge-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+      .badge {
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #111827;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.9rem;
+      }
+      .list li {
+        margin: 2px 0;
+      }
+      .day-card {
+        margin-bottom: 16px;
+        padding: 14px;
+        border-radius: 16px;
+        background: #020617;
+        border: 1px solid #1f2937;
+      }
+      .day-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .day-label {
+        font-weight: 600;
+      }
+      .day-title {
+        font-size: 0.95rem;
+        color: #d1d5db;
+      }
+      .segment {
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px dashed #1f2937;
+      }
+      .segment-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .segment-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .segment-chip {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #111827;
+        color: #9ca3af;
+      }
+      .segment-notes {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.85rem;
+        color: #9ca3af;
+      }
+      .routes {
+        margin-top: 6px;
+        display: grid;
+        gap: 8px;
+      }
+      .route-card {
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: #020617;
+        border: 1px solid #1f2937;
+      }
+      .route-header {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+      .route-meta {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-bottom: 4px;
+      }
+      .route-steps {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+      .btn {
+        margin-top: 6px;
+        padding: 4px 10px;
+        font-size: 0.8rem;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        background: #2563eb;
+        color: #e5e7eb;
+      }
+      .btn.outline {
+        background: transparent;
+        border: 1px solid #374151;
+      }
+      .two-cols {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 12px;
+      }
+      @media (max-width: 768px) {
+        .two-cols {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      .small {
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+      .code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="app" v-if="loading">
+        正在載入行程設定...
+      </div>
+
+      <div class="app" v-else>
+        <!-- Header -->
+        <header class="header">
+          <div class="header-title">{{ config.tripMeta.title }}</div>
+          <div class="header-subtitle">
+            {{ config.tripMeta.subtitle }} ·
+            <span class="code">
+              {{ config.tripMeta.startDate }} → {{ config.tripMeta.endDate }}
+            </span>
+          </div>
+          <div class="badge-row" style="margin-top: 6px">
+            <span class="badge">城市：{{ config.tripMeta.baseCity }}</span>
+            <span class="badge">時區：{{ config.tripMeta.timezone }}</span>
+            <span class="badge"
+              >共 {{ totalDays }} 天（{{ config.days.length }} 個行程日）</span
+            >
+          </div>
+
+          <div class="tabs">
+            <button
+              class="tab-btn"
+              :class="{ active: activeTab === 'info' }"
+              @click="activeTab = 'info'"
+            >
+              ℹ️ 概覽
+            </button>
+            <button
+              class="tab-btn"
+              :class="{ active: activeTab === 'packing' }"
+              @click="activeTab = 'packing'"
+            >
+              🎒 行前打包
+            </button>
+            <button
+              class="tab-btn"
+              :class="{ active: activeTab === 'budget' }"
+              @click="activeTab = 'budget'"
+            >
+              💰 記帳日期
+            </button>
+            <button
+              class="tab-btn"
+              :class="{ active: activeTab === 'days' }"
+              @click="activeTab = 'days'"
+            >
+              🗓 行程（含 Google Maps）
+            </button>
+          </div>
+        </header>
+
+        <!-- Tab: Info -->
+        <main v-if="activeTab === 'info'">
+          <section class="section">
+            <div class="section-title">✈️ 航班資訊</div>
+            <div v-for="f in config.flights" :key="f.id" style="margin-top: 8px">
+              <div>
+                <strong>{{ f.direction === 'outbound' ? '去程' : '回程' }}</strong>
+                · {{ f.airline }} · {{ f.flightNo }}
+              </div>
+              <div class="small">
+                {{ f.from.city }} ({{ f.from.code }})
+                →
+                {{ f.to.city }} ({{ f.to.code }})
+              </div>
+              <div class="small">
+                出發：{{ f.departure }}<br />
+                抵達：{{ f.arrival }}
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-title">🏨 住宿分段</div>
+            <div v-for="s in config.stays" :key="s.id" style="margin-top: 8px">
+              <div><strong>{{ s.name }}</strong></div>
+              <div class="small">
+                {{ s.city }} · {{ s.area }}<br />
+                {{ s.checkIn }} → {{ s.checkOut }}
+              </div>
+              <div class="small" v-if="s.notes">{{ s.notes }}</div>
+            </div>
+          </section>
+        </main>
+
+        <!-- Tab: Packing -->
+        <main v-else-if="activeTab === 'packing'">
+          <section class="section">
+            <div class="section-title">📦 行前打包清單</div>
+            <ul class="list">
+              <li v-for="item in config.checklists.packing" :key="item.id">
+                {{ item.label }}
+              </li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <div class="section-title">🎒 每日「今日隨身包」建議</div>
+            <div
+              v-for="(items, key) in config.checklists.dailyBags"
+              :key="key"
+              style="margin-top: 10px"
+            >
+              <div class="pill">{{ key }}</div>
+              <ul class="list">
+                <li v-for="it in items" :key="it">{{ it }}</li>
+              </ul>
+            </div>
+          </section>
+        </main>
+
+        <!-- Tab: Budget -->
+        <main v-else-if="activeTab === 'budget'">
+          <section class="section">
+            <div class="section-title">💰 記帳日期概覽</div>
+            <div class="small">
+              幣別：{{ config.budget.currency }}（實際記帳邏輯可以在另一個頁面或
+              localStorage 完成）
+            </div>
+            <ul class="list" style="margin-top: 8px">
+              <li v-for="d in config.budget.days" :key="d.date">
+                {{ d.date }} · {{ d.label }}
+              </li>
+            </ul>
+          </section>
+        </main>
+
+        <!-- Tab: Days -->
+        <main v-else-if="activeTab === 'days'">
+          <section class="section">
+            <div class="section-title">🗓 每日行程（含 Google Maps 路線）</div>
+            <div class="small" style="margin-bottom: 8px">
+              任何有「🚆 交通」的段落，下面都會列出可點開的 Google Maps 路線卡片。
+            </div>
+
+            <div v-for="day in config.days" :key="day.date" class="day-card">
+              <div class="day-header">
+                <div>
+                  <div class="day-label">
+                    {{ day.label }} · {{ day.date }}
+                  </div>
+                  <div class="day-title">{{ day.title }}</div>
+                </div>
+                <div class="pill" v-if="day.stayId">
+                  住宿：{{ stayName(day.stayId) || day.stayId }}
+                </div>
+              </div>
+
+              <div>
+                <div
+                  v-for="(seg, idx) in day.segments"
+                  :key="idx"
+                  class="segment"
+                >
+                  <div class="segment-header">
+                    <div class="segment-title">
+                      {{ segmentEmoji(seg.type) }} {{ seg.title }}
+                    </div>
+                    <div class="segment-chip">
+                      {{ seg.timeOfDay || 'flex' }} · {{ seg.type }}
+                    </div>
+                  </div>
+
+                  <!-- 交通段落：顯示 routes + Google Maps -->
+                  <div
+                    v-if="seg.type === 'transport' && seg.routes && seg.routes.length"
+                    class="routes"
+                  >
+                    <div
+                      v-for="route in seg.routes"
+                      :key="route.label"
+                      class="route-card"
+                    >
+                      <div class="route-header">{{ route.label }}</div>
+                      <div class="route-meta">
+                        <span v-if="route.estimatedDurationMinutes">
+                          約 {{ route.estimatedDurationMinutes }} 分
+                        </span>
+                        <span
+                          v-if="route.estimatedDistanceKm"
+                          style="margin-left: 4px"
+                        >
+                          · 約 {{ route.estimatedDistanceKm }} km
+                        </span>
+                      </div>
+                      <ul
+                        v-if="route.via && route.via.length"
+                        class="route-steps"
+                      >
+                        <li v-for="step in route.via" :key="step">
+                          {{ step }}
+                        </li>
+                      </ul>
+                      <button
+                        v-if="route.gmapsUrl"
+                        class="btn"
+                        @click="openMaps(route.gmapsUrl)"
+                      >
+                        在 Google Maps 開啟
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- 一般備註 -->
+                  <ul v-if="seg.notes && seg.notes.length" class="segment-notes">
+                    <li v-for="n in seg.notes" :key="n">{{ n }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Vue 3 (ESM) from CDN -->
+    <script type="module">
+      import { createApp, computed } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            config: null,
+            loading: true,
+            activeTab: "days",
+          };
+        },
+        computed: {
+          totalDays() {
+            if (!this.config || !this.config.tripMeta) return 0;
+            const start = new Date(this.config.tripMeta.startDate);
+            const end = new Date(this.config.tripMeta.endDate);
+            const diff = end - start;
+            return Math.round(diff / (1000 * 60 * 60 * 24)) + 1;
+          },
+        },
+        methods: {
+          stayName(id) {
+            const s = this.config.stays.find((x) => x.id === id);
+            return s ? s.name : null;
+          },
+          openMaps(url) {
+            window.open(url, "_blank");
+          },
+          segmentEmoji(type) {
+            switch (type) {
+              case "flight":
+                return "✈️";
+              case "transport":
+                return "🚆";
+              case "meal":
+                return "🍽️";
+              case "activity":
+                return "🎡";
+              case "free":
+              default:
+                return "✨";
+            }
+          },
+        },
+        async mounted() {
+          try {
+            const res = await fetch("./trip-config.json");
+            this.config = await res.json();
+          } catch (e) {
+            console.error("載入 trip-config.json 失敗", e);
+            alert("載入 trip-config.json 失敗，請確認檔案有放在根目錄。");
+          } finally {
+            this.loading = false;
+          }
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
