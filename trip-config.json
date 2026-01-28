@@ -178,26 +178,25 @@
           "to": "MONday Apart 上野新御徒町",
           "routes": [
             {
-              "label": "方案 A：Skyliner 到京成上野 + 計程車",
-              "estimatedDurationMinutes": 70,
-              "estimatedCost": "約 ¥3,000 / 人 + 計程車約 ¥1,000",
+              "label": "方案 A：SKY ACCESS + 計程車 (推薦! CP值高)",
+              "estimatedDurationMinutes": 75,
+              "estimatedCost": "電車約 ¥1,300 + 計程車約 ¥2,000",
               "via": [
-                "在成田第2航廈購買 Skyliner 車票（可用 Suica 或現金）。",
-                "搭乘 Skyliner 至京成上野站（約 45 分鐘）。",
-                "出站後搭計程車前往 MONday Apart 上野新御徒町（約 10 分鐘）。"
+                "在成田機場搭乘「京成成田 SKY ACCESS線」(往羽田/西馬込方向)。",
+                "不用對號入座，刷 IC 卡直接上車，一路直達「押上」或「淺草」站。",
+                "出站後直接搭計程車前往飯店 (約 15 分鐘)，省去在地鐵站內轉乘大江戶線的麻煩。"
               ],
               "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=MONday+Apart+Ueno+Shin-Okachimachi&travelmode=transit"
             },
             {
-              "label": "方案 B：NEX 到東京站 + 山手線到上野",
-              "estimatedDurationMinutes": 90,
-              "estimatedCost": "約 ¥4,000 / 人",
+              "label": "方案 B：Skyliner 到京成上野 + 計程車",
+              "estimatedDurationMinutes": 60,
+              "estimatedCost": "約 ¥2,570 + 計程車約 ¥1,000",
               "via": [
-                "成田機場搭乘 NEX（成田特快）到東京站。",
-                "東京站轉乘山手線至上野站。",
-                "從上野站搭計程車或步行前往 MONday Apart。"
+                "搭乘 Skyliner 特急最快 (全車指定席)。",
+                "抵達京成上野站後，轉搭計程車至飯店 (約 8 分鐘)。"
               ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=Ueno+Station&travelmode=transit"
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=MONday+Apart+Ueno+Shin-Okachimachi&travelmode=transit"
             }
           ],
           "notes": [
