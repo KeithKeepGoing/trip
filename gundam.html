@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNDAM MOVIE ARCHIVE | 機動戰士映画図鑑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #050505;
+            color: #e5e5e5;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+        }
+        .font-sci {
+            font-family: 'Audiowide', cursive;
+        }
+        .card-clip {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        .vs-line::after {
+            content: "VS";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) skew(-12deg);
+            background: #dc2626;
+            color: white;
+            font-weight: 900;
+            padding: 4px 12px;
+            font-family: 'Audiowide';
+            font-size: 1.2rem;
+            border: 2px solid #fff;
+            box-shadow: 0 0 15px #dc2626;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+    <!-- HUD Header -->
+    <header class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-blue-900/50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-yellow-400 animate-pulse rounded-full"></div>
+                <h1 class="font-sci text-2xl tracking-wider text-blue-400 glow-text">GUNDAM ARCHIVE</h1>
+            </div>
+            <div class="font-mono text-xs text-blue-600">SYS.ONLINE</div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-16">
+        
+        <!-- Movie Block: Char's Counterattack -->
+        <section>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-blue-900 flex-1"></div>
+                <h2 class="font-sci text-xl text-yellow-500">U.C. 0093 | Char's Counterattack</h2>
+                <div class="h-px bg-blue-900 flex-1"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+                <!-- VS Divider (Desktop) -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-red-900 to-transparent vs-line z-10"></div>
+
+                <!-- Hero -->
+                <div class="bg-gray-900/50 border border-blue-500/30 p-1 card-clip hover:border-blue-400 transition-colors group">
+                    <div class="relative h-64 bg-black overflow-hidden">
+                        <img src="https://static.wikia.nocookie.net/gundam/images/3/33/Nu_Gundam_-_Front_View.jpg" alt="Nu Gundam" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500">
+                        <div class="absolute bottom-0 left-0 bg-blue-600/90 text-white px-3 py-1 font-sci text-sm card-clip">E.F.S.F.</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold text-white mb-1">RX-93 ν Gundam</h3>
+                        <div class="text-blue-400 text-sm font-mono mb-3">PILOT: Amuro Ray</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            阿姆羅親自設計的專用機，配備最新的精神感應框架 (Psycho-Frame) 與飛翼浮游砲 (Fin Funnel)。最後以精神感應力引發奇蹟，推走了阿克西斯。
+                        </p>
+                        <div class="mt-4 flex gap-2">
+                            <span class="px-2 py-1 border border-blue-900 text-blue-500 text-[10px] rounded">Fin Funnel</span>
+                            <span class="px-2 py-1 border border-blue-900 text-blue-500 text-[10px] rounded">Psycho-Frame</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Villain -->
+                <div class="bg-gray-900/50 border border-red-500/30 p-1 card-clip hover:border-red-400 transition-colors group">
+                    <div class="relative h-64 bg-black overflow-hidden">
+                        <img src="https://static.wikia.nocookie.net/gundam/images/f/fe/Sazabi_Ver_Ka_Front.jpg" alt="Sazabi" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-500">
+                        <div class="absolute bottom-0 right-0 bg-red-600/90 text-white px-3 py-1 font-sci text-sm card-clip">NEO ZEON</div>
+                    </div>
+                    <div class="p-4 text-right">
+                        <h3 class="text-2xl font-bold text-white mb-1">MSN-04 Sazabi</h3>
+                        <div class="text-red-400 text-sm font-mono mb-3">PILOT: Char Aznable</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            新吉翁總帥夏亞的最終座機。全身赤紅重裝甲，搭載精神感應框架與腹部擴散粒子砲，是當時集大成的究極 MS。
+                        </p>
+                        <div class="mt-4 flex gap-2 justify-end">
+                            <span class="px-2 py-1 border border-red-900 text-red-500 text-[10px] rounded">Funnel</span>
+                            <span class="px-2 py-1 border border-red-900 text-red-500 text-[10px] rounded">Mega Particle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movie Block: SEED Freedom -->
+        <section>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-blue-900 flex-1"></div>
+                <h2 class="font-sci text-xl text-yellow-500">C.E. 75 | SEED FREEDOM</h2>
+                <div class="h-px bg-blue-900 flex-1"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-red-900 to-transparent vs-line z-10"></div>
+
+                <!-- Hero -->
+                <div class="bg-gray-900/50 border border-blue-500/30 p-1 card-clip hover:border-blue-400 transition-colors group">
+                    <div class="relative h-64 bg-black overflow-hidden">
+                        <img src="https://static.wikia.nocookie.net/gundam/images/9/93/Mighty_Strike_Freedom_Gundam_-_Front_View.png" alt="Mighty Strike Freedom" class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 bg-blue-600/90 text-white px-3 py-1 font-sci text-sm card-clip">COMPASS</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-white mb-1">Mighty Strike Freedom</h3>
+                        <div class="text-blue-400 text-sm font-mono mb-3">PILOT: Kira Yamato</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            攻擊自由鋼彈貳式與「傲慢防衛者」(Proud Defender) 合體後的姿態。擁有能釋放廣域雷電與納米粒子斬擊的「Disruptor」，近乎神一般的存在。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Villain -->
+                <div class="bg-gray-900/50 border border-purple-500/30 p-1 card-clip hover:border-purple-400 transition-colors group">
+                    <div class="relative h-64 bg-black overflow-hidden">
+                        <img src="https://static.wikia.nocookie.net/gundam/images/6/6d/NOG-M2D1_E_Black_Knight_Squad_Cal-re.A_Front.png" alt="Black Knight" class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 right-0 bg-purple-600/90 text-white px-3 py-1 font-sci text-sm card-clip">FOUNDATION</div>
+                    </div>
+                    <div class="p-4 text-right">
+                        <h3 class="text-xl font-bold text-white mb-1">Black Knight Squad Cal-re.A</h3>
+                        <div class="text-purple-400 text-sm font-mono mb-3">PILOT: Orphee Lam Tao</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            黑騎士小隊的頂點機體。擁有壓倒性的機動性與精神攻擊能力，曾一度將自由鋼彈逼入絕境。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movie Block: Hathaway -->
+        <section>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-blue-900 flex-1"></div>
+                <h2 class="font-sci text-xl text-yellow-500">U.C. 0105 | Hathaway's Flash</h2>
+                <div class="h-px bg-blue-900 flex-1"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-red-900 to-transparent vs-line z-10"></div>
+
+                <!-- Hero -->
+                <div class="bg-gray-900/50 border border-orange-500/30 p-1 card-clip hover:border-orange-400 transition-colors group">
+                    <div class="relative h-64 bg-black overflow-hidden">
+                        <img src="https://static.wikia.nocookie.net/gundam/images/f/f9/Xi_Gundam_-_Front_View_%28Gundam_Hathaway%29.png" alt="Xi Gundam" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 bg-orange-600/90 text-white px-3 py-1 font-sci text-sm card-clip">MAFTY</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold text-white mb-1">RX-105 Ξ Gundam</h3>
+                        <div class="text-orange-400 text-sm font-mono mb-3">PILOT: Mafty (Hathaway Noa)</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            搭載米諾夫斯基飛行器，能在大氣圈內進行超音速飛行的怪物機體。反聯邦組織「馬夫蒂」的象徵。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Villain -->
+                <div class="bg-gray-900/50 border border-white/30 p-1 card-clip hover:border-white transition-colors group">
+                    <div class="relative h-64 bg-black overflow-hidden">
+                        <img src="https://static.wikia.nocookie.net/gundam/images/5/52/RX-104FF_Penelope_Front.png" alt="Penelope" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 right-0 bg-gray-600/90 text-white px-3 py-1 font-sci text-sm card-clip">E.F.S.F.</div>
+                    </div>
+                    <div class="p-4 text-right">
+                        <h3 class="text-2xl font-bold text-white mb-1">RX-104FF Penelope</h3>
+                        <div class="text-gray-400 text-sm font-mono mb-3">PILOT: Lane Aim</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            雖然名為鋼彈，但巨大的外型被戲稱為「大白鵝」。同樣擁有大氣圈內飛行能力，是Ξ鋼彈的兄弟機與宿敵。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 py-8 border-t border-blue-900/30 text-center text-blue-900/50 font-sci text-sm">
+        CLAWDBOT / GUNDAM DATABASE / 2026
+    </footer>
+</body>
+</html>
