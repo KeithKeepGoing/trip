@@ -527,24 +527,26 @@
         },
         {
           "type": "transport",
-          "title": "伊東 ➜ 橫濱",
+          "title": "伊東 ➜ 橫濱 (高CP值方案)",
           "timeOfDay": "上午～下午",
           "from": "伊東站",
           "to": "橫濱站",
           "routes": [
             {
-              "label": "伊東線 / 東海道線接續",
-              "estimatedDurationMinutes": 120,
-              "estimatedCost": "約 ¥3,000–4,000 / 人",
+              "label": "JR 東海道線直通 (普通車)",
+              "estimatedDurationMinutes": 110,
+              "estimatedCost": "約 ¥1,694 (刷 IC 卡)",
               "via": [
-                "從伊東站搭乘伊東線至熱海或小田原。",
-                "再轉乘東海道線（或新幹線＋換乘）到橫濱站。"
+                "從伊東站搭乘開往「宇都宮/高崎/東京」方向的直通電車。",
+                "一路直達橫濱站，完全不用轉乘！",
+                "若無直達車，在熱海站換乘一次即可 (通常在對面月台)。"
               ],
               "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit"
             }
           ],
           "notes": [
-            "抵達橫濱後先到 Richmond Hotel Yokohama Ekimae 辦理入住，之後再決定是否外出逛街。"
+            "💡 強烈建議加購「Green Car (綠色車廂)」自由席 (約 +¥1000)。",
+            "在月台上有售票機 (需用實體 IC 卡) 或用手機 Suica App 購買，上車後感應頭頂燈號即可，舒適度大升級！"
           ]
         },
         {
