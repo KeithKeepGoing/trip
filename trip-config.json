@@ -219,6 +219,26 @@
           ]
         },
         {
+          "type": "dinnerRecommend",
+          "title": "午餐推薦：上野公園",
+          "options": [
+            {
+              "name": "韻松亭 (Innsyoutei)",
+              "rating": "4.3 ⭐",
+              "tags": ["懷石便當", "公園內", "需預約"],
+              "desc": "就在公園裡，午間的花籠便當精緻又不貴，非常有氣氛。",
+              "url": "https://www.google.com/maps/search/?api=1&query=韻松亭"
+            },
+            {
+              "name": "上野之森 Sakura Terrace",
+              "rating": "4.0 ⭐",
+              "tags": ["美食街", "選擇多", "親子"],
+              "desc": "公園入口對面的美食大樓，有洋食、蕎麥麵等，不用怕找不到吃的。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Ueno+no+Mori+Sakura+Terrace"
+            }
+          ]
+        },
+        {
           "type": "transport",
           "title": "上野 ➜ 秋葉原",
           "timeOfDay": "下午",
@@ -273,6 +293,48 @@
           ]
         },
         {
+          "type": "transport",
+          "title": "上野 ➜ 淺草（選擇性）",
+          "timeOfDay": "上午或下午",
+          "from": "上野站",
+          "to": "淺草寺 / 仲見世通り",
+          "routes": [
+            {
+              "label": "銀座線 2 站直達",
+              "estimatedDurationMinutes": 5,
+              "estimatedCost": "約 ¥170",
+              "via": [
+                "上野站搭乘銀座線往淺草方向。",
+                "在淺草站下車，前往淺草寺與仲見世商店街。"
+              ],
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Asakusa+Station&travelmode=transit"
+            }
+          ],
+          "notes": [
+            "仲見世商店街人潮多，推車推行較辛苦，可視情況決定是否前往。"
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "午餐推薦：淺草/雷門",
+          "options": [
+            {
+              "name": "淺草炸牛排 (Asakusa Gyukatsu)",
+              "rating": "4.6 ⭐",
+              "tags": ["炸牛排", "石板烤", "排隊"],
+              "desc": "自己用石板決定熟度的炸牛排，外酥內嫩，非常好玩又好吃！",
+              "url": "https://www.google.com/maps/search/?api=1&query=Asakusa+Gyukatsu"
+            },
+            {
+              "name": "大黑家天婦羅",
+              "rating": "3.8 ⭐",
+              "tags": ["天丼", "老店", "黑醬汁"],
+              "desc": "淺草最有名的天婦羅，醬汁是獨特的黑色，蝦子很大隻。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Daikokuya+Tempura"
+            }
+          ]
+        },
+        {
           "type": "dinnerRecommend",
           "title": "晚餐推薦：淺草/晴空塔",
           "options": [
@@ -312,6 +374,19 @@
               "label": "都營線直達",
               "estimatedDurationMinutes": 20,
               "via": ["新御徒町站搭乘都營大江戶線轉新宿線。"]
+            }
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "午餐推薦：東京站便當",
+          "options": [
+            {
+              "name": "駅弁屋 祭 (東京站)",
+              "rating": "4.5 ⭐",
+              "tags": ["火車便當", "選擇多", "外帶"],
+              "desc": "全日本200種便當都在這！推薦買「新幹線造型便當」給小孩。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Ekibenya+Matsuri+Tokyo+Station"
             }
           ]
         },
@@ -381,6 +456,26 @@
               "label": "伊豆急行線",
               "estimatedDurationMinutes": 50,
               "via": ["直達河津，早去早回避人潮。"]
+            }
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "午餐推薦：河津櫻祭",
+          "options": [
+            {
+              "name": "櫻花祭屋台",
+              "rating": "4.0 ⭐",
+              "tags": ["小吃", "炒麵", "鯛魚燒"],
+              "desc": "沿著河岸有很多攤販，買炒麵和粉紅鯛魚燒在櫻花樹下吃最棒！",
+              "url": "https://www.google.com/maps/search/?api=1&query=Kawazu+Sakura+Festival"
+            },
+            {
+              "name": "徳造丸 (河津店)",
+              "rating": "3.9 ⭐",
+              "tags": ["金目鯛", "定食", "排隊"],
+              "desc": "如果想坐下來吃，車站前的德造丸是吃金目鯛的首選。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Tokuzoumaru+Kawazu"
             }
           ]
         },
@@ -464,6 +559,65 @@
       "weather": "☀️ 晴天 (10°C)",
       "stayId": "yokohama_richmond",
       "blocks": [
+        {
+          "type": "transport",
+          "title": "橫濱站 ➜ 港未來 / 紅磚倉庫",
+          "timeOfDay": "上午",
+          "from": "橫濱站",
+          "to": "港未來站 / 紅磚倉庫",
+          "routes": [
+            {
+              "label": "港未來線到港未來站",
+              "estimatedDurationMinutes": 3,
+              "estimatedCost": "約 ¥210",
+              "via": [
+                "橫濱站搭乘港未來線至港未來站。",
+                "步行可達海邊散步道與購物中心。",
+                "之後可再步行前往紅磚倉庫。"
+              ],
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Minatomirai+Station&travelmode=transit"
+            }
+          ],
+          "notes": [
+            "海邊風大注意保暖，紅磚倉庫旁有室內商場可躲雨。"
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "午餐推薦：紅磚倉庫",
+          "options": [
+            {
+              "name": "Bills (紅磚倉庫店)",
+              "rating": "4.2 ⭐",
+              "tags": ["早午餐", "鬆餅", "風景好"],
+              "desc": "來自澳洲的世界第一早餐，鬆餅必吃，戶外座位很舒服。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Bills+Red+Brick+Warehouse"
+            }
+          ]
+        },
+        {
+          "type": "transport",
+          "title": "港未來 / 紅磚 ➜ 中華街",
+          "timeOfDay": "下午或傍晚",
+          "from": "港未來一帶",
+          "to": "橫濱中華街",
+          "routes": [
+            {
+              "label": "港未來線至元町・中華街站",
+              "estimatedDurationMinutes": 5,
+              "estimatedCost": "約 ¥210",
+              "via": [
+                "從馬車道或日本大通站搭乘港未來線至元町・中華街站。",
+                "出站即為中華街入口，可視情況選擇餐廳。"
+              ],
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Aka+Renga+Soko&destination=Yokohama+Chinatown&travelmode=walking"
+            }
+          ],
+          "notes": [
+            "中華街晚餐人多，建議提前看好幾間餐廳備選。",
+            "若小孩太疲累，可以改成早點回飯店附近用餐。"
+          ]
+        },
         {
           "type": "dinnerRecommend",
           "title": "晚餐推薦：美式與輕食",
