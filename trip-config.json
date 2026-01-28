@@ -186,18 +186,18 @@
           "title": "晚餐推薦：上野周邊",
           "options": [
             {
+              "name": "一蘭拉麵 (上野山下口店)",
+              "rating": "4.3 ⭐",
+              "tags": ["拉麵", "24hr", "台灣人最愛"],
+              "desc": "抵達東京的第一餐就是要吃一蘭！這間就在車站旁，位置方便。",
+              "url": "https://www.google.com/maps/search/?api=1&query=一蘭+上野山下口店"
+            },
+            {
               "name": "名代 宇奈とと (上野店)",
               "rating": "4.1 ⭐",
               "tags": ["鰻魚飯", "平價", "快速"],
-              "desc": "超高CP值鰻魚飯，適合剛抵達想吃點好但不想花大錢。",
+              "desc": "超高CP值鰻魚飯，若不想吃麵可以選這個。",
               "url": "https://www.google.com/maps/search/?api=1&query=名代+宇奈とと+上野店"
-            },
-            {
-              "name": "便利商店 (FamilyMart/Lawson)",
-              "rating": "5.0 ⭐",
-              "tags": ["炸雞", "飯糰", "24hr"],
-              "desc": "若太累，飯店樓下的超商炸雞+啤酒就是最棒的晚餐。",
-              "url": "https://www.google.com/maps/search/?api=1&query=上野+FamilyMart"
             }
           ]
         }
@@ -237,21 +237,21 @@
         },
         {
           "type": "dinnerRecommend",
-          "title": "晚餐推薦：燒肉與壽司",
+          "title": "晚餐推薦：肉食者天堂",
           "options": [
+            {
+              "name": "炸豬排 山家 (御徒町店)",
+              "rating": "4.4 ⭐",
+              "tags": ["炸豬排", "高CP值", "排隊名店"],
+              "desc": "上野最強炸豬排！厚切里肌多汁酥脆，價格卻超親民，必吃！",
+              "url": "https://www.google.com/maps/search/?api=1&query=とんかつ山家+御徒町店"
+            },
             {
               "name": "敘敘苑 (上野丸井店)",
               "rating": "4.5 ⭐",
               "tags": ["燒肉", "親子友善", "有包廂"],
-              "desc": "位於0101百貨9樓，環境舒適，適合帶小孩慢慢吃的高級燒肉。",
+              "desc": "0101百貨9樓，環境舒適的高級燒肉，帶小孩想好好吃肉就選這。",
               "url": "https://www.google.com/maps/search/?api=1&query=叙々苑+上野マルイ店"
-            },
-            {
-              "name": "回転寿司 根室花まる (KITTE店)",
-              "rating": "4.4 ⭐",
-              "tags": ["迴轉壽司", "排隊名店", "北海道直送"],
-              "desc": "雖然要排隊，但干貝和牡丹蝦超級新鮮！建議先抽號碼牌。",
-              "url": "https://www.google.com/maps/search/?api=1&query=回転寿司+根室花まる+KITTE丸の内店"
             }
           ]
         }
@@ -437,13 +437,20 @@
         },
         {
           "type": "dinnerRecommend",
-          "title": "晚餐推薦：橫濱站",
+          "title": "晚餐推薦：橫濱老字號",
           "options": [
+            {
+              "name": "勝烈庵 (相鉄ジョイナス店)",
+              "rating": "4.2 ⭐",
+              "tags": ["炸豬排", "橫濱老店", "獨門醬汁"],
+              "desc": "橫濱人都知道的炸豬排老店，特製醬汁配上酥脆豬排，白飯殺手。",
+              "url": "https://www.google.com/maps/search/?api=1&query=勝烈庵+相鉄ジョイナス店"
+            },
             {
               "name": "回し寿司 活 (美登利)",
               "rating": "4.3 ⭐",
               "tags": ["迴轉壽司", "高CP值", "大排長龍"],
-              "desc": "橫濱Sky Building 11F，美登利旗下的迴轉壽司，料大塊又便宜。",
+              "desc": "橫濱Sky Building 11F，料大塊又便宜，想吃海鮮選這。",
               "url": "https://www.google.com/maps/search/?api=1&query=回し寿司+活+美登利+横浜スカイビル店"
             }
           ]
@@ -459,21 +466,21 @@
       "blocks": [
         {
           "type": "dinnerRecommend",
-          "title": "晚餐推薦：中華街/港未來",
+          "title": "晚餐推薦：美式與輕食",
           "options": [
+            {
+              "name": "星乃珈琲店 (横浜ランドマーク店)",
+              "rating": "4.1 ⭐",
+              "tags": ["舒芙蕾", "咖啡", "洋食"],
+              "desc": "逛累了來這吃厚鬆餅，也有漢堡排和義大利麵，環境優雅。",
+              "url": "https://www.google.com/maps/search/?api=1&query=星乃珈琲店+横浜ランドマークプラザ店"
+            },
             {
               "name": "Shake Shack (港未來店)",
               "rating": "4.5 ⭐",
               "tags": ["漢堡", "美式", "風景好"],
-              "desc": "位於Queen's Square，戶外座位很舒服，小孩吃漢堡薯條最開心。",
+              "desc": "Queen's Square 戶外座位，大口吃漢堡配夜景。",
               "url": "https://www.google.com/maps/search/?api=1&query=Shake+Shack+Minato+Mirai"
-            },
-            {
-              "name": "鵬天閣 (中華街)",
-              "rating": "4.2 ⭐",
-              "tags": ["生煎包", "小吃", "排隊"],
-              "desc": "中華街最有名的生煎包，皮脆汁多，小心燙口！",
-              "url": "https://www.google.com/maps/search/?api=1&query=鵬天閣+新館"
             }
           ]
         }
@@ -493,13 +500,13 @@
         },
         {
           "type": "dinnerRecommend",
-          "title": "晚餐推薦：橫濱Last Night",
+          "title": "晚餐推薦：牛排大餐",
           "options": [
             {
               "name": "Sizzler (Landmark店)",
               "rating": "4.4 ⭐",
-              "tags": ["沙拉吧", "牛排", "親子友善"],
-              "desc": "高級沙拉吧吃到飽，有兒童專屬餐具和畫畫紙，家長可以好好吃飯。",
+              "tags": ["牛排", "沙拉吧", "親子友善"],
+              "desc": "最後一晚來吃牛排！這裡有橫濱最好的沙拉吧，小孩也開心。",
               "url": "https://www.google.com/maps/search/?api=1&query=Sizzler+Landmark+Plaza"
             }
           ]
