@@ -6,280 +6,257 @@
   <title>2026 東京家庭旅行 🌸</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Zen Maru Gothic', sans-serif;
-      background-color: #fdf2f8; /* pink-50 */
+      background-color: #fff1f2; /* rose-50 */
     }
-    .sakura-bg {
-      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fbcfe8' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .sakura-pattern {
+      background-image: radial-gradient(#fecdd3 1px, transparent 1px);
+      background-size: 20px 20px;
     }
   </style>
 </head>
-<body class="sakura-bg min-h-screen text-slate-800 pb-12">
-  <div id="app" class="max-w-md mx-auto bg-white min-h-screen shadow-xl sm:rounded-xl sm:my-8 sm:min-h-[auto] overflow-hidden">
+<body class="sakura-pattern min-h-screen text-slate-800 pb-20">
+  <div id="app" class="max-w-md mx-auto bg-white min-h-screen shadow-2xl sm:rounded-2xl sm:my-8 sm:min-h-[800px] relative overflow-hidden ring-1 ring-black/5">
     
-    <!-- Loading State -->
-    <div v-if="loading" class="flex flex-col items-center justify-center h-screen space-y-4">
-      <div class="animate-spin text-4xl">🌸</div>
-      <div class="text-slate-500 font-medium">載入美好旅程中...</div>
+    <!-- Loading -->
+    <div v-if="loading" class="flex flex-col items-center justify-center h-screen space-y-6 bg-white/80 backdrop-blur">
+      <div class="text-6xl animate-bounce">🌸</div>
+      <div class="text-rose-500 font-bold tracking-widest animate-pulse">LOADING...</div>
     </div>
 
-    <!-- Main Content -->
-    <div v-else>
-      <!-- Hero Header -->
-      <header class="relative bg-gradient-to-br from-pink-400 to-rose-500 text-white p-6 pb-12">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: radial-gradient(circle, #fff 2px, transparent 2.5px); background-size: 20px 20px;"></div>
+    <div v-else class="pb-24">
+      <!-- Hero -->
+      <header class="relative bg-gradient-to-br from-rose-400 via-pink-500 to-rose-600 text-white pt-8 pb-16 px-6 overflow-hidden">
+        <div class="absolute -top-10 -right-10 text-[150px] opacity-10 rotate-12">🌸</div>
         <div class="relative z-10">
-          <h1 class="text-2xl font-bold tracking-wide mb-1">{{ config.tripMeta.title }}</h1>
-          <p class="text-pink-100 text-sm font-medium">{{ config.tripMeta.subtitle }}</p>
-          <div class="mt-4 inline-flex items-center bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold">
-            <span>📅 {{ config.tripMeta.startDate }}</span>
-            <span class="mx-2">→</span>
-            <span>{{ config.tripMeta.endDate }}</span>
+          <div class="text-pink-100 text-xs font-bold tracking-[0.2em] uppercase mb-1">Tokyo Trip 2026</div>
+          <h1 class="text-3xl font-black tracking-tight leading-tight mb-2">{{ config.tripMeta.title }}</h1>
+          <p class="text-pink-100 text-sm font-medium opacity-90">{{ config.tripMeta.subtitle }}</p>
+          
+          <div class="mt-6 flex gap-3">
+             <div class="bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 border border-white/10">
+               <span>📅</span>
+               <span>{{ shortDate(config.tripMeta.startDate) }} - {{ shortDate(config.tripMeta.endDate) }}</span>
+             </div>
+             <div class="bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 border border-white/10">
+               <span>📍</span>
+               <span>{{ config.tripMeta.baseCity }}</span>
+             </div>
           </div>
         </div>
       </header>
 
-      <!-- Navigation Tabs -->
-      <div class="px-4 -mt-6 relative z-20 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-        <button 
-          @click="activeKind = 'overview'"
-          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all', activeKind === 'overview' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
-        >
-          總覽
-        </button>
-        <button 
-          v-for="day in config.days" 
-          :key="day.date"
-          @click="selectDay(day.date)"
-          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all flex flex-col items-center leading-none gap-1', activeKind === 'day' && activeDayDate === day.date ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
-        >
-          <span>{{ day.label }}</span>
-          <span class="text-[10px] opacity-70">{{ shortDate(day.date) }}</span>
-        </button>
-        <button 
-          @click="activeKind = 'phrase'"
-          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all', activeKind === 'phrase' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
-        >
-          日語
-        </button>
-        <button 
-          @click="activeKind = 'budget'"
-          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all', activeKind === 'budget' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
-        >
-          記帳
-        </button>
+      <!-- Floating Nav -->
+      <div class="sticky top-0 z-30 px-4 -mt-8 mb-6">
+        <div class="flex gap-2 overflow-x-auto pb-4 pt-2 scrollbar-hide snap-x">
+          <button 
+            @click="activeKind = 'overview'"
+            class="snap-start flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-rose-900/5 transition-all duration-300 border border-white/50 backdrop-blur-xl"
+            :class="activeKind === 'overview' ? 'bg-white text-rose-500 scale-105 ring-2 ring-rose-100' : 'bg-white/80 text-slate-500 hover:bg-white'"
+          >
+            總覽
+          </button>
+          <button 
+            v-for="day in config.days" 
+            :key="day.date"
+            @click="selectDay(day.date)"
+            class="snap-start flex-shrink-0 px-4 py-2 rounded-xl shadow-lg shadow-rose-900/5 transition-all duration-300 border border-white/50 backdrop-blur-xl flex flex-col items-center justify-center min-w-[70px]"
+            :class="activeKind === 'day' && activeDayDate === day.date ? 'bg-white text-rose-500 scale-105 ring-2 ring-rose-100' : 'bg-white/80 text-slate-500 hover:bg-white'"
+          >
+            <span class="text-xs font-bold">{{ day.label }}</span>
+            <span class="text-[10px] opacity-60 font-medium">{{ shortDate(day.date) }}</span>
+          </button>
+          <button @click="activeKind = 'budget'" class="snap-start flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-rose-900/5 bg-white/80 text-slate-500 border border-white/50" :class="activeKind === 'budget' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : ''">記帳</button>
+          <button @click="activeKind = 'phrase'" class="snap-start flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-rose-900/5 bg-white/80 text-slate-500 border border-white/50" :class="activeKind === 'phrase' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : ''">日語</button>
+        </div>
       </div>
 
-      <!-- Content Area -->
-      <main class="p-4 space-y-4">
-        
-        <!-- Overview Tab -->
-        <div v-if="activeKind === 'overview'" class="space-y-4">
-          <!-- Flights -->
-          <section>
-            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-              <span class="text-lg">✈️</span> 航班資訊
-            </h3>
-            <div class="space-y-3">
-              <div v-for="f in config.flights" :key="f.id" class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                <div class="flex justify-between items-center mb-3">
-                  <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-1 rounded">{{ f.direction === 'outbound' ? '去程' : '回程' }}</span>
-                  <span class="text-xs font-bold text-slate-500">{{ f.airline }} · {{ f.flightNo }}</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <div class="text-center">
-                    <div class="text-2xl font-black text-slate-800">{{ f.from.code }}</div>
-                    <div class="text-xs text-slate-500">{{ timeOnly(f.departure) }}</div>
-                  </div>
-                  <div class="flex-1 px-4 flex flex-col items-center">
-                    <div class="text-[10px] text-slate-400">直飛</div>
-                    <div class="w-full h-px bg-slate-300 relative top-1"></div>
-                    <div class="text-lg relative -top-2">✈️</div>
-                  </div>
-                  <div class="text-center">
-                    <div class="text-2xl font-black text-slate-800">{{ f.to.code }}</div>
-                    <div class="text-xs text-slate-500">{{ timeOnly(f.arrival) }}</div>
-                  </div>
-                </div>
-                <div class="mt-3 pt-3 border-t border-slate-200 flex justify-between text-xs text-slate-500">
-                  <span>{{ dateOnly(f.departure) }}</span>
-                  <span>{{ f.from.terminal }} 航廈 → {{ f.to.terminal }} 航廈</span>
-                </div>
-              </div>
-            </div>
-          </section>
+      <!-- Main Content -->
+      <main class="px-5 space-y-6">
 
-          <!-- Stays -->
-          <section>
-            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-              <span class="text-lg">🏨</span> 住宿安排
-            </h3>
-            <div class="space-y-3">
-              <div v-for="s in config.stays" :key="s.id" class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm relative overflow-hidden group">
-                <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-rose-400 group-hover:bg-rose-500 transition-colors"></div>
-                <div class="pl-2">
-                  <h4 class="font-bold text-slate-800">{{ s.name }}</h4>
-                  <div class="text-xs text-slate-500 mt-1 flex items-center gap-1">
-                    <span>📍 {{ s.area }}</span>
-                    <span>·</span>
-                    <span>{{ shortDate(s.checkIn) }} - {{ shortDate(s.checkOut) }}</span>
-                  </div>
-                  <div v-if="s.notes" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">
-                    💡 {{ s.notes }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- Day View Tab -->
-        <div v-else-if="activeKind === 'day'" class="space-y-4">
-          <div v-if="currentDay">
-            <!-- Day Header -->
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 mb-4 text-center">
-              <div class="text-xs font-bold text-rose-500 mb-1">{{ currentDay.date }} · {{ currentDay.label }}</div>
-              <h2 class="text-xl font-black text-slate-800 mb-2">{{ currentDay.title }}</h2>
-              <div class="flex flex-wrap justify-center gap-2 mt-3">
-                <span v-if="currentDay.stayId" class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-1 rounded-full font-bold">
-                  🏠 {{ stayName(currentDay.stayId) }}
-                </span>
-                <span class="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-1 rounded-full font-bold">
-                  💰 {{ dayTotal(currentDay.date) }} {{ config.budget.currency }}
-                </span>
-              </div>
-              
-              <!-- Quick Budget -->
-              <div class="mt-4 pt-4 border-t border-slate-100">
-                 <button @click="showBudget = !showBudget" class="text-xs font-bold text-slate-400 hover:text-rose-500 flex items-center justify-center w-full gap-1">
-                    {{ showBudget ? '收起記帳' : '✏️ 快速記帳' }}
-                 </button>
-                 <div v-if="showBudget" class="mt-3 bg-slate-50 p-3 rounded-xl animate-fade-in">
-                    <div class="flex gap-2 mb-2">
-                       <input v-model="budgetForm.amount" type="number" placeholder="$" class="w-20 px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
-                       <input v-model="budgetForm.note" type="text" placeholder="項目" class="flex-1 px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
-                       <button @click="addBudgetEntryFor(currentDay.date)" class="bg-rose-500 text-white px-3 py-2 rounded-lg font-bold text-sm hover:bg-rose-600">+</button>
+        <!-- Overview -->
+        <div v-if="activeKind === 'overview'" class="space-y-6 animate-fade-in">
+           <!-- Flight Card -->
+           <section>
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 pl-1">Flights</h3>
+              <div v-for="f in config.flights" :key="f.id" class="mb-3 bg-white rounded-2xl p-5 border border-slate-100 shadow-sm relative overflow-hidden">
+                 <div class="absolute top-0 right-0 p-2 opacity-5 text-6xl">✈️</div>
+                 <div class="flex justify-between items-center mb-4 relative z-10">
+                    <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-md">{{ f.airline }}</span>
+                    <span class="text-xs font-bold text-slate-400">{{ dateOnly(f.departure) }}</span>
+                 </div>
+                 <div class="flex justify-between items-center relative z-10">
+                    <div>
+                       <div class="text-3xl font-black text-slate-800">{{ f.from.code }}</div>
+                       <div class="text-xs font-bold text-slate-400">{{ timeOnly(f.departure) }}</div>
                     </div>
-                    <div class="space-y-1">
-                       <div v-for="entry in budgetEntriesFor(currentDay.date)" :key="entry.id" class="flex justify-between items-center text-xs p-1 px-2 hover:bg-white rounded">
-                          <span class="text-slate-600">{{ entry.note || '支出' }}</span>
-                          <div class="flex items-center gap-2">
-                             <span class="font-bold">{{ entry.amount }}</span>
-                             <button @click="removeBudgetEntry(currentDay.date, entry.id)" class="text-slate-300 hover:text-red-500">×</button>
-                          </div>
+                    <div class="flex flex-col items-center px-4 w-full">
+                       <div class="text-[10px] text-slate-400 font-bold mb-1">{{ f.flightNo }}</div>
+                       <div class="w-full h-0.5 bg-slate-200 relative">
+                          <div class="absolute -top-1 right-0 w-2 h-2 bg-slate-200 rounded-full"></div>
                        </div>
+                    </div>
+                    <div class="text-right">
+                       <div class="text-3xl font-black text-slate-800">{{ f.to.code }}</div>
+                       <div class="text-xs font-bold text-slate-400">{{ timeOnly(f.arrival) }}</div>
                     </div>
                  </div>
               </div>
-            </div>
+           </section>
 
-            <!-- Timeline Blocks -->
-            <div class="relative pl-4 space-y-6 before:content-[''] before:absolute before:left-[23px] before:top-4 before:bottom-0 before:w-0.5 before:bg-slate-200">
-              
-              <div v-for="(block, idx) in currentDay.blocks" :key="idx" class="relative pl-8 group">
-                <!-- Timeline Dot -->
-                <div class="absolute left-0 top-1 w-12 flex justify-center z-10">
-                   <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center text-sm shadow-sm group-hover:border-rose-100 transition-colors">
-                      {{ getBlockIcon(block.type) }}
-                   </div>
-                </div>
-
-                <!-- Card Content -->
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                   <div class="flex justify-between items-start mb-2">
-                      <h3 class="font-bold text-slate-800">{{ block.title }}</h3>
-                      <span v-if="block.timeOfDay" class="text-[10px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">{{ block.timeOfDay }}</span>
-                   </div>
-
-                   <!-- Type: Transport -->
-                   <div v-if="block.type === 'transport'" class="space-y-3">
-                      <div class="text-sm text-slate-600 flex items-center gap-2">
-                         <span>{{ block.from }}</span>
-                         <span class="text-slate-300">➜</span>
-                         <span>{{ block.to }}</span>
-                      </div>
-                      <div v-for="route in block.routes" class="bg-slate-50 rounded-lg p-3 text-sm">
-                         <div class="font-bold text-slate-700 mb-1">{{ route.label }}</div>
-                         <div class="text-xs text-slate-500 mb-2">
-                            ⏱ {{ route.estimatedDurationMinutes }}分 · 💰 {{ route.estimatedCost }}
-                         </div>
-                         <ol class="list-decimal list-inside text-xs text-slate-600 space-y-1 mb-2 pl-1">
-                            <li v-for="step in route.via">{{ step }}</li>
-                         </ol>
-                         <button v-if="route.gmapsUrl" @click="openMaps(route.gmapsUrl)" class="text-[10px] bg-white border border-slate-200 px-2 py-1 rounded text-slate-500 font-bold hover:bg-blue-50 hover:text-blue-600 flex items-center gap-1 w-fit">
-                            🗺 Google Maps
-                         </button>
-                      </div>
-                   </div>
-
-                   <!-- Type: List (Packing/Todo) -->
-                   <ul v-else-if="block.items" class="space-y-1">
-                      <li v-for="item in block.items" class="text-sm text-slate-600 flex items-start gap-2">
-                         <span class="text-rose-400 mt-1">•</span>
-                         <span class="flex-1">{{ item }}</span>
-                      </li>
-                   </ul>
-
-                   <!-- Type: Note -->
-                   <div v-else-if="block.lines" class="bg-yellow-50 rounded-lg p-3 text-sm text-yellow-800 space-y-1">
-                      <p v-for="line in block.lines">{{ line }}</p>
-                   </div>
-                   
-                   <!-- Type: Meal Options -->
-                   <div v-else-if="block.options" class="grid gap-2">
-                      <div v-for="opt in block.options" class="bg-orange-50 rounded-lg p-3">
-                         <div class="font-bold text-orange-900 text-sm mb-1">{{ opt.label }}</div>
-                         <div class="text-xs text-orange-700/80 space-y-1">
-                            <div v-if="opt.pros">👍 {{ opt.pros.join('、') }}</div>
-                            <div v-if="opt.cons">⚠️ {{ opt.cons.join('、') }}</div>
-                         </div>
-                      </div>
-                   </div>
-
-                </div>
+           <!-- Stays Card -->
+           <section>
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 pl-1">Accommodation</h3>
+              <div class="space-y-3">
+                 <div v-for="s in config.stays" :key="s.id" class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex gap-4 items-center group hover:border-rose-200 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl font-bold group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                       🏨
+                    </div>
+                    <div class="flex-1">
+                       <h4 class="font-bold text-slate-800 text-sm">{{ s.name }}</h4>
+                       <div class="text-xs text-slate-500 mt-0.5">{{ s.area }} · {{ shortDate(s.checkIn) }}-{{ shortDate(s.checkOut) }}</div>
+                    </div>
+                 </div>
               </div>
-            </div>
-            
-            <div class="h-8"></div> <!-- spacer -->
-          </div>
+           </section>
         </div>
 
-        <!-- Phrasebook Tab -->
-        <div v-else-if="activeKind === 'phrase'" class="grid grid-cols-1 gap-3">
-          <div v-for="p in config.phrasebook" class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex flex-col gap-1 active:scale-[0.98] transition-transform cursor-pointer" @click="speak(p.jp)">
-             <div class="font-bold text-rose-500">{{ p.label }}</div>
-             <div class="text-lg font-medium text-slate-800">{{ p.jp }}</div>
-             <div class="text-xs text-slate-400 flex justify-between items-center mt-1">
-                <span>{{ p.note }}</span>
-                <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded">點擊發音 🔊</span>
-             </div>
-          </div>
+        <!-- Day Detail -->
+        <div v-else-if="activeKind === 'day'" class="space-y-6 animate-fade-in">
+           <div v-if="currentDay">
+              <!-- Day Header -->
+              <div class="bg-white rounded-3xl p-6 shadow-xl shadow-rose-900/5 border border-slate-100 text-center relative overflow-hidden">
+                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-300 to-pink-500"></div>
+                 <div class="text-xs font-bold text-rose-500 mb-2">{{ currentDay.date }} · {{ currentDay.label }}</div>
+                 <h2 class="text-2xl font-black text-slate-800 mb-3 leading-tight">{{ currentDay.title }}</h2>
+                 <div v-if="currentDay.weather" class="inline-flex items-center gap-1.5 bg-sky-50 text-sky-600 px-3 py-1 rounded-full text-xs font-bold mb-4 border border-sky-100">
+                    <span>{{ currentDay.weather }}</span>
+                 </div>
+                 
+                 <!-- Stay Badge -->
+                 <div v-if="currentDay.stayId" class="flex items-center justify-center gap-2 text-xs text-slate-500 bg-slate-50 rounded-lg p-2 mt-2">
+                    <span>🏠</span>
+                    <span class="font-bold">{{ stayName(currentDay.stayId) }}</span>
+                 </div>
+              </div>
+
+              <!-- Blocks -->
+              <div class="space-y-4">
+                 <div v-for="(block, idx) in currentDay.blocks" :key="idx" class="relative pl-6">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-[11px] top-8 bottom-0 w-0.5 bg-slate-100 -z-10" v-if="idx !== currentDay.blocks.length - 1"></div>
+                    
+                    <!-- Icon -->
+                    <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-white border-2 border-slate-100 flex items-center justify-center text-xs shadow-sm z-10">
+                       {{ getBlockIcon(block.type) }}
+                    </div>
+
+                    <!-- Content Card -->
+                    <div :class="['rounded-2xl p-4 border shadow-sm ml-4 transition-all hover:shadow-md', block.type === 'dinnerRecommend' ? 'bg-orange-50 border-orange-100' : 'bg-white border-slate-100']">
+                       
+                       <!-- Header -->
+                       <div class="flex justify-between items-start mb-3">
+                          <h3 class="font-bold text-slate-800 text-sm">{{ block.title }}</h3>
+                          <span v-if="block.timeOfDay" class="text-[10px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">{{ block.timeOfDay }}</span>
+                       </div>
+
+                       <!-- Transport -->
+                       <div v-if="block.type === 'transport'" class="space-y-3">
+                          <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
+                             <span>{{ block.from }}</span>
+                             <span class="text-slate-300">➜</span>
+                             <span>{{ block.to }}</span>
+                          </div>
+                          <div v-for="route in block.routes" class="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                             <div class="font-bold text-slate-700 text-sm mb-1">{{ route.label }}</div>
+                             <div class="text-[10px] text-slate-500 mb-2 flex gap-2">
+                                <span v-if="route.estimatedDurationMinutes">⏱ {{ route.estimatedDurationMinutes }}分</span>
+                                <span v-if="route.estimatedCost">💰 {{ route.estimatedCost }}</span>
+                             </div>
+                             <div v-if="route.via" class="space-y-1">
+                                <div v-for="step in route.via" class="text-xs text-slate-600 flex items-start gap-1.5">
+                                   <span class="text-rose-400 mt-0.5">•</span>
+                                   <span class="leading-relaxed">{{ step }}</span>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+
+                       <!-- Dinner Recommend (UltraThink) -->
+                       <div v-else-if="block.type === 'dinnerRecommend'" class="space-y-3">
+                          <div v-for="opt in block.options" class="bg-white rounded-xl p-3 border border-orange-100 shadow-sm">
+                             <div class="flex justify-between items-start">
+                                <div class="font-bold text-slate-800 text-sm">{{ opt.name }}</div>
+                                <div class="text-xs font-bold text-orange-500 bg-orange-50 px-1.5 py-0.5 rounded">{{ opt.rating }}</div>
+                             </div>
+                             <div class="flex flex-wrap gap-1 my-2">
+                                <span v-for="tag in opt.tags" class="text-[10px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded">{{ tag }}</span>
+                             </div>
+                             <div class="text-xs text-slate-600 leading-relaxed">{{ opt.desc }}</div>
+                             <a v-if="opt.url" :href="opt.url" target="_blank" class="mt-2 block text-center bg-orange-50 text-orange-600 text-xs font-bold py-1.5 rounded hover:bg-orange-100 transition-colors">📍 Google Maps</a>
+                          </div>
+                       </div>
+
+                       <!-- List Items -->
+                       <ul v-else-if="block.items" class="space-y-2">
+                          <li v-for="item in block.items" class="text-sm text-slate-600 flex items-start gap-2">
+                             <span class="text-rose-400 font-bold mt-0.5">✓</span>
+                             <span class="leading-relaxed">{{ item }}</span>
+                          </li>
+                       </ul>
+
+                       <!-- Note/Lines -->
+                       <div v-else-if="block.lines" class="text-sm text-slate-600 space-y-1">
+                          <p v-for="line in block.lines">{{ line }}</p>
+                       </div>
+
+                    </div>
+                 </div>
+              </div>
+           </div>
         </div>
-        
-        <!-- Budget Tab -->
+
+        <!-- Phrasebook -->
+        <div v-else-if="activeKind === 'phrase'" class="grid grid-cols-1 gap-3">
+           <div v-for="p in config.phrasebook" @click="speak(p.jp)" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 active:scale-95 transition-transform">
+              <div class="text-xs font-bold text-rose-500 mb-1">{{ p.label }}</div>
+              <div class="text-lg font-bold text-slate-800">{{ p.jp }}</div>
+              <div class="flex justify-between items-center mt-2">
+                 <div class="text-[10px] text-slate-400">{{ p.note }}</div>
+                 <div class="text-[10px] bg-slate-50 text-slate-400 px-2 py-1 rounded-full">🔊</div>
+              </div>
+           </div>
+        </div>
+
+        <!-- Budget -->
         <div v-else-if="activeKind === 'budget'" class="space-y-4">
-           <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-100 text-center">
-              <div class="text-sm text-slate-400 mb-1">總支出</div>
-              <div class="text-3xl font-black text-slate-800">{{ totalBudget() }} <span class="text-sm font-medium text-slate-400">{{ config.budget.currency }}</span></div>
-              <p class="text-[10px] text-slate-400 mt-2">資料保存在本機 LocalStorage，不外流。</p>
+           <div class="bg-gradient-to-r from-emerald-400 to-teal-500 rounded-2xl p-6 text-white text-center shadow-lg shadow-emerald-900/10">
+              <div class="text-xs font-bold opacity-80 mb-1">Total Expenses</div>
+              <div class="text-4xl font-black">{{ totalBudget() }}</div>
+              <div class="text-sm font-bold opacity-90">{{ config.budget.currency }}</div>
            </div>
            
            <div class="space-y-2">
-              <div v-for="d in config.days" class="bg-white rounded-xl px-4 py-3 border border-slate-100 flex justify-between items-center">
+              <div v-for="d in config.days" class="bg-white p-4 rounded-xl border border-slate-100 flex justify-between items-center">
                  <div>
-                    <div class="font-bold text-slate-700">{{ d.label }}</div>
+                    <div class="font-bold text-slate-700 text-sm">{{ d.label }}</div>
                     <div class="text-xs text-slate-400">{{ shortDate(d.date) }}</div>
                  </div>
-                 <div class="font-bold text-rose-500">
-                    {{ dayTotal(d.date) }}
-                 </div>
+                 <div class="font-mono font-bold text-slate-800">{{ dayTotal(d.date) }}</div>
               </div>
            </div>
            
-           <button @click="clearAllBudget" class="w-full py-3 text-xs font-bold text-red-400 hover:text-red-600">清除所有記錄</button>
+           <button @click="clearAllBudget" class="w-full py-4 text-xs font-bold text-slate-400 hover:text-red-500 transition-colors">⚠️ 清除所有記錄</button>
         </div>
 
       </main>
@@ -288,7 +265,7 @@
 
   <script>
     const { createApp, ref, computed, onMounted } = Vue;
-    const BUDGET_KEY = "trip-budget-v1";
+    const BUDGET_KEY = "trip-budget-v2";
 
     createApp({
       setup() {
@@ -300,46 +277,49 @@
         const budgetForm = ref({ amount: '', note: '' });
         const showBudget = ref(false);
 
-        // Helper: Icons
+        // Icons map
         const getBlockIcon = (type) => {
           const map = {
             'transport': '🚆',
             'packingToday': '🎒',
             'todo': '✅',
-            'mealOptions': '🍽️',
+            'mealOptions': '🍔',
+            'dinnerRecommend': '🍽️',
             'note': '📝'
           };
           return map[type] || '📍';
         };
 
-        // Computed
-        const outbound = computed(() => config.value?.flights.find(f => f.direction === 'outbound'));
-        const inbound = computed(() => config.value?.flights.find(f => f.direction === 'inbound'));
-        const currentDay = computed(() => config.value?.days.find(d => d.date === activeDayDate.value));
-
-        // Formatters
+        // Helpers
         const shortDate = (s) => s ? s.split('-').slice(1).join('/') : '';
         const dateOnly = (s) => s ? s.split('T')[0] : '';
         const timeOnly = (s) => s ? s.split('T')[1]?.substring(0,5) : '';
         const stayName = (id) => config.value?.stays.find(s => s.id === id)?.name;
 
-        // Actions
+        // Compute
+        const currentDay = computed(() => config.value?.days.find(d => d.date === activeDayDate.value));
+
+        // Logic
         const selectDay = (date) => {
-          activeKind.value = 'day';
-          activeDayDate.value = date;
-          showBudget.value = false;
+           activeKind.value = 'day';
+           activeDayDate.value = date;
+           showBudget.value = false;
         };
-        const openMaps = (url) => window.open(url, '_blank');
+        
         const speak = (text) => {
            const u = new SpeechSynthesisUtterance(text);
            u.lang = 'ja-JP';
            window.speechSynthesis.speak(u);
         };
+        
+        const openMaps = (url) => window.open(url, '_blank');
 
-        // Budget Logic
+        // Budget
         const loadBudget = () => {
-           const raw = localStorage.getItem(BUDGET_KEY);
-           if(raw) budgetData.value = JSON.parse(raw);
+           try {
+              const raw = localStorage.getItem(BUDGET_KEY);
+              if(raw) budgetData.value = JSON.parse(raw);
+           } catch(e) {}
         };
         const saveBudget = () => localStorage.setItem(BUDGET_KEY, JSON.stringify(budgetData.value));
         const budgetEntriesFor = (date) => budgetData.value[date] || [];
@@ -349,11 +329,7 @@
         const addBudgetEntryFor = (date) => {
            if(!budgetForm.value.amount) return;
            if(!budgetData.value[date]) budgetData.value[date] = [];
-           budgetData.value[date].push({
-              id: Date.now(),
-              amount: budgetForm.value.amount,
-              note: budgetForm.value.note
-           });
+           budgetData.value[date].push({ id: Date.now(), amount: budgetForm.value.amount, note: budgetForm.value.note });
            budgetForm.value = { amount: '', note: '' };
            saveBudget();
         };
@@ -362,32 +338,27 @@
            saveBudget();
         };
         const clearAllBudget = () => {
-           if(confirm('確定清除？')) {
+           if(confirm('Clear all data?')) {
               budgetData.value = {};
               saveBudget();
            }
-        }
+        };
 
-        // Init
         onMounted(async () => {
           try {
-            const res = await fetch('./trip-config.json?t=' + Date.now());
-            config.value = await res.json();
-            if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
-            loadBudget();
-          } catch(e) {
-             console.error(e);
-          } finally {
-             loading.value = false;
-          }
+             const res = await fetch('./trip-config.json?t=' + Date.now());
+             config.value = await res.json();
+             if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
+             loadBudget();
+          } catch(e) { console.error(e); } 
+          finally { loading.value = false; }
         });
 
         return {
-          config, loading, activeKind, activeDayDate, currentDay,
-          outbound, inbound, budgetForm, showBudget,
-          shortDate, dateOnly, timeOnly, stayName, getBlockIcon,
-          selectDay, openMaps, speak,
-          budgetEntriesFor, dayTotal, totalBudget, addBudgetEntryFor, removeBudgetEntry, clearAllBudget
+           config, loading, activeKind, activeDayDate, currentDay,
+           shortDate, dateOnly, timeOnly, stayName, getBlockIcon,
+           selectDay, speak, openMaps,
+           budgetForm, showBudget, budgetEntriesFor, dayTotal, totalBudget, addBudgetEntryFor, removeBudgetEntry, clearAllBudget
         };
       }
     }).mount('#app');

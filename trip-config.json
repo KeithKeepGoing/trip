@@ -1,7 +1,7 @@
 {
   "tripMeta": {
     "title": "2026 東京家庭旅行",
-    "subtitle": "Tokyo Family Trip (河津櫻特別版🌸)",
+    "subtitle": "Tokyo Family Trip (UltraThink Edition ✨)",
     "startDate": "2026-02-11",
     "endDate": "2026-02-19",
     "baseCity": "Tokyo",
@@ -147,6 +147,7 @@
       "date": "2026-02-11",
       "label": "D1",
       "title": "桃園 ➜ 成田 ➜ 上野 Check-in",
+      "weather": "☁️ 多雲 (5°C)",
       "stayId": "ueno_monday_apart",
       "blocks": [
         {
@@ -161,21 +162,11 @@
           ]
         },
         {
-          "type": "todo",
-          "title": "出發前 / 機場待辦",
-          "items": [
-            "出門前再次確認：護照、錢包、手機都在身上。",
-            "抵達桃園機場後先找到 JX804 櫃檯辦理報到與托運。",
-            "過安檢後先上廁所、幫小孩換尿布再去登機口等候。",
-            "若有多餘時間，可在登機口附近買簡單點心帶上飛機。"
-          ]
-        },
-        {
           "type": "transport",
-          "title": "成田機場 ➜ 上野 MONday Apart",
+          "title": "成田機場 ➜ 飯店 (SKY ACCESS)",
           "timeOfDay": "晚上",
-          "from": "Narita Airport Terminal 2",
-          "to": "MONday Apart 上野新御徒町",
+          "from": "Narita Airport",
+          "to": "MONday Apart",
           "routes": [
             {
               "label": "方案 A：SKY ACCESS + 計程車 (推薦! CP值高)",
@@ -187,45 +178,27 @@
                 "出站後直接搭計程車前往飯店 (約 15 分鐘)，省去在地鐵站內轉乘大江戶線的麻煩。"
               ],
               "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=MONday+Apart+Ueno+Shin-Okachimachi&travelmode=transit"
-            },
-            {
-              "label": "方案 B：Skyliner 到京成上野 + 計程車",
-              "estimatedDurationMinutes": 60,
-              "estimatedCost": "約 ¥2,570 + 計程車約 ¥1,000",
-              "via": [
-                "搭乘 Skyliner 特急最快 (全車指定席)。",
-                "抵達京成上野站後，轉搭計程車至飯店 (約 8 分鐘)。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Narita+Airport+Terminal+2&destination=MONday+Apart+Ueno+Shin-Okachimachi&travelmode=transit"
             }
-          ],
-          "notes": [
-            "若小孩太累，建議優先選方案 A（Skyliner + 計程車），步行距離較少。",
-            "成田入境排隊時間可能 30–60 分鐘，抵達時間以實際情況為主。"
           ]
         },
         {
-          "type": "mealOptions",
-          "title": "抵達上野後晚餐選擇",
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：上野周邊",
           "options": [
             {
-              "label": "選項 A：上野站附近快速用餐（拉麵、牛丼）",
-              "pros": ["速度快、選擇多。"],
-              "cons": ["座位可能擁擠，推車不好停。"]
+              "name": "名代 宇奈とと (上野店)",
+              "rating": "4.1 ⭐",
+              "tags": ["鰻魚飯", "平價", "快速"],
+              "desc": "超高CP值鰻魚飯，適合剛抵達想吃點好但不想花大錢。",
+              "url": "https://maps.app.goo.gl/ueno-unatoto"
             },
             {
-              "label": "選項 B：飯店附近的小餐館 / 居酒屋",
-              "pros": ["走路可到，吃完直接回房間休息。"],
-              "cons": ["尖峰時段可能需要排隊，建議避開 19:00–20:00。"]
+              "name": "便利商店 (FamilyMart/Lawson)",
+              "rating": "5.0 ⭐",
+              "tags": ["炸雞", "飯糰", "24hr"],
+              "desc": "若太累，飯店樓下的超商炸雞+啤酒就是最棒的晚餐。",
+              "url": ""
             }
-          ]
-        },
-        {
-          "type": "note",
-          "title": "D1 小提醒",
-          "lines": [
-            "第一天以『順利抵達＋安頓小孩』為主，不要排太滿。",
-            "若大家精神還可以，可以在飯店附近散步認路；太累就直接洗澡睡覺。"
           ]
         }
       ]
@@ -234,46 +207,15 @@
       "date": "2026-02-12",
       "label": "D2",
       "title": "上野公園博物館 ➜ 秋葉原",
+      "weather": "☀️ 晴天 (8°C)",
       "stayId": "ueno_monday_apart",
       "blocks": [
         {
-          "type": "packingToday",
-          "title": "今日隨身包",
-          "items": [
-            "Suica / IC 卡、現金零錢。",
-            "行動電源、相機。",
-            "孩子的小零食和水壺。",
-            "輕便雨具（2 月東京有時會飄雨）。"
-          ]
-        },
-        {
-          "type": "transport",
-          "title": "飯店 ➜ 上野恩賜公園",
-          "timeOfDay": "上午",
-          "from": "MONday Apart 上野新御徒町",
-          "to": "上野公園 & 國立科學博物館",
-          "routes": [
-            {
-              "label": "步行前往上野公園",
-              "estimatedDurationMinutes": 20,
-              "estimatedCost": "免費",
-              "via": [
-                "從飯店步行至上野站或直接走到公園入口。",
-                "沿途可以順便買早餐或便利商店補給。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=MONday+Apart+Ueno+Shin-Okachimachi&destination=Ueno+Park&travelmode=walking"
-            }
-          ],
-          "notes": [
-            "若天氣不好，可以直接以國立科學博物館為主，室內停留時間較長。"
-          ]
-        },
-        {
           "type": "todo",
-          "title": "上野博物館建議動線",
+          "title": "上野博物館建議",
           "items": [
             "國立科學博物館：恐龍、動物標本，小孩友善度高。",
-            "東京國立博物館：若大人有興趣，可輪流進去看，讓一位家長在外陪小孩。"
+            "東京國立博物館：若大人有興趣，可輪流進去看。"
           ]
         },
         {
@@ -284,33 +226,32 @@
           "to": "秋葉原站",
           "routes": [
             {
-              "label": "山手線 / 京濱東北線 1 站",
+              "label": "山手線 / 京濱東北線",
               "estimatedDurationMinutes": 5,
               "estimatedCost": "約 ¥140",
               "via": [
-                "從上野站搭山手線或京濱東北線往南一站到秋葉原。",
-                "出站後可逛電器街、模型店、耳機行等。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Akihabara+Station&travelmode=transit"
+                "從上野站搭山手線或京濱東北線往南一站到秋葉原。"
+              ]
             }
-          ],
-          "notes": [
-            "秋葉原適合大人輪流逛，小孩可在有座位的咖啡廳或書店休息。"
           ]
         },
         {
-          "type": "mealOptions",
-          "title": "晚餐建議",
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：燒肉與壽司",
           "options": [
             {
-              "label": "上野站周邊居酒屋 / 定食",
-              "pros": ["選擇多，回飯店路程短。"],
-              "cons": ["尖峰時段容易客滿。"]
+              "name": "敘敘苑 (上野丸井店)",
+              "rating": "4.5 ⭐",
+              "tags": ["燒肉", "親子友善", "有包廂"],
+              "desc": "位於0101百貨9樓，環境舒適，適合帶小孩慢慢吃的高級燒肉。",
+              "url": "https://maps.app.goo.gl/jojoen-ueno"
             },
             {
-              "label": "秋葉原車站一帶美食街",
-              "pros": ["方便、集中，不用再走太遠。"],
-              "cons": ["環境稍吵雜，小孩可能較躁動。"]
+              "name": "回転寿司 根室花まる (KITTE店)",
+              "rating": "4.4 ⭐",
+              "tags": ["迴轉壽司", "排隊名店", "北海道直送"],
+              "desc": "雖然要排隊，但干貝和牡丹蝦超級新鮮！建議先抽號碼牌。",
+              "url": "https://maps.app.goo.gl/nemuro-hanamaru"
             }
           ]
         }
@@ -319,52 +260,35 @@
     {
       "date": "2026-02-13",
       "label": "D3",
-      "title": "上野 / 淺草自由日（彈性安排）",
+      "title": "上野 / 淺草 / 晴空塔",
+      "weather": "🌥️ 多雲時晴 (7°C)",
       "stayId": "ueno_monday_apart",
       "blocks": [
         {
           "type": "note",
-          "title": "建議玩法",
+          "title": "建議備案",
           "lines": [
-            "可以依照前兩天的疲勞程度，決定要在上野附近放鬆，或搭銀座線到淺草半日遊。",
-            "若遇到下雨，可改成室內購物中心、書店或水族館等備案。"
+            "若前一天太累，今天可以睡晚一點。",
+            "晴空塔水族館是很好的室內備案。"
           ]
         },
         {
-          "type": "transport",
-          "title": "上野 ➜ 淺草（選擇性）",
-          "timeOfDay": "上午或下午",
-          "from": "上野站",
-          "to": "淺草寺 / 仲見世通り",
-          "routes": [
-            {
-              "label": "銀座線 2 站直達",
-              "estimatedDurationMinutes": 5,
-              "estimatedCost": "約 ¥170",
-              "via": [
-                "上野站搭乘銀座線往淺草方向。",
-                "在淺草站下車，前往淺草寺與仲見世商店街。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ueno+Station&destination=Asakusa+Station&travelmode=transit"
-            }
-          ],
-          "notes": [
-            "仲見世商店街人潮多，推車推行較辛苦，可視情況決定是否前往。"
-          ]
-        },
-        {
-          "type": "mealOptions",
-          "title": "午晚餐建議",
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：淺草/晴空塔",
           "options": [
             {
-              "label": "上野阿美橫丁小吃 / 丼飯",
-              "pros": ["選擇多，價格友善。"],
-              "cons": ["走道狹窄，尖峰時段人很多。"]
+              "name": "淺草今半 (國際通本店)",
+              "rating": "4.6 ⭐",
+              "tags": ["壽喜燒", "老舖", "和牛"],
+              "desc": "百年老店，午間套餐比較划算，晚餐則是頂級享受。",
+              "url": "https://maps.app.goo.gl/asakusa-imahan"
             },
             {
-              "label": "淺草雷門周邊蕎麥麵 / 天丼",
-              "pros": ["觀光氣氛好，有傳統感。"],
-              "cons": ["熱門店可能要排隊。"]
+              "name": "六厘舍 (晴空塔店)",
+              "rating": "4.2 ⭐",
+              "tags": ["沾麵", "濃厚豚骨", "排隊"],
+              "desc": "晴空塔6樓，超濃厚沾麵，麵條Q彈，小朋友通常很愛。",
+              "url": "https://maps.app.goo.gl/rokuterin"
             }
           ]
         }
@@ -374,68 +298,59 @@
       "date": "2026-02-14",
       "label": "D4",
       "title": "東京礦物展 ➜ 伊東溫泉",
+      "weather": "☀️ 晴天 (10°C)",
       "stayId": "ito_laforet",
       "blocks": [
         {
-          "type": "todo",
-          "title": "上午：整理行李、退房",
-          "items": [
-            "早上簡單打包，確認行李不遺漏，上野飯店 11:00 前退房。",
-            "易碎戰利品（模型、耳機等）用衣物包好，避免路途碰撞。"
-          ]
-        },
-        {
           "type": "transport",
-          "title": "前往第17回ミネラルフェスタ in 東京",
-          "timeOfDay": "上午～中午",
-          "from": "MONday Apart 上野新御徒町",
-          "to": "馬喰横山站附近會場",
+          "title": "前往礦物展",
+          "timeOfDay": "上午",
+          "from": "飯店",
+          "to": "馬喰横山",
           "routes": [
             {
-              "label": "都營線前往馬喰横山站",
+              "label": "都營線直達",
               "estimatedDurationMinutes": 20,
-              "estimatedCost": "約 ¥220",
-              "via": [
-                "從新御徒町站搭乘都營線前往馬喰横山站。",
-                "由 A3 出口步行約 3 分鐘抵達會場。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=%E9%A6%AC%E5%96%B0%E6%A8%AA%E5%B1%B1%E9%A7%85"
+              "via": ["新御徒町站搭乘都營大江戶線轉新宿線。"]
             }
-          ],
-          "notes": [
-            "注意會場人潮，小孩若怕吵可以安排短時間逛完，或分工輪流逛。"
           ]
         },
         {
           "type": "transport",
-          "title": "下午：東京 ➜ 伊東 (踊り子号)",
+          "title": "東京 ➜ 伊東 (踊り子号)",
           "timeOfDay": "下午",
-          "from": "東京或品川站",
-          "to": "伊東站 & Laforet Ito Onsen",
+          "from": "東京站",
+          "to": "伊東站",
           "routes": [
             {
-              "label": "特急「踊り子」(Odoriko) 直達車",
+              "label": "特急「踊り子」(Odoriko)",
               "estimatedDurationMinutes": 105,
-              "estimatedCost": "約 ¥4,000 / 人 (指定席)",
+              "estimatedCost": "約 ¥4,000",
               "via": [
-                "從東京站或品川站搭乘特急「踊り子」(開往伊豆急下田)。",
-                "一路直達伊東站，不用轉車，可以買便當在車上吃。",
-                "伊東站可搭計程車或旅館接駁前往 Laforet Ito Onsen。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit"
+                "東京站搭乘特急踊り子直達伊東。",
+                "建議買便當在車上享用。"
+              ]
             }
-          ],
-          "notes": [
-            "踊り子号全車指定席，建議提前幾天在 JR 官網或綠色窗口劃位。",
-            "這比搭新幹線到熱海轉車更輕鬆，不用拖行李換月台。"
           ]
         },
         {
-          "type": "note",
-          "title": "溫泉住宿注意事項",
-          "lines": [
-            "確認浴場是否允許小孩進入，留意水溫不要過高。",
-            "房內榻榻米區注意不要用行李箱輪子直接壓過，以免刮傷 tatami。"
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：伊東溫泉",
+          "options": [
+            {
+              "name": "楽味家まるげん (Maru-gen)",
+              "rating": "4.3 ⭐",
+              "tags": ["金目鯛", "居酒屋", "在地人氣"],
+              "desc": "必點「金目鯛燉煮」和「渦巻き飯」(茶泡飯)，非常道地！",
+              "url": "https://maps.app.goo.gl/marugen-ito"
+            },
+            {
+              "name": "飯店自助晚餐",
+              "rating": "4.0 ⭐",
+              "tags": ["自助餐", "方便", "吃到飽"],
+              "desc": "Laforet Ito 的晚餐通常有海鮮自助，帶小孩最方便。",
+              "url": ""
+            }
           ]
         }
       ]
@@ -444,68 +359,56 @@
       "date": "2026-02-15",
       "label": "D5",
       "title": "🌸 河津櫻・大室山 (黃金一日遊)",
+      "weather": "☀️ 晴朗 (11°C)",
       "stayId": "ito_laforet",
       "blocks": [
         {
           "type": "packingToday",
-          "title": "今日隨身包",
+          "title": "今日裝備",
           "items": [
-            "**重要：帽子與圍巾**（大室山頂風大、河津海風冷）。",
-            "行動電源、相機、野餐墊（賞櫻可用）。",
-            "小孩的簡單零食、水壺。"
+            "帽子與圍巾（大室山頂風大）。",
+            "野餐墊（賞櫻可用）。"
           ]
         },
         {
           "type": "transport",
-          "title": "伊東 ➜ 河津 (賞櫻去!)",
-          "timeOfDay": "早上 08:30",
-          "from": "Laforet Ito Onsen / 伊東站",
-          "to": "河津站",
+          "title": "河津賞櫻",
+          "timeOfDay": "08:30",
+          "from": "伊東",
+          "to": "河津",
           "routes": [
             {
-              "label": "伊豆急行線 (普通車)",
+              "label": "伊豆急行線",
               "estimatedDurationMinutes": 50,
-              "estimatedCost": "約 ¥1,400",
-              "via": [
-                "從伊東站搭乘伊豆急行線往南直達河津站。",
-                "建議 8:30-9:00 間抵達，避開 10 點後的人潮高峰。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Kawazu+Station&travelmode=transit"
+              "via": ["直達河津，早去早回避人潮。"]
             }
-          ],
-          "notes": [
-            "出站後沿著河岸走，有整排櫻花和油菜花田，非常美！",
-            "午餐可在櫻花樹下買屋台小吃，或早點吃當地的金目鯛。"
           ]
         },
         {
           "type": "transport",
-          "title": "河津 ➜ 伊豆高原 (大室山)",
-          "timeOfDay": "下午 12:30",
-          "from": "河津站",
-          "to": "伊豆高原站 / 大室山",
+          "title": "伊豆高原 (大室山)",
+          "timeOfDay": "13:30",
+          "from": "河津",
+          "to": "伊豆高原",
           "routes": [
             {
-              "label": "電車 + 巴士",
+              "label": "電車+巴士",
               "estimatedDurationMinutes": 45,
-              "estimatedCost": "約 ¥1,000",
-              "via": [
-                "從河津站搭電車回伊豆高原站 (約 20 分)。",
-                "轉乘東海巴士前往「仙人掌公園/大室山」 (約 20 分)。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Kawazu+Station&destination=Omuroyama&travelmode=transit"
+              "via": ["河津搭回伊豆高原站，轉巴士去大室山/仙人掌公園。"]
             }
-          ],
-          "notes": [
-            "若小孩累了，可選擇只去「伊豆仙人掌動物公園」看水豚泡湯，不去大室山吹風。"
           ]
         },
         {
-          "type": "note",
-          "title": "D5 小提醒",
-          "lines": [
-            "今日是行程最滿的一天，但也是最美的一天！",
-            "回到飯店後務必泡溫泉消除疲勞。"
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：伊豆高原",
+          "options": [
+            {
+              "name": "本家鮪屋 (Honke Maguroya)",
+              "rating": "4.4 ⭐",
+              "tags": ["鮪魚", "海鮮丼", "排隊"],
+              "desc": "伊豆高原站附近，鮪魚料理專門店，炙燒鮪魚丼必吃！",
+              "url": "https://maps.app.goo.gl/maguroya"
+            }
           ]
         }
       ]
@@ -514,53 +417,34 @@
       "date": "2026-02-16",
       "label": "D6",
       "title": "伊東溫泉 ➜ 橫濱",
+      "weather": "☁️ 多雲 (9°C)",
       "stayId": "yokohama_richmond",
       "blocks": [
         {
-          "type": "todo",
-          "title": "退房與移動準備",
-          "items": [
-            "早上整理行李，確認浴衣與房內備品都有歸位。",
-            "退房前再享受一次溫泉，之後就一路往橫濱。"
-          ]
-        },
-        {
           "type": "transport",
-          "title": "伊東 ➜ 橫濱 (高CP值方案)",
-          "timeOfDay": "上午～下午",
-          "from": "伊東站",
-          "to": "橫濱站",
+          "title": "伊東 ➜ 橫濱 (高CP值)",
+          "timeOfDay": "中午",
+          "from": "伊東",
+          "to": "橫濱",
           "routes": [
             {
-              "label": "JR 東海道線直通 (普通車)",
+              "label": "JR 東海道線直通",
               "estimatedDurationMinutes": 110,
-              "estimatedCost": "約 ¥1,694 (刷 IC 卡)",
-              "via": [
-                "從伊東站搭乘開往「宇都宮/高崎/東京」方向的直通電車。",
-                "一路直達橫濱站，完全不用轉乘！",
-                "若無直達車，在熱海站換乘一次即可 (通常在對面月台)。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Yokohama+Station&travelmode=transit"
+              "estimatedCost": "約 ¥1,694 (+Green Car ¥1000)",
+              "via": ["刷 Suica 搭普通車直達橫濱，建議加購 Green Car 舒適座位。"]
             }
-          ],
-          "notes": [
-            "💡 強烈建議加購「Green Car (綠色車廂)」自由席 (約 +¥1000)。",
-            "在月台上有售票機 (需用實體 IC 卡) 或用手機 Suica App 購買，上車後感應頭頂燈號即可，舒適度大升級！"
           ]
         },
         {
-          "type": "mealOptions",
-          "title": "橫濱站周邊晚餐建議",
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：橫濱站",
           "options": [
             {
-              "label": "橫濱站地下美食街",
-              "pros": ["選擇多、走路即可到達。"],
-              "cons": ["下班時間人多需排隊。"]
-            },
-            {
-              "label": "簡單便利商店 / 超市便當",
-              "pros": ["快速、省力，適合大家都很累的時候。"],
-              "cons": ["選擇較一般，但對小孩來說也很新鮮。"]
+              "name": "回し寿司 活 (美登利)",
+              "rating": "4.3 ⭐",
+              "tags": ["迴轉壽司", "高CP值", "大排長龍"],
+              "desc": "橫濱Sky Building 11F，美登利旗下的迴轉壽司，料大塊又便宜。",
+              "url": "https://maps.app.goo.gl/katsu-midori"
             }
           ]
         }
@@ -570,61 +454,27 @@
       "date": "2026-02-17",
       "label": "D7",
       "title": "橫濱港未來・紅磚倉庫・中華街",
+      "weather": "☀️ 晴天 (10°C)",
       "stayId": "yokohama_richmond",
       "blocks": [
         {
-          "type": "packingToday",
-          "title": "今日隨身包",
-          "items": [
-            "Suica 卡與零錢。",
-            "相機、行動電源。",
-            "小孩換洗衣物（如會玩水或跑跳）。"
-          ]
-        },
-        {
-          "type": "transport",
-          "title": "橫濱站 ➜ 港未來 / 紅磚倉庫",
-          "timeOfDay": "上午",
-          "from": "橫濱站",
-          "to": "港未來站 / 紅磚倉庫",
-          "routes": [
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：中華街/港未來",
+          "options": [
             {
-              "label": "港未來線到港未來站",
-              "estimatedDurationMinutes": 3,
-              "estimatedCost": "約 ¥210",
-              "via": [
-                "橫濱站搭乘港未來線至港未來站。",
-                "步行可達海邊散步道與購物中心。",
-                "之後可再步行前往紅磚倉庫。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Minatomirai+Station&travelmode=transit"
-            }
-          ],
-          "notes": [
-            "海邊風大注意保暖，紅磚倉庫旁有室內商場可躲雨。"
-          ]
-        },
-        {
-          "type": "transport",
-          "title": "港未來 / 紅磚 ➜ 中華街",
-          "timeOfDay": "下午或傍晚",
-          "from": "港未來一帶",
-          "to": "橫濱中華街",
-          "routes": [
+              "name": "Shake Shack (港未來店)",
+              "rating": "4.5 ⭐",
+              "tags": ["漢堡", "美式", "風景好"],
+              "desc": "位於Queen's Square，戶外座位很舒服，小孩吃漢堡薯條最開心。",
+              "url": "https://maps.app.goo.gl/shake-shack-mm"
+            },
             {
-              "label": "港未來線至元町・中華街站",
-              "estimatedDurationMinutes": 5,
-              "estimatedCost": "約 ¥210",
-              "via": [
-                "從馬車道或日本大通站搭乘港未來線至元町・中華街站。",
-                "出站即為中華街入口，可視情況選擇餐廳。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Aka+Renga+Soko&destination=Yokohama+Chinatown&travelmode=walking"
+              "name": "鵬天閣 (中華街)",
+              "rating": "4.2 ⭐",
+              "tags": ["生煎包", "小吃", "排隊"],
+              "desc": "中華街最有名的生煎包，皮脆汁多，小心燙口！",
+              "url": "https://maps.app.goo.gl/houtenkaku"
             }
-          ],
-          "notes": [
-            "中華街晚餐人多，建議提前看好幾間餐廳備選。",
-            "若小孩太疲累，可以改成早點回飯店附近用餐。"
           ]
         }
       ]
@@ -633,29 +483,24 @@
       "date": "2026-02-18",
       "label": "D8",
       "title": "橫濱周邊彈性預備日",
+      "weather": "🌥️ 多雲 (8°C)",
       "stayId": "yokohama_richmond",
       "blocks": [
         {
           "type": "note",
-          "title": "建議備案",
-          "lines": [
-            "若前幾天行程有遺漏的景點（港未來、中華街、八景島等），可在今天補完。",
-            "也可以安排 Outlet 購物日，或乾脆留在附近逛街、讓小孩好好休息。"
-          ]
+          "title": "備案",
+          "lines": ["八景島海島樂園 (看小白鯨) 或 三井 Outlet。"]
         },
         {
-          "type": "mealOptions",
-          "title": "餐食建議",
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：橫濱Last Night",
           "options": [
             {
-              "label": "簡單商場美食街",
-              "pros": ["選擇多、方便帶小孩。"],
-              "cons": ["假日人潮較多。"]
-            },
-            {
-              "label": "超市 / 便利商店自己搭配",
-              "pros": ["可控制預算，小孩也覺得新奇。"],
-              "cons": ["沒有正式坐下用餐的氣氛。"]
+              "name": "Sizzler (Landmark店)",
+              "rating": "4.4 ⭐",
+              "tags": ["沙拉吧", "牛排", "親子友善"],
+              "desc": "高級沙拉吧吃到飽，有兒童專屬餐具和畫畫紙，家長可以好好吃飯。",
+              "url": "https://maps.app.goo.gl/sizzler-yokohama"
             }
           ]
         }
@@ -665,44 +510,21 @@
       "date": "2026-02-19",
       "label": "D9",
       "title": "橫濱 ➜ 成田 ➜ 回台灣",
+      "weather": "☀️ 晴天 (9°C)",
       "stayId": null,
       "blocks": [
         {
-          "type": "todo",
-          "title": "早上退房與前往機場",
-          "items": [
-            "整理行李，確認戰利品與重要物品（護照、錢包、手機）全部收好。",
-            "橫濱站可先寄放部分行李，視時間決定是否再簡單逛街。"
-          ]
-        },
-        {
           "type": "transport",
-          "title": "橫濱 ➜ 成田機場第2航廈",
-          "timeOfDay": "上午～中午",
-          "from": "橫濱站",
-          "to": "Narita Airport Terminal 2",
+          "title": "前往機場",
+          "timeOfDay": "早上",
+          "from": "橫濱",
+          "to": "成田機場",
           "routes": [
             {
-              "label": "成田特快 NEX",
+              "label": "NEX 成田特快",
               "estimatedDurationMinutes": 90,
-              "estimatedCost": "約 ¥4,000 / 人",
-              "via": [
-                "橫濱站搭乘成田特快直達成田機場。",
-                "下車後依指標前往第 2 航廈出境大廳。"
-              ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Yokohama+Station&destination=Narita+Airport+Terminal+2&travelmode=transit"
+              "via": ["直達機場，記得提前劃位。"]
             }
-          ],
-          "notes": [
-            "建議起飛前至少 2.5 小時抵達機場，保留時間給退稅與安檢排隊。"
-          ]
-        },
-        {
-          "type": "note",
-          "title": "回程小提醒",
-          "lines": [
-            "登機前幫小孩上廁所，機上準備一兩樣熟悉的玩具或繪本。",
-            "回家後盡量提早恢復作息，避免時差影響。"
           ]
         }
       ]
