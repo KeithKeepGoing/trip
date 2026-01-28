@@ -1,7 +1,7 @@
 {
   "tripMeta": {
     "title": "2026 東京家庭旅行",
-    "subtitle": "Tokyo Family Trip",
+    "subtitle": "Tokyo Family Trip (河津櫻特別版🌸)",
     "startDate": "2026-02-11",
     "endDate": "2026-02-19",
     "baseCity": "Tokyo",
@@ -66,7 +66,7 @@
       "area": "Shizuoka",
       "checkIn": "2026-02-14",
       "checkOut": "2026-02-16",
-      "notes": "伊東溫泉住宿，安排大室山、城崎海岸等景點。"
+      "notes": "伊東溫泉住宿，河津櫻與大室山的前哨站。"
     },
     {
       "id": "yokohama_richmond",
@@ -85,7 +85,7 @@
       { "date": "2026-02-12", "label": "D2 上野博物館 / 秋葉原" },
       { "date": "2026-02-13", "label": "D3 上野 / 自由活動" },
       { "date": "2026-02-14", "label": "D4 東京礦物展 → 伊東" },
-      { "date": "2026-02-15", "label": "D5 大室山・城崎海岸" },
+      { "date": "2026-02-15", "label": "D5 🌸河津櫻・大室山" },
       { "date": "2026-02-16", "label": "D6 伊東 → 橫濱" },
       { "date": "2026-02-17", "label": "D7 橫濱港未來 / 中華街" },
       { "date": "2026-02-18", "label": "D8 橫濱近郊 / 預備日" },
@@ -409,25 +409,26 @@
         },
         {
           "type": "transport",
-          "title": "下午：東京 ➜ 伊東",
+          "title": "下午：東京 ➜ 伊東 (踊り子号)",
           "timeOfDay": "下午",
           "from": "東京或品川站",
           "to": "伊東站 & Laforet Ito Onsen",
           "routes": [
             {
-              "label": "新幹線到熱海 + 伊東線",
-              "estimatedDurationMinutes": 120,
-              "estimatedCost": "約 ¥5,000–6,000 / 人",
+              "label": "特急「踊り子」(Odoriko) 直達車",
+              "estimatedDurationMinutes": 105,
+              "estimatedCost": "約 ¥4,000 / 人 (指定席)",
               "via": [
-                "從東京或品川站搭乘東海道新幹線至熱海站。",
-                "熱海站轉乘伊東線到伊東站。",
+                "從東京站或品川站搭乘特急「踊り子」(開往伊豆急下田)。",
+                "一路直達伊東站，不用轉車，可以買便當在車上吃。",
                 "伊東站可搭計程車或旅館接駁前往 Laforet Ito Onsen。"
               ],
               "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Tokyo+Station&destination=Ito+Station&travelmode=transit"
             }
           ],
           "notes": [
-            "盡量在下午早一點到伊東，晚餐前可以先泡溫泉、熟悉環境。"
+            "踊り子号全車指定席，建議提前幾天在 JR 官網或綠色窗口劃位。",
+            "這比搭新幹線到熱海轉車更輕鬆，不用拖行李換月台。"
           ]
         },
         {
@@ -443,69 +444,69 @@
     {
       "date": "2026-02-15",
       "label": "D5",
-      "title": "大室山・城崎海岸一日遊",
+      "title": "🌸 河津櫻・大室山 (黃金一日遊)",
       "stayId": "ito_laforet",
       "blocks": [
         {
           "type": "packingToday",
           "title": "今日隨身包",
           "items": [
-            "防風外套（山上風大）。",
-            "簡單零食與水壺。",
-            "行動電源與相機。",
-            "若要撿石頭，可帶小布袋或小盒子。"
+            "**重要：帽子與圍巾**（大室山頂風大、河津海風冷）。",
+            "行動電源、相機、野餐墊（賞櫻可用）。",
+            "小孩的簡單零食、水壺。"
           ]
         },
         {
           "type": "transport",
-          "title": "飯店 ➜ 大室山",
-          "timeOfDay": "上午",
-          "from": "Laforet Ito Onsen",
-          "to": "大室山纜車站",
+          "title": "伊東 ➜ 河津 (賞櫻去!)",
+          "timeOfDay": "早上 08:30",
+          "from": "Laforet Ito Onsen / 伊東站",
+          "to": "河津站",
           "routes": [
             {
-              "label": "巴士或自駕前往",
-              "estimatedDurationMinutes": 40,
-              "estimatedCost": "依交通方式而定",
+              "label": "伊豆急行線 (普通車)",
+              "estimatedDurationMinutes": 50,
+              "estimatedCost": "約 ¥1,400",
               "via": [
-                "可搭乘巴士或自駕前往大室山纜車站停車場。",
-                "購票搭乘纜車上山，在山頂步道散步一圈。"
+                "從伊東站搭乘伊豆急行線往南直達河津站。",
+                "建議 8:30-9:00 間抵達，避開 10 點後的人潮高峰。"
               ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Laforet+Ito&destination=Omuroyama+Lift&travelmode=driving"
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Ito+Station&destination=Kawazu+Station&travelmode=transit"
             }
           ],
           "notes": [
-            "山頂風大注意保暖，小孩走一圈若太累可在中途折返。"
+            "出站後沿著河岸走，有整排櫻花和油菜花田，非常美！",
+            "午餐可在櫻花樹下買屋台小吃，或早點吃當地的金目鯛。"
           ]
         },
         {
           "type": "transport",
-          "title": "大室山 ➜ 城崎海岸",
-          "timeOfDay": "下午",
-          "from": "大室山",
-          "to": "城崎海岸",
+          "title": "河津 ➜ 伊豆高原 (大室山)",
+          "timeOfDay": "下午 12:30",
+          "from": "河津站",
+          "to": "伊豆高原站 / 大室山",
           "routes": [
             {
-              "label": "開車 / 巴士移動",
-              "estimatedDurationMinutes": 25,
-              "estimatedCost": "依交通方式而定",
+              "label": "電車 + 巴士",
+              "estimatedDurationMinutes": 45,
+              "estimatedCost": "約 ¥1,000",
               "via": [
-                "依照當地路線前往城崎海岸停車場。",
-                "沿著步道欣賞海岸景觀，可視情況短時間撿石頭。"
+                "從河津站搭電車回伊豆高原站 (約 20 分)。",
+                "轉乘東海巴士前往「仙人掌公園/大室山」 (約 20 分)。"
               ],
-              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Omuroyama&destination=Jogasaki+Coast&travelmode=driving"
+              "gmapsUrl": "https://www.google.com/maps/dir/?api=1&origin=Kawazu+Station&destination=Omuroyama&travelmode=transit"
             }
           ],
           "notes": [
-            "海邊風大且步道有高低差，撿石頭時注意安全與潮汐。"
+            "若小孩累了，可選擇只去「伊豆仙人掌動物公園」看水豚泡湯，不去大室山吹風。"
           ]
         },
         {
           "type": "note",
           "title": "D5 小提醒",
           "lines": [
-            "今日步行量較大，建議前一晚不要太晚睡。",
-            "回到旅館後可以再安排一次溫泉，好好放鬆。"
+            "今日是行程最滿的一天，但也是最美的一天！",
+            "回到飯店後務必泡溫泉消除疲勞。"
           ]
         }
       ]

@@ -1,1192 +1,396 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <title>2026 東京家庭旅行</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      :root {
-        color-scheme: light;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        background: #0f172a;
-        color: #0f172a;
-      }
-      .page {
-        min-height: 100vh;
-        background: linear-gradient(
-          to bottom,
-          #b91c1c 0,
-          #b91c1c 220px,
-          #0f172a 220px,
-          #0f172a 100%
-        );
-      }
-      .app {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 12px 12px 32px;
-      }
-      /* Header */
-      .hero-card {
-        background: transparent;
-        color: #fee2e2;
-        text-align: center;
-        padding: 4px 0 12px;
-      }
-      .hero-title {
-        font-size: 1.8rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-      }
-      .hero-subtitle {
-        margin-top: 4px;
-        font-size: 0.9rem;
-        opacity: 0.9;
-      }
-      .hero-date {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 8px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: rgba(15, 23, 42, 0.25);
-        font-size: 0.82rem;
-      }
-      .hero-date-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 18px;
-        height: 18px;
-        border-radius: 999px;
-        background: #0f172a;
-        color: #f97316;
-        font-size: 0.8rem;
-      }
-      /* Tabs strip */
-      .tabs-strip {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        justify-content: center;
-        padding: 8px 6px 0;
-      }
-      .tab-pill {
-        min-width: 54px;
-        padding: 5px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(15, 23, 42, 0.4);
-        background: rgba(15, 23, 42, 0.85);
-        color: #e5e7eb;
-        font-size: 0.8rem;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-      }
-      .tab-pill span.small {
-        font-size: 0.7rem;
-        opacity: 0.8;
-      }
-      .tab-pill.active {
-        background: #f97316;
-        border-color: #f97316;
-        color: #111827;
-      }
-      .tab-pill.secondary {
-        background: rgba(15, 23, 42, 0.9);
-      }
-      /* Main card area */
-      .content-shell {
-        margin-top: 14px;
-      }
-      .main-card {
-        background: #f9fafb;
-        border-radius: 20px;
-        padding: 18px 14px 18px;
-        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.45);
-      }
-      @media (min-width: 768px) {
-        .main-card {
-          padding: 22px 24px 24px;
-        }
-      }
-      .section-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #111827;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 10px;
-      }
-      .section-title-icon {
-        width: 22px;
-        height: 22px;
-        border-radius: 999px;
-        background: #fee2e2;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #b91c1c;
-        font-size: 0.8rem;
-      }
-      .subtext {
-        font-size: 0.8rem;
-        color: #6b7280;
-      }
-      /* Flight card */
-      .flight-card {
-        border-radius: 18px;
-        background: #ecfdf5;
-        padding: 14px 16px;
-        margin-bottom: 14px;
-      }
-      .flight-header {
-        font-size: 0.85rem;
-        color: #047857;
-        font-weight: 600;
-        margin-bottom: 6px;
-      }
-      .flight-row {
-        display: grid;
-        grid-template-columns: 1.3fr auto 1.3fr;
-        gap: 6px;
-        align-items: center;
-        padding: 8px 0;
-      }
-      .flight-col {
-        font-size: 0.9rem;
-        color: #111827;
-      }
-      .flight-airport {
-        font-size: 1.4rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-      }
-      .flight-airport-sub {
-        font-size: 0.78rem;
-        color: #6b7280;
-      }
-      .flight-mid {
-        text-align: center;
-        font-size: 0.8rem;
-      }
-      .flight-pill {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #0f766e;
-        color: #ecfdf5;
-        font-size: 0.78rem;
-        font-weight: 600;
-      }
-      .flight-time {
-        font-size: 1.1rem;
-        font-weight: 700;
-      }
-      .flight-date {
-        font-size: 0.78rem;
-        color: #6b7280;
-      }
-      .tip-box {
-        margin-top: 8px;
-        padding: 8px 10px;
-        border-radius: 12px;
-        background: #fef3c7;
-        font-size: 0.8rem;
-        color: #92400e;
-        display: flex;
-        align-items: flex-start;
-        gap: 6px;
-      }
-      .tip-icon {
-        font-size: 1rem;
-        margin-top: 1px;
-      }
-      /* Stays */
-      .stay-list {
-        display: grid;
-        gap: 8px;
-        margin-top: 4px;
-      }
-      .stay-item {
-        padding: 8px 10px;
-        border-radius: 12px;
-        background: #eff6ff;
-        border: 1px solid #dbeafe;
-      }
-      .stay-name {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #1e3a8a;
-      }
-      .stay-meta {
-        font-size: 0.8rem;
-        color: #4b5563;
-      }
-      /* Day view */
-      .day-header-card {
-        padding-bottom: 10px;
-        border-bottom: 1px dashed #e5e7eb;
-        margin-bottom: 12px;
-      }
-      .day-title-line {
-        font-size: 1.02rem;
-        font-weight: 700;
-        color: #111827;
-      }
-      .day-sub-line {
-        font-size: 0.82rem;
-        color: #6b7280;
-        margin-top: 2px;
-      }
-      .day-badges {
-        margin-top: 6px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .badge {
-        padding: 2px 8px;
-        border-radius: 999px;
-        background: #e5e7eb;
-        font-size: 0.75rem;
-        color: #4b5563;
-      }
-      .btn {
-        border-radius: 999px;
-        border: none;
-        padding: 5px 10px;
-        font-size: 0.78rem;
-        cursor: pointer;
-        background: #2563eb;
-        color: #f9fafb;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-      }
-      .btn.outline {
-        background: #ffffff;
-        color: #1f2937;
-        border: 1px solid #d1d5db;
-      }
-      .btn.sm {
-        padding: 3px 8px;
-        font-size: 0.72rem;
-      }
-      .btn-danger {
-        background: #dc2626;
-        color: #fee2e2;
-      }
-      .segment {
-        margin-top: 10px;
-        padding-top: 8px;
-        border-top: 1px dashed #e5e7eb;
-      }
-      .segment-title-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 4px;
-      }
-      .segment-title {
-        font-size: 0.92rem;
-        font-weight: 600;
-        color: #111827;
-      }
-      .segment-chip {
-        font-size: 0.72rem;
-        padding: 2px 7px;
-        border-radius: 999px;
-        background: #e5e7eb;
-        color: #4b5563;
-      }
-      .segment-notes {
-        margin: 0;
-        padding-left: 18px;
-        font-size: 0.8rem;
-        color: #4b5563;
-      }
-      .routes {
-        margin-top: 6px;
-        display: grid;
-        gap: 8px;
-      }
-      .route-card {
-        border-radius: 12px;
-        border: 1px solid #e5e7eb;
-        background: #f9fafb;
-        padding: 8px 9px;
-      }
-      .route-header {
-        font-size: 0.86rem;
-        font-weight: 600;
-      }
-      .route-meta {
-        font-size: 0.78rem;
-        color: #6b7280;
-        margin-top: 2px;
-      }
-      .route-steps {
-        margin: 4px 0 0;
-        padding-left: 18px;
-        font-size: 0.78rem;
-        color: #6b7280;
-      }
-      /* Budget block */
-      .budget-card {
-        margin-top: 8px;
-        padding: 8px 10px;
-        border-radius: 14px;
-        background: #fefce8;
-        border: 1px solid #fef3c7;
-      }
-      .budget-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.8rem;
-        color: #92400e;
-      }
-      .budget-total {
-        font-weight: 700;
-        font-size: 0.9rem;
-      }
-      .budget-inputs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 6px;
-      }
-      .budget-inputs input {
-        padding: 4px 8px;
-        border-radius: 999px;
-        border: 1px solid #e5e7eb;
-        font-size: 0.78rem;
-      }
-      .budget-list {
-        margin-top: 6px;
-        max-height: 130px;
-        overflow-y: auto;
-      }
-      .budget-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 6px;
-        padding: 3px 0;
-        border-bottom: 1px dashed #fde68a;
-        font-size: 0.78rem;
-        color: #78350f;
-      }
-      .budget-row:last-child {
-        border-bottom: none;
-      }
-      /* Phrasebook & emergency */
-      .phrase-grid {
-        display: grid;
-        gap: 8px;
-      }
-      .phrase-item {
-        padding: 8px 10px;
-        border-radius: 10px;
-        background: #eef2ff;
-        border: 1px solid #e0e7ff;
-        font-size: 0.83rem;
-      }
-      .phrase-label {
-        font-weight: 600;
-        color: #1e3a8a;
-      }
-      .phrase-jp {
-        margin-top: 2px;
-        color: #4b5563;
-      }
-      .phrase-note {
-        margin-top: 2px;
-        font-size: 0.76rem;
-        color: #6b7280;
-      }
-      .emergency-list {
-        padding-left: 18px;
-        font-size: 0.83rem;
-        color: #4b5563;
-      }
-      .small-muted {
-        font-size: 0.78rem;
-        color: #6b7280;
-      }
-      @media (max-width: 640px) {
-        .flight-row {
-          grid-template-columns: 1fr;
-          text-align: left;
-        }
-        .flight-mid {
-          text-align: left;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app">
-      <div class="page">
-        <div class="app" v-if="loading">
-          <div class="hero-card">
-            <div class="hero-title">2026 東京家庭旅行</div>
-            <p style="color:#fee2e2;margin-top:6px;">載入行程設定中...</p>
-          </div>
-        </div>
-
-        <div class="app" v-else>
-          <!-- Hero header -->
-          <header class="hero-card">
-            <div class="hero-title">{{ config.tripMeta.title }}</div>
-            <div class="hero-subtitle">{{ config.tripMeta.subtitle }}</div>
-            <div class="hero-date">
-              <div class="hero-date-icon">📅</div>
-              <div>
-                {{ config.tripMeta.startDate }} -
-                {{ config.tripMeta.endDate }}
-              </div>
-            </div>
-          </header>
-
-          <!-- Top tabs -->
-          <nav class="tabs-strip">
-            <button
-              class="tab-pill"
-              :class="{ active: activeKind === 'overview' }"
-              @click="activeKind = 'overview'"
-            >
-              總覽
-            </button>
-
-            <button
-              v-for="day in config.days"
-              :key="day.date"
-              class="tab-pill"
-              :class="{
-                active: activeKind === 'day' && activeDayDate === day.date
-              }"
-              @click="selectDay(day.date)"
-            >
-              <span>{{ shortDate(day.date) }}</span>
-              <span class="small">{{ day.label }}</span>
-            </button>
-
-            <button
-              class="tab-pill secondary"
-              :class="{ active: activeKind === 'phrase' }"
-              @click="activeKind = 'phrase'"
-            >
-              日語
-            </button>
-
-            <button
-              class="tab-pill secondary"
-              :class="{ active: activeKind === 'emergency' }"
-              @click="activeKind = 'emergency'"
-            >
-              緊急
-            </button>
-
-            <button
-              class="tab-pill secondary"
-              :class="{ active: activeKind === 'budget' }"
-              @click="activeKind = 'budget'"
-            >
-              記帳
-            </button>
-          </nav>
-
-          <!-- Main content -->
-          <div class="content-shell">
-            <!-- Overview -->
-            <div class="main-card" v-if="activeKind === 'overview'">
-              <section>
-                <div class="section-title">
-                  <span class="section-title-icon">✈️</span>
-                  航班資訊
-                </div>
-                <div class="subtext">
-                  去程 {{ outbound?.flightNo }} / 回程 {{ inbound?.flightNo }}
-                </div>
-
-                <!-- Outbound -->
-                <div class="flight-card" v-if="outbound">
-                  <div class="flight-header">去程航班</div>
-                  <div class="flight-row">
-                    <div class="flight-col">
-                      <div class="flight-airport">
-                        {{ outbound.from.code }}
-                      </div>
-                      <div class="flight-airport-sub">
-                        {{ outbound.from.airport }}<br />
-                        Terminal {{ outbound.from.terminal || "-" }}
-                      </div>
-                    </div>
-                    <div class="flight-mid">
-                      <div class="flight-pill">{{ outbound.flightNo }}</div>
-                      <div
-                        style="font-size:0.8rem;color:#6b7280;margin-top:3px;"
-                      >
-                        ✈️ 直飛
-                      </div>
-                    </div>
-                    <div class="flight-col" style="text-align:right;">
-                      <div class="flight-airport">
-                        {{ outbound.to.code }}
-                      </div>
-                      <div class="flight-airport-sub">
-                        {{ outbound.to.airport }}<br />
-                        Terminal {{ outbound.to.terminal || "-" }}
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4b5563;margin-top:4px;"
-                  >
-                    <div>
-                      出發：
-                      <span class="flight-time">{{
-                        timeOnly(outbound.departure)
-                      }}</span>
-                      <span class="flight-date">
-                        {{ dateOnly(outbound.departure) }}
-                      </span>
-                    </div>
-                    <div style="text-align:right;">
-                      抵達：
-                      <span class="flight-time">{{
-                        timeOnly(outbound.arrival)
-                      }}</span>
-                      <span class="flight-date">
-                        {{ dateOnly(outbound.arrival) }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Inbound -->
-                <div class="flight-card" v-if="inbound">
-                  <div class="flight-header">回程航班</div>
-                  <div class="flight-row">
-                    <div class="flight-col">
-                      <div class="flight-airport">
-                        {{ inbound.from.code }}
-                      </div>
-                      <div class="flight-airport-sub">
-                        {{ inbound.from.airport }}<br />
-                        Terminal {{ inbound.from.terminal || "-" }}
-                      </div>
-                    </div>
-                    <div class="flight-mid">
-                      <div class="flight-pill">{{ inbound.flightNo }}</div>
-                      <div
-                        style="font-size:0.8rem;color:#6b7280;margin-top:3px;"
-                      >
-                        ✈️ 直飛
-                      </div>
-                    </div>
-                    <div class="flight-col" style="text-align:right;">
-                      <div class="flight-airport">
-                        {{ inbound.to.code }}
-                      </div>
-                      <div class="flight-airport-sub">
-                        {{ inbound.to.airport }}<br />
-                        Terminal {{ inbound.to.terminal || "-" }}
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4b5563;margin-top:4px;"
-                  >
-                    <div>
-                      出發：
-                      <span class="flight-time">{{
-                        timeOnly(inbound.departure)
-                      }}</span>
-                      <span class="flight-date">
-                        {{ dateOnly(inbound.departure) }}
-                      </span>
-                    </div>
-                    <div style="text-align:right;">
-                      抵達：
-                      <span class="flight-time">{{
-                        timeOnly(inbound.arrival)
-                      }}</span>
-                      <span class="flight-date">
-                        {{ dateOnly(inbound.arrival) }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tip-box">
-                  <div class="tip-icon">⚠️</div>
-                  <div>
-                    建議出發前至少 <strong>2.5 小時</strong> 抵達機場辦理報到與托運。
-                  </div>
-                </div>
-              </section>
-
-              <section style="margin-top:16px;">
-                <div class="section-title">
-                  <span class="section-title-icon">🏨</span>
-                  住宿分段
-                </div>
-                <div class="stay-list">
-                  <div
-                    class="stay-item"
-                    v-for="s in config.stays"
-                    :key="s.id"
-                  >
-                    <div class="stay-name">{{ s.name }}</div>
-                    <div class="stay-meta">
-                      {{ s.city }} · {{ s.area }}<br />
-                      {{ s.checkIn }} → {{ s.checkOut }}
-                    </div>
-                    <div
-                      class="stay-meta"
-                      v-if="s.notes"
-                      style="margin-top:2px;"
-                    >
-                      {{ s.notes }}
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-            <!-- Day view -->
-            <div class="main-card" v-else-if="activeKind === 'day'">
-              <div v-if="currentDay">
-                <div class="day-header-card">
-                  <div class="day-title-line">
-                    {{ currentDay.label }} · {{ currentDay.date }}
-                  </div>
-                  <div class="day-sub-line">
-                    {{ currentDay.title }}
-                  </div>
-                  <div class="day-badges">
-                    <span class="badge" v-if="currentDay.stayId">
-                      住宿：{{ stayName(currentDay.stayId) || currentDay.stayId }}
-                    </span>
-                    <span class="badge">
-                      今日支出：{{ dayTotal(currentDay.date) }}
-                      {{ config.budget.currency }}
-                    </span>
-                    <button
-                      class="btn sm outline"
-                      @click="toggleDayCollapse(currentDay.date)"
-                    >
-                      {{ isDayCollapsed(currentDay.date) ? "展開行程" : "收合行程" }}
-                    </button>
-                  </div>
-
-                  <!-- 小型記帳區塊 -->
-                  <div class="budget-card">
-                    <div class="budget-header">
-                      <div>
-                        今日記帳 ·
-                        <span class="budget-total">
-                          {{ dayTotal(currentDay.date) }}
-                          {{ config.budget.currency }}
-                        </span>
-                      </div>
-                      <button
-                        class="btn sm outline"
-                        @click="clearBudgetForDay(currentDay.date)"
-                      >
-                        清除此日
-                      </button>
-                    </div>
-                    <div class="budget-inputs">
-                      <input
-                        type="number"
-                        min="0"
-                        step="1"
-                        v-model="budgetForm.amount"
-                        placeholder="金額"
-                      />
-                      <input
-                        type="text"
-                        v-model="budgetForm.note"
-                        placeholder="說明"
-                      />
-                      <button
-                        class="btn sm"
-                        @click="addBudgetEntryFor(currentDay.date)"
-                      >
-                        ➕ 記一筆
-                      </button>
-                    </div>
-                    <div class="budget-list">
-                      <div
-                        v-for="entry in budgetEntriesFor(currentDay.date)"
-                        :key="entry.id"
-                        class="budget-row"
-                      >
-                        <div>
-                          <div style="font-weight:600;">
-                            {{ entry.amount }} {{ config.budget.currency }}
-                          </div>
-                          <div v-if="entry.note" class="small-muted">
-                            {{ entry.note }}
-                          </div>
-                        </div>
-                        <button
-                          class="btn sm outline"
-                          @click="removeBudgetEntry(currentDay.date, entry.id)"
-                        >
-                          刪除
-                        </button>
-                      </div>
-                      <div
-                        v-if="budgetEntriesFor(currentDay.date).length === 0"
-                        class="small-muted"
-                      >
-                        目前尚未記錄支出。
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 行程內容 -->
-                <div v-if="!isDayCollapsed(currentDay.date)">
-                  <div
-                    v-for="(block, idx) in currentDay.blocks"
-                    :key="idx"
-                    class="segment"
-                  >
-                    <!-- 今日隨身包 -->
-                    <template v-if="block.type === 'packingToday'">
-                      <div class="segment-title-row">
-                        <div class="segment-title">🎒 {{ block.title }}</div>
-                      </div>
-                      <ul class="segment-notes">
-                        <li v-for="item in block.items" :key="item">
-                          {{ item }}
-                        </li>
-                      </ul>
-                    </template>
-
-                    <!-- TODO 清單 -->
-                    <template v-else-if="block.type === 'todo'">
-                      <div class="segment-title-row">
-                        <div class="segment-title">✅ {{ block.title }}</div>
-                      </div>
-                      <ul class="segment-notes">
-                        <li v-for="item in block.items" :key="item">
-                          {{ item }}
-                        </li>
-                      </ul>
-                    </template>
-
-                    <!-- 交通流程 -->
-                    <template v-else-if="block.type === 'transport'">
-                      <div class="segment-title-row">
-                        <div class="segment-title">
-                          🚆 {{ block.title }}
-                        </div>
-                        <div class="segment-chip">
-                          {{ block.timeOfDay || "flex" }}
-                        </div>
-                      </div>
-
-                      <p
-                        class="segment-notes"
-                        style="list-style:none;padding-left:0;"
-                      >
-                        從 <strong>{{ block.from }}</strong> 到
-                        <strong>{{ block.to }}</strong>
-                      </p>
-
-                      <div
-                        class="routes"
-                        v-if="block.routes && block.routes.length"
-                      >
-                        <div
-                          v-for="route in block.routes"
-                          :key="route.label"
-                          class="route-card"
-                        >
-                          <div class="route-header">{{ route.label }}</div>
-                          <div class="route-meta">
-                            <span v-if="route.estimatedDurationMinutes">
-                              約 {{ route.estimatedDurationMinutes }} 分
-                            </span>
-                            <span
-                              v-if="route.estimatedCost"
-                              style="margin-left:4px;"
-                            >
-                              · {{ route.estimatedCost }}
-                            </span>
-                          </div>
-                          <ul
-                            v-if="route.via && route.via.length"
-                            class="route-steps"
-                          >
-                            <li v-for="step in route.via" :key="step">
-                              {{ step }}
-                            </li>
-                          </ul>
-                          <button
-                            v-if="route.gmapsUrl"
-                            class="btn sm"
-                            @click="openMaps(route.gmapsUrl)"
-                          >
-                            在 Google Maps 開啟
-                          </button>
-                        </div>
-                      </div>
-
-                      <ul
-                        v-if="block.notes && block.notes.length"
-                        class="segment-notes"
-                      >
-                        <li v-for="n in block.notes" :key="n">{{ n }}</li>
-                      </ul>
-                    </template>
-
-                    <!-- 餐食備案 -->
-                    <template v-else-if="block.type === 'mealOptions'">
-                      <div class="segment-title-row">
-                        <div class="segment-title">🍽️ {{ block.title }}</div>
-                      </div>
-                      <div
-                        v-for="opt in block.options"
-                        :key="opt.label"
-                        class="route-card"
-                      >
-                        <div class="route-header">{{ opt.label }}</div>
-                        <div
-                          class="route-meta"
-                          v-if="opt.pros && opt.pros.length"
-                        >
-                          👍 優點：
-                          <span v-for="p in opt.pros" :key="p">
-                            {{ p }}；
-                          </span>
-                        </div>
-                        <div
-                          class="route-meta"
-                          v-if="opt.cons && opt.cons.length"
-                        >
-                          ⚠️ 小缺點：
-                          <span v-for="c in opt.cons" :key="c">
-                            {{ c }}；
-                          </span>
-                        </div>
-                      </div>
-                    </template>
-
-                    <!-- 一般提醒 -->
-                    <template v-else-if="block.type === 'note'">
-                      <div class="segment-title-row">
-                        <div class="segment-title">📝 {{ block.title }}</div>
-                      </div>
-                      <ul class="segment-notes">
-                        <li v-for="line in block.lines" :key="line">
-                          {{ line }}
-                        </li>
-                      </ul>
-                    </template>
-
-                    <!-- fallback -->
-                    <template v-else>
-                      <div class="segment-title-row">
-                        <div class="segment-title">
-                          ✨ {{ block.title || "行程" }}
-                        </div>
-                      </div>
-                      <p class="segment-notes">
-                        （此 block.type 尚未定義專用樣式：{{ block.type }}）
-                      </p>
-                    </template>
-                  </div>
-                </div>
-                <div
-                  v-else
-                  class="small-muted"
-                  style="margin-top:10px;font-style:italic;"
-                >
-                  今日行程已收合，點「展開行程」可再次顯示所有細節。
-                </div>
-              </div>
-            </div>
-
-            <!-- Phrasebook -->
-            <div class="main-card" v-else-if="activeKind === 'phrase'">
-              <section>
-                <div class="section-title">
-                  <span class="section-title-icon">🗣️</span>
-                  手指日文
-                </div>
-                <p class="small-muted" style="margin-bottom:8px;">
-                  在日本只要把手機遞給對方、指著這些句子就能溝通。
-                </p>
-                <div class="phrase-grid">
-                  <div
-                    class="phrase-item"
-                    v-for="p in config.phrasebook"
-                    :key="p.id"
-                  >
-                    <div class="phrase-label">{{ p.label }}</div>
-                    <div class="phrase-jp">{{ p.jp }}</div>
-                    <div v-if="p.note" class="phrase-note">{{ p.note }}</div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-            <!-- Emergency -->
-            <div class="main-card" v-else-if="activeKind === 'emergency'">
-              <section>
-                <div class="section-title">
-                  <span class="section-title-icon">🚨</span>
-                  緊急 & 生病
-                </div>
-                <ul class="emergency-list">
-                  <li>日本緊急電話：警察 110，消防/救護車 119。</li>
-                  <li>看病時可以說：「子どもが熱があります。」（小孩發燒了）。</li>
-                  <li>可在藥局尋找「小児用 解熱鎮痛薬」或退熱貼。</li>
-                  <li>記得攜帶護照與保險文件，方便醫院登記。</li>
-                </ul>
-                <p class="small-muted" style="margin-top:8px;">
-                  （可以把常用醫院、藥局的 Google Maps
-                  連結寫在這裡或加進行程某一天的 blocks 裡。）
-                </p>
-              </section>
-            </div>
-
-            <!-- 全域記帳頁 -->
-            <div class="main-card" v-else-if="activeKind === 'budget'">
-              <section>
-                <div class="section-title">
-                  <span class="section-title-icon">💰</span>
-                  旅遊記帳總覽
-                </div>
-                <p class="small-muted">
-                  幣別：{{ config.budget.currency }} · 所有資料保存在這台裝置的
-                  localStorage（不會上傳）。
-                </p>
-
-                <div style="margin-top:10px;">
-                  <div
-                    v-for="d in config.budget.days"
-                    :key="d.date"
-                    style="
-                      margin-bottom: 10px;
-                      padding-bottom: 8px;
-                      border-bottom: 1px dashed #e5e7eb;
-                    "
-                  >
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        gap: 8px;
-                      "
-                    >
-                      <div>
-                        <strong>{{ d.label }}</strong>
-                        <span class="small-muted">（{{ d.date }}）</span>
-                      </div>
-                      <div class="budget-total">
-                        {{ dayTotal(d.date) }} {{ config.budget.currency }}
-                      </div>
-                    </div>
-                    <div class="small-muted" style="margin-top:2px;">
-                      紀錄 {{ budgetEntriesFor(d.date).length }} 筆
-                    </div>
-                  </div>
-                  <div style="margin-top:4px;">
-                    <button class="btn btn-danger sm" @click="clearAllBudget">
-                      ⚠️ 清除所有記帳資料
-                    </button>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 東京家庭旅行 🌸</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background-color: #fdf2f8; /* pink-50 */
+    }
+    .sakura-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fbcfe8' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body class="sakura-bg min-h-screen text-slate-800 pb-12">
+  <div id="app" class="max-w-md mx-auto bg-white min-h-screen shadow-xl sm:rounded-xl sm:my-8 sm:min-h-[auto] overflow-hidden">
+    
+    <!-- Loading State -->
+    <div v-if="loading" class="flex flex-col items-center justify-center h-screen space-y-4">
+      <div class="animate-spin text-4xl">🌸</div>
+      <div class="text-slate-500 font-medium">載入美好旅程中...</div>
     </div>
 
-    <!-- Vue 3 ESM -->
-    <script type="module">
-      const BUDGET_KEY = "trip-budget-v1";
+    <!-- Main Content -->
+    <div v-else>
+      <!-- Hero Header -->
+      <header class="relative bg-gradient-to-br from-pink-400 to-rose-500 text-white p-6 pb-12">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: radial-gradient(circle, #fff 2px, transparent 2.5px); background-size: 20px 20px;"></div>
+        <div class="relative z-10">
+          <h1 class="text-2xl font-bold tracking-wide mb-1">{{ config.tripMeta.title }}</h1>
+          <p class="text-pink-100 text-sm font-medium">{{ config.tripMeta.subtitle }}</p>
+          <div class="mt-4 inline-flex items-center bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold">
+            <span>📅 {{ config.tripMeta.startDate }}</span>
+            <span class="mx-2">→</span>
+            <span>{{ config.tripMeta.endDate }}</span>
+          </div>
+        </div>
+      </header>
 
-      import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+      <!-- Navigation Tabs -->
+      <div class="px-4 -mt-6 relative z-20 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+        <button 
+          @click="activeKind = 'overview'"
+          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all', activeKind === 'overview' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
+        >
+          總覽
+        </button>
+        <button 
+          v-for="day in config.days" 
+          :key="day.date"
+          @click="selectDay(day.date)"
+          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all flex flex-col items-center leading-none gap-1', activeKind === 'day' && activeDayDate === day.date ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
+        >
+          <span>{{ day.label }}</span>
+          <span class="text-[10px] opacity-70">{{ shortDate(day.date) }}</span>
+        </button>
+        <button 
+          @click="activeKind = 'phrase'"
+          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all', activeKind === 'phrase' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
+        >
+          日語
+        </button>
+        <button 
+          @click="activeKind = 'budget'"
+          :class="['flex-shrink-0 px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all', activeKind === 'budget' ? 'bg-white text-rose-500 ring-2 ring-rose-100' : 'bg-white/90 text-slate-500 hover:bg-white']"
+        >
+          記帳
+        </button>
+      </div>
 
-      createApp({
-        data() {
-          return {
-            config: null,
-            loading: true,
-            activeKind: "overview",
-            activeDayDate: "",
-            collapsedDays: {},
-            budgetData: {}, // { [date]: [{id, amount, note}] }
-            budgetForm: {
-              amount: "",
-              note: ""
-            }
+      <!-- Content Area -->
+      <main class="p-4 space-y-4">
+        
+        <!-- Overview Tab -->
+        <div v-if="activeKind === 'overview'" class="space-y-4">
+          <!-- Flights -->
+          <section>
+            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span class="text-lg">✈️</span> 航班資訊
+            </h3>
+            <div class="space-y-3">
+              <div v-for="f in config.flights" :key="f.id" class="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2 py-1 rounded">{{ f.direction === 'outbound' ? '去程' : '回程' }}</span>
+                  <span class="text-xs font-bold text-slate-500">{{ f.airline }} · {{ f.flightNo }}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <div class="text-center">
+                    <div class="text-2xl font-black text-slate-800">{{ f.from.code }}</div>
+                    <div class="text-xs text-slate-500">{{ timeOnly(f.departure) }}</div>
+                  </div>
+                  <div class="flex-1 px-4 flex flex-col items-center">
+                    <div class="text-[10px] text-slate-400">直飛</div>
+                    <div class="w-full h-px bg-slate-300 relative top-1"></div>
+                    <div class="text-lg relative -top-2">✈️</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-black text-slate-800">{{ f.to.code }}</div>
+                    <div class="text-xs text-slate-500">{{ timeOnly(f.arrival) }}</div>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-t border-slate-200 flex justify-between text-xs text-slate-500">
+                  <span>{{ dateOnly(f.departure) }}</span>
+                  <span>{{ f.from.terminal }} 航廈 → {{ f.to.terminal }} 航廈</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Stays -->
+          <section>
+            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span class="text-lg">🏨</span> 住宿安排
+            </h3>
+            <div class="space-y-3">
+              <div v-for="s in config.stays" :key="s.id" class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm relative overflow-hidden group">
+                <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-rose-400 group-hover:bg-rose-500 transition-colors"></div>
+                <div class="pl-2">
+                  <h4 class="font-bold text-slate-800">{{ s.name }}</h4>
+                  <div class="text-xs text-slate-500 mt-1 flex items-center gap-1">
+                    <span>📍 {{ s.area }}</span>
+                    <span>·</span>
+                    <span>{{ shortDate(s.checkIn) }} - {{ shortDate(s.checkOut) }}</span>
+                  </div>
+                  <div v-if="s.notes" class="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded">
+                    💡 {{ s.notes }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Day View Tab -->
+        <div v-else-if="activeKind === 'day'" class="space-y-4">
+          <div v-if="currentDay">
+            <!-- Day Header -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 mb-4 text-center">
+              <div class="text-xs font-bold text-rose-500 mb-1">{{ currentDay.date }} · {{ currentDay.label }}</div>
+              <h2 class="text-xl font-black text-slate-800 mb-2">{{ currentDay.title }}</h2>
+              <div class="flex flex-wrap justify-center gap-2 mt-3">
+                <span v-if="currentDay.stayId" class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-1 rounded-full font-bold">
+                  🏠 {{ stayName(currentDay.stayId) }}
+                </span>
+                <span class="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-1 rounded-full font-bold">
+                  💰 {{ dayTotal(currentDay.date) }} {{ config.budget.currency }}
+                </span>
+              </div>
+              
+              <!-- Quick Budget -->
+              <div class="mt-4 pt-4 border-t border-slate-100">
+                 <button @click="showBudget = !showBudget" class="text-xs font-bold text-slate-400 hover:text-rose-500 flex items-center justify-center w-full gap-1">
+                    {{ showBudget ? '收起記帳' : '✏️ 快速記帳' }}
+                 </button>
+                 <div v-if="showBudget" class="mt-3 bg-slate-50 p-3 rounded-xl animate-fade-in">
+                    <div class="flex gap-2 mb-2">
+                       <input v-model="budgetForm.amount" type="number" placeholder="$" class="w-20 px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                       <input v-model="budgetForm.note" type="text" placeholder="項目" class="flex-1 px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                       <button @click="addBudgetEntryFor(currentDay.date)" class="bg-rose-500 text-white px-3 py-2 rounded-lg font-bold text-sm hover:bg-rose-600">+</button>
+                    </div>
+                    <div class="space-y-1">
+                       <div v-for="entry in budgetEntriesFor(currentDay.date)" :key="entry.id" class="flex justify-between items-center text-xs p-1 px-2 hover:bg-white rounded">
+                          <span class="text-slate-600">{{ entry.note || '支出' }}</span>
+                          <div class="flex items-center gap-2">
+                             <span class="font-bold">{{ entry.amount }}</span>
+                             <button @click="removeBudgetEntry(currentDay.date, entry.id)" class="text-slate-300 hover:text-red-500">×</button>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+
+            <!-- Timeline Blocks -->
+            <div class="relative pl-4 space-y-6 before:content-[''] before:absolute before:left-[23px] before:top-4 before:bottom-0 before:w-0.5 before:bg-slate-200">
+              
+              <div v-for="(block, idx) in currentDay.blocks" :key="idx" class="relative pl-8 group">
+                <!-- Timeline Dot -->
+                <div class="absolute left-0 top-1 w-12 flex justify-center z-10">
+                   <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center text-sm shadow-sm group-hover:border-rose-100 transition-colors">
+                      {{ getBlockIcon(block.type) }}
+                   </div>
+                </div>
+
+                <!-- Card Content -->
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                   <div class="flex justify-between items-start mb-2">
+                      <h3 class="font-bold text-slate-800">{{ block.title }}</h3>
+                      <span v-if="block.timeOfDay" class="text-[10px] font-bold bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">{{ block.timeOfDay }}</span>
+                   </div>
+
+                   <!-- Type: Transport -->
+                   <div v-if="block.type === 'transport'" class="space-y-3">
+                      <div class="text-sm text-slate-600 flex items-center gap-2">
+                         <span>{{ block.from }}</span>
+                         <span class="text-slate-300">➜</span>
+                         <span>{{ block.to }}</span>
+                      </div>
+                      <div v-for="route in block.routes" class="bg-slate-50 rounded-lg p-3 text-sm">
+                         <div class="font-bold text-slate-700 mb-1">{{ route.label }}</div>
+                         <div class="text-xs text-slate-500 mb-2">
+                            ⏱ {{ route.estimatedDurationMinutes }}分 · 💰 {{ route.estimatedCost }}
+                         </div>
+                         <ol class="list-decimal list-inside text-xs text-slate-600 space-y-1 mb-2 pl-1">
+                            <li v-for="step in route.via">{{ step }}</li>
+                         </ol>
+                         <button v-if="route.gmapsUrl" @click="openMaps(route.gmapsUrl)" class="text-[10px] bg-white border border-slate-200 px-2 py-1 rounded text-slate-500 font-bold hover:bg-blue-50 hover:text-blue-600 flex items-center gap-1 w-fit">
+                            🗺 Google Maps
+                         </button>
+                      </div>
+                   </div>
+
+                   <!-- Type: List (Packing/Todo) -->
+                   <ul v-else-if="block.items" class="space-y-1">
+                      <li v-for="item in block.items" class="text-sm text-slate-600 flex items-start gap-2">
+                         <span class="text-rose-400 mt-1">•</span>
+                         <span class="flex-1">{{ item }}</span>
+                      </li>
+                   </ul>
+
+                   <!-- Type: Note -->
+                   <div v-else-if="block.lines" class="bg-yellow-50 rounded-lg p-3 text-sm text-yellow-800 space-y-1">
+                      <p v-for="line in block.lines">{{ line }}</p>
+                   </div>
+                   
+                   <!-- Type: Meal Options -->
+                   <div v-else-if="block.options" class="grid gap-2">
+                      <div v-for="opt in block.options" class="bg-orange-50 rounded-lg p-3">
+                         <div class="font-bold text-orange-900 text-sm mb-1">{{ opt.label }}</div>
+                         <div class="text-xs text-orange-700/80 space-y-1">
+                            <div v-if="opt.pros">👍 {{ opt.pros.join('、') }}</div>
+                            <div v-if="opt.cons">⚠️ {{ opt.cons.join('、') }}</div>
+                         </div>
+                      </div>
+                   </div>
+
+                </div>
+              </div>
+            </div>
+            
+            <div class="h-8"></div> <!-- spacer -->
+          </div>
+        </div>
+
+        <!-- Phrasebook Tab -->
+        <div v-else-if="activeKind === 'phrase'" class="grid grid-cols-1 gap-3">
+          <div v-for="p in config.phrasebook" class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex flex-col gap-1 active:scale-[0.98] transition-transform cursor-pointer" @click="speak(p.jp)">
+             <div class="font-bold text-rose-500">{{ p.label }}</div>
+             <div class="text-lg font-medium text-slate-800">{{ p.jp }}</div>
+             <div class="text-xs text-slate-400 flex justify-between items-center mt-1">
+                <span>{{ p.note }}</span>
+                <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded">點擊發音 🔊</span>
+             </div>
+          </div>
+        </div>
+        
+        <!-- Budget Tab -->
+        <div v-else-if="activeKind === 'budget'" class="space-y-4">
+           <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-100 text-center">
+              <div class="text-sm text-slate-400 mb-1">總支出</div>
+              <div class="text-3xl font-black text-slate-800">{{ totalBudget() }} <span class="text-sm font-medium text-slate-400">{{ config.budget.currency }}</span></div>
+              <p class="text-[10px] text-slate-400 mt-2">資料保存在本機 LocalStorage，不外流。</p>
+           </div>
+           
+           <div class="space-y-2">
+              <div v-for="d in config.days" class="bg-white rounded-xl px-4 py-3 border border-slate-100 flex justify-between items-center">
+                 <div>
+                    <div class="font-bold text-slate-700">{{ d.label }}</div>
+                    <div class="text-xs text-slate-400">{{ shortDate(d.date) }}</div>
+                 </div>
+                 <div class="font-bold text-rose-500">
+                    {{ dayTotal(d.date) }}
+                 </div>
+              </div>
+           </div>
+           
+           <button @click="clearAllBudget" class="w-full py-3 text-xs font-bold text-red-400 hover:text-red-600">清除所有記錄</button>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+    const BUDGET_KEY = "trip-budget-v1";
+
+    createApp({
+      setup() {
+        const config = ref(null);
+        const loading = ref(true);
+        const activeKind = ref('overview');
+        const activeDayDate = ref('');
+        const budgetData = ref({});
+        const budgetForm = ref({ amount: '', note: '' });
+        const showBudget = ref(false);
+
+        // Helper: Icons
+        const getBlockIcon = (type) => {
+          const map = {
+            'transport': '🚆',
+            'packingToday': '🎒',
+            'todo': '✅',
+            'mealOptions': '🍽️',
+            'note': '📝'
           };
-        },
-        computed: {
-          outbound() {
-            return this.config.flights.find((f) => f.direction === "outbound");
-          },
-          inbound() {
-            return this.config.flights.find((f) => f.direction === "inbound");
-          },
-          currentDay() {
-            return this.config.days.find((d) => d.date === this.activeDayDate);
-          }
-        },
-        methods: {
-          shortDate(dateStr) {
-            const [y, m, d] = dateStr.split("-");
-            return Number(m) + "/" + Number(d);
-          },
-          dateOnly(iso) {
-            return iso.split("T")[0];
-          },
-          timeOnly(iso) {
-            const t = iso.split("T")[1] || "";
-            return t.substring(0, 5);
-          },
-          stayName(id) {
-            const s = this.config.stays.find((x) => x.id === id);
-            return s ? s.name : null;
-          },
-          selectDay(date) {
-            this.activeKind = "day";
-            this.activeDayDate = date;
-          },
-          openMaps(url) {
-            window.open(url, "_blank");
-          },
-          isDayCollapsed(date) {
-            return !!this.collapsedDays[date];
-          },
-          toggleDayCollapse(date) {
-            this.collapsedDays[date] = !this.collapsedDays[date];
-          },
-          // ---- 記帳 ----
-          loadBudget() {
-            try {
-              const raw = localStorage.getItem(BUDGET_KEY);
-              this.budgetData = raw ? JSON.parse(raw) : {};
-            } catch {
-              this.budgetData = {};
-            }
-            if (this.config && this.config.budget && this.config.budget.days) {
-              this.config.budget.days.forEach((d) => {
-                if (!this.budgetData[d.date]) this.budgetData[d.date] = [];
-              });
-            }
-          },
-          saveBudget() {
-            try {
-              localStorage.setItem(BUDGET_KEY, JSON.stringify(this.budgetData));
-            } catch {}
-          },
-          budgetEntriesFor(date) {
-            return this.budgetData[date] || [];
-          },
-          dayTotal(date) {
-            const list = this.budgetEntriesFor(date);
-            const sum = list.reduce(
-              (acc, e) => acc + Number(e.amount || 0),
-              0
-            );
-            return sum.toFixed(0);
-          },
-          addBudgetEntryFor(date) {
-            const amt = Number(this.budgetForm.amount);
-            if (!amt || amt <= 0) {
-              alert("請輸入大於 0 的金額");
-              return;
-            }
-            const entry = {
-              id: Date.now() + Math.random(),
-              amount: amt,
-              note: (this.budgetForm.note || "").trim()
-            };
-            if (!this.budgetData[date]) this.budgetData[date] = [];
-            this.budgetData[date].push(entry);
-            this.saveBudget();
-            this.budgetForm.amount = "";
-            this.budgetForm.note = "";
-          },
-          removeBudgetEntry(date, id) {
-            if (!this.budgetData[date]) return;
-            this.budgetData[date] = this.budgetData[date].filter(
-              (e) => e.id !== id
-            );
-            this.saveBudget();
-          },
-          clearBudgetForDay(date) {
-            if (!confirm(`確定要清除 ${date} 的所有記帳資料嗎？`)) return;
-            this.budgetData[date] = [];
-            this.saveBudget();
-          },
-          clearAllBudget() {
-            if (!confirm("⚠️ 確定要清除所有日期的記帳資料嗎？")) return;
-            this.budgetData = {};
-            if (this.config && this.config.budget) {
-              this.config.budget.days.forEach((d) => {
-                this.budgetData[d.date] = [];
-              });
-            }
-            this.saveBudget();
-          }
-        },
-        async mounted() {
-          try {
-            const res = await fetch(
-              "./trip-config.json?ts=" + Date.now().toString()
-            );
-            this.config = await res.json();
+          return map[type] || '📍';
+        };
 
-            // 防呆：確保 days / blocks 存在
-            if (!this.config.days) this.config.days = [];
-            this.config.days.forEach((d) => {
-              if (!d.blocks) d.blocks = [];
-            });
+        // Computed
+        const outbound = computed(() => config.value?.flights.find(f => f.direction === 'outbound'));
+        const inbound = computed(() => config.value?.flights.find(f => f.direction === 'inbound'));
+        const currentDay = computed(() => config.value?.days.find(d => d.date === activeDayDate.value));
 
-            if (this.config.days.length > 0) {
-              this.activeDayDate = this.config.days[0].date;
-            }
+        // Formatters
+        const shortDate = (s) => s ? s.split('-').slice(1).join('/') : '';
+        const dateOnly = (s) => s ? s.split('T')[0] : '';
+        const timeOnly = (s) => s ? s.split('T')[1]?.substring(0,5) : '';
+        const stayName = (id) => config.value?.stays.find(s => s.id === id)?.name;
 
-            this.loadBudget();
-          } catch (e) {
-            console.error("載入 trip-config.json 失敗", e);
-            alert("載入 trip-config.json 失敗，請確認檔案有放在根目錄。");
-          } finally {
-            this.loading = false;
-          }
+        // Actions
+        const selectDay = (date) => {
+          activeKind.value = 'day';
+          activeDayDate.value = date;
+          showBudget.value = false;
+        };
+        const openMaps = (url) => window.open(url, '_blank');
+        const speak = (text) => {
+           const u = new SpeechSynthesisUtterance(text);
+           u.lang = 'ja-JP';
+           window.speechSynthesis.speak(u);
+        };
+
+        // Budget Logic
+        const loadBudget = () => {
+           const raw = localStorage.getItem(BUDGET_KEY);
+           if(raw) budgetData.value = JSON.parse(raw);
+        };
+        const saveBudget = () => localStorage.setItem(BUDGET_KEY, JSON.stringify(budgetData.value));
+        const budgetEntriesFor = (date) => budgetData.value[date] || [];
+        const dayTotal = (date) => (budgetData.value[date] || []).reduce((a,b) => a + Number(b.amount), 0);
+        const totalBudget = () => Object.values(budgetData.value).flat().reduce((a,b) => a + Number(b.amount), 0);
+        
+        const addBudgetEntryFor = (date) => {
+           if(!budgetForm.value.amount) return;
+           if(!budgetData.value[date]) budgetData.value[date] = [];
+           budgetData.value[date].push({
+              id: Date.now(),
+              amount: budgetForm.value.amount,
+              note: budgetForm.value.note
+           });
+           budgetForm.value = { amount: '', note: '' };
+           saveBudget();
+        };
+        const removeBudgetEntry = (date, id) => {
+           budgetData.value[date] = budgetData.value[date].filter(e => e.id !== id);
+           saveBudget();
+        };
+        const clearAllBudget = () => {
+           if(confirm('確定清除？')) {
+              budgetData.value = {};
+              saveBudget();
+           }
         }
-      }).mount("#app");
-    </script>
-  </body>
+
+        // Init
+        onMounted(async () => {
+          try {
+            const res = await fetch('./trip-config.json?t=' + Date.now());
+            config.value = await res.json();
+            if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
+            loadBudget();
+          } catch(e) {
+             console.error(e);
+          } finally {
+             loading.value = false;
+          }
+        });
+
+        return {
+          config, loading, activeKind, activeDayDate, currentDay,
+          outbound, inbound, budgetForm, showBudget,
+          shortDate, dateOnly, timeOnly, stayName, getBlockIcon,
+          selectDay, openMaps, speak,
+          budgetEntriesFor, dayTotal, totalBudget, addBudgetEntryFor, removeBudgetEntry, clearAllBudget
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
 </html>
