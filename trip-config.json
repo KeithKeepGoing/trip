@@ -190,14 +190,14 @@
               "rating": "4.1 ⭐",
               "tags": ["鰻魚飯", "平價", "快速"],
               "desc": "超高CP值鰻魚飯，適合剛抵達想吃點好但不想花大錢。",
-              "url": "https://maps.app.goo.gl/ueno-unatoto"
+              "url": "https://www.google.com/maps/search/?api=1&query=名代+宇奈とと+上野店"
             },
             {
               "name": "便利商店 (FamilyMart/Lawson)",
               "rating": "5.0 ⭐",
               "tags": ["炸雞", "飯糰", "24hr"],
               "desc": "若太累，飯店樓下的超商炸雞+啤酒就是最棒的晚餐。",
-              "url": ""
+              "url": "https://www.google.com/maps/search/?api=1&query=上野+FamilyMart"
             }
           ]
         }
@@ -244,14 +244,14 @@
               "rating": "4.5 ⭐",
               "tags": ["燒肉", "親子友善", "有包廂"],
               "desc": "位於0101百貨9樓，環境舒適，適合帶小孩慢慢吃的高級燒肉。",
-              "url": "https://maps.app.goo.gl/jojoen-ueno"
+              "url": "https://www.google.com/maps/search/?api=1&query=叙々苑+上野マルイ店"
             },
             {
               "name": "回転寿司 根室花まる (KITTE店)",
               "rating": "4.4 ⭐",
               "tags": ["迴轉壽司", "排隊名店", "北海道直送"],
               "desc": "雖然要排隊，但干貝和牡丹蝦超級新鮮！建議先抽號碼牌。",
-              "url": "https://maps.app.goo.gl/nemuro-hanamaru"
+              "url": "https://www.google.com/maps/search/?api=1&query=回転寿司+根室花まる+KITTE丸の内店"
             }
           ]
         }
@@ -281,14 +281,14 @@
               "rating": "4.6 ⭐",
               "tags": ["壽喜燒", "老舖", "和牛"],
               "desc": "百年老店，午間套餐比較划算，晚餐則是頂級享受。",
-              "url": "https://maps.app.goo.gl/asakusa-imahan"
+              "url": "https://www.google.com/maps/search/?api=1&query=浅草今半+国際通り本店"
             },
             {
               "name": "六厘舍 (晴空塔店)",
               "rating": "4.2 ⭐",
               "tags": ["沾麵", "濃厚豚骨", "排隊"],
               "desc": "晴空塔6樓，超濃厚沾麵，麵條Q彈，小朋友通常很愛。",
-              "url": "https://maps.app.goo.gl/rokuterin"
+              "url": "https://www.google.com/maps/search/?api=1&query=六厘舎+TOKYO+スカイツリータウン・ソラマチ店"
             }
           ]
         }
@@ -342,14 +342,14 @@
               "rating": "4.3 ⭐",
               "tags": ["金目鯛", "居酒屋", "在地人氣"],
               "desc": "必點「金目鯛燉煮」和「渦巻き飯」(茶泡飯)，非常道地！",
-              "url": "https://maps.app.goo.gl/marugen-ito"
+              "url": "https://www.google.com/maps/search/?api=1&query=楽味家まるげん"
             },
             {
               "name": "飯店自助晚餐",
               "rating": "4.0 ⭐",
               "tags": ["自助餐", "方便", "吃到飽"],
               "desc": "Laforet Ito 的晚餐通常有海鮮自助，帶小孩最方便。",
-              "url": ""
+              "url": "https://www.google.com/maps/search/?api=1&query=Laforet+Ito+Onsen"
             }
           ]
         }
@@ -407,7 +407,7 @@
               "rating": "4.4 ⭐",
               "tags": ["鮪魚", "海鮮丼", "排隊"],
               "desc": "伊豆高原站附近，鮪魚料理專門店，炙燒鮪魚丼必吃！",
-              "url": "https://maps.app.goo.gl/maguroya"
+              "url": "https://www.google.com/maps/search/?api=1&query=本家鮪屋"
             }
           ]
         }
@@ -444,7 +444,7 @@
               "rating": "4.3 ⭐",
               "tags": ["迴轉壽司", "高CP值", "大排長龍"],
               "desc": "橫濱Sky Building 11F，美登利旗下的迴轉壽司，料大塊又便宜。",
-              "url": "https://maps.app.goo.gl/katsu-midori"
+              "url": "https://www.google.com/maps/search/?api=1&query=回し寿司+活+美登利+横浜スカイビル店"
             }
           ]
         }
@@ -466,14 +466,14 @@
               "rating": "4.5 ⭐",
               "tags": ["漢堡", "美式", "風景好"],
               "desc": "位於Queen's Square，戶外座位很舒服，小孩吃漢堡薯條最開心。",
-              "url": "https://maps.app.goo.gl/shake-shack-mm"
+              "url": "https://www.google.com/maps/search/?api=1&query=Shake+Shack+Minato+Mirai"
             },
             {
               "name": "鵬天閣 (中華街)",
               "rating": "4.2 ⭐",
               "tags": ["生煎包", "小吃", "排隊"],
               "desc": "中華街最有名的生煎包，皮脆汁多，小心燙口！",
-              "url": "https://maps.app.goo.gl/houtenkaku"
+              "url": "https://www.google.com/maps/search/?api=1&query=鵬天閣+新館"
             }
           ]
         }
@@ -500,7 +500,7 @@
               "rating": "4.4 ⭐",
               "tags": ["沙拉吧", "牛排", "親子友善"],
               "desc": "高級沙拉吧吃到飽，有兒童專屬餐具和畫畫紙，家長可以好好吃飯。",
-              "url": "https://maps.app.goo.gl/sizzler-yokohama"
+              "url": "https://www.google.com/maps/search/?api=1&query=Sizzler+Landmark+Plaza"
             }
           ]
         }
