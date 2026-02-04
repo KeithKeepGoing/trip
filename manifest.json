@@ -1,0 +1,16 @@
+{
+  "name": "2026 東京家庭旅行",
+  "short_name": "東京旅行",
+  "description": "2026年東京家庭旅行行程規劃",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0c0a1d",
+  "theme_color": "#0c0a1d",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

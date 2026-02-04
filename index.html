@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2026 東京家庭旅行 💎</title>
   <meta name="description" content="2026年東京家庭旅行行程規劃 - 礦石風格互動式旅遊指南">
+  <meta name="theme-color" content="#0c0a1d">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -109,12 +115,21 @@
       50% { opacity: 1; }
     }
     
+    @keyframes countdown-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
     .float-anim {
       animation: float 6s ease-in-out infinite;
     }
     
     .pulse-glow {
       animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    .countdown-pulse {
+      animation: countdown-pulse 2s ease-in-out infinite;
     }
     
     .facet-pattern {
@@ -143,6 +158,36 @@
     .timeline-dot {
       background: linear-gradient(135deg, #a855f7, #3b82f6);
       box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+    }
+    
+    .checklist-item {
+      transition: all 0.3s ease;
+    }
+    .checklist-item.checked {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+    
+    #map-container {
+      height: 300px;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    
+    .leaflet-container {
+      background: #1a1a2e;
+    }
+    
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    
+    .photo-item {
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0.5rem;
     }
   </style>
 </head>
@@ -188,7 +233,14 @@
           </h1>
           <p class="text-white/50 text-sm font-medium">{{ config.tripMeta.subtitle }}</p>
           
-          <div class="mt-8 flex justify-center gap-3">
+          <!-- Countdown -->
+          <div class="mt-6 glass-card crystal-border rounded-2xl p-4 countdown-pulse">
+            <div class="text-xs text-purple-400 font-bold mb-1">{{ countdownLabel }}</div>
+            <div class="text-3xl font-black gem-text">{{ countdownDays }}</div>
+            <div class="text-xs text-white/40">{{ countdownSubtext }}</div>
+          </div>
+          
+          <div class="mt-6 flex justify-center gap-3">
             <div class="glass-card px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2">
               <span class="text-purple-400">📅</span>
               <span class="text-white/80">{{ shortDate(config.tripMeta.startDate) }} - {{ shortDate(config.tripMeta.endDate) }}</span>
@@ -210,23 +262,28 @@
           <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide snap-x">
             <button 
               @click="activeKind = 'overview'"
-              class="nav-btn snap-start flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/10 bg-white/5"
+              class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5"
               :class="activeKind === 'overview' ? 'active' : 'text-white/60 hover:text-white hover:bg-white/10'"
-            >
-              ✨ 總覽
-            </button>
+            >✨ 總覽</button>
             <button 
               v-for="day in config.days" 
               :key="day.date"
               @click="selectDay(day.date)"
-              class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl border border-white/10 bg-white/5 flex flex-col items-center justify-center min-w-[70px]"
+              class="nav-btn snap-start flex-shrink-0 px-3 py-2 rounded-xl border border-white/10 bg-white/5 flex flex-col items-center justify-center min-w-[60px]"
               :class="activeKind === 'day' && activeDayDate === day.date ? 'active' : 'text-white/60 hover:text-white hover:bg-white/10'"
             >
-              <span class="text-xs font-bold">{{ day.label }}</span>
-              <span class="text-[10px] opacity-50 font-medium">{{ shortDate(day.date) }}</span>
+              <span class="text-[10px] font-bold">{{ day.label }}</span>
+              <span class="text-[9px] opacity-50">{{ shortDate(day.date) }}</span>
             </button>
-            <button @click="activeKind = 'budget'" class="nav-btn snap-start flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/10 bg-white/5" :class="activeKind === 'budget' ? 'active' : 'text-white/60 hover:text-white hover:bg-white/10'">💰 記帳</button>
-            <button @click="activeKind = 'phrase'" class="nav-btn snap-start flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/10 bg-white/5" :class="activeKind === 'phrase' ? 'active' : 'text-white/60 hover:text-white hover:bg-white/10'">🗣️ 日語</button>
+            <button @click="activeKind = 'map'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'map' ? 'active' : 'text-white/60'">🗺️ 地圖</button>
+            <button @click="activeKind = 'packing'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'packing' ? 'active' : 'text-white/60'">📦 打包</button>
+            <button @click="activeKind = 'budget'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'budget' ? 'active' : 'text-white/60'">💰 記帳</button>
+            <button @click="activeKind = 'currency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'currency' ? 'active' : 'text-white/60'">💱 匯率</button>
+            <button @click="activeKind = 'phrase'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'phrase' ? 'active' : 'text-white/60'">🗣️ 日語</button>
+            <button @click="activeKind = 'photos'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'photos' ? 'active' : 'text-white/60'">📸 照片</button>
+            <button @click="activeKind = 'weather'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'weather' ? 'active' : 'text-white/60'">☁️ 天氣</button>
+            <button @click="activeKind = 'emergency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'emergency' ? 'active' : 'text-white/60'">🆘 緊急</button>
+            <button @click="activeKind = 'share'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'share' ? 'active' : 'text-white/60'">🔗 分享</button>
           </div>
         </div>
       </div>
@@ -388,6 +445,101 @@
           </div>
         </div>
 
+        <!-- Map -->
+        <div v-else-if="activeKind === 'map'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+              <span class="text-purple-400">🗺️</span> 景點地圖
+            </h3>
+            <div id="map-container" class="glass-card"></div>
+            <div class="mt-3 text-xs text-white/40 text-center">點擊標記查看詳情</div>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">圖例</h3>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-purple-500"></span> 景點</div>
+              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-blue-500"></span> 住宿</div>
+              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-amber-500"></span> 餐廳</div>
+              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-teal-500"></span> 購物</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Packing List -->
+        <div v-else-if="activeKind === 'packing'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-4 text-center">
+            <div class="text-3xl font-black gem-text">{{ packingProgress }}%</div>
+            <div class="text-xs text-white/50 mt-1">打包進度</div>
+            <div class="w-full h-2 bg-white/10 rounded-full mt-3 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-purple-500 to-teal-500 transition-all duration-500" :style="{width: packingProgress + '%'}"></div>
+            </div>
+          </div>
+          
+          <div v-for="cat in packingCategories" :key="cat.name" class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+              <span>{{ cat.icon }}</span> {{ cat.name }}
+            </h3>
+            <div class="space-y-2">
+              <div v-for="item in cat.items" :key="item" 
+                   @click="togglePackingItem(cat.name, item)"
+                   class="checklist-item flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-all"
+                   :class="{ 'checked': isPackedItem(cat.name, item) }">
+                <div class="w-5 h-5 rounded border-2 flex items-center justify-center transition-all"
+                     :class="isPackedItem(cat.name, item) ? 'bg-teal-500 border-teal-500' : 'border-white/30'">
+                  <span v-if="isPackedItem(cat.name, item)" class="text-xs">✓</span>
+                </div>
+                <span class="text-sm text-white/80">{{ item }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <button @click="resetPacking" class="w-full py-3 text-xs font-bold text-white/30 hover:text-red-400 transition-colors">
+            🔄 重置打包清單
+          </button>
+        </div>
+
+        <!-- Currency Converter -->
+        <div v-else-if="activeKind === 'currency'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-6 gem-glow">
+            <div class="text-center mb-6">
+              <div class="text-xs text-purple-400 font-bold mb-1">即時匯率</div>
+              <div class="text-2xl font-black gem-text">1 TWD = {{ exchangeRate }} JPY</div>
+              <div class="text-xs text-white/40 mt-1">更新時間：{{ rateUpdateTime }}</div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="glass-card rounded-xl p-4">
+                <label class="text-xs text-white/50 block mb-2">🇹🇼 台幣 TWD</label>
+                <input type="number" v-model="twdAmount" @input="convertToJpy"
+                       class="w-full bg-transparent text-2xl font-bold text-white outline-none"
+                       placeholder="0">
+              </div>
+              
+              <div class="text-center text-white/30">↓↑</div>
+              
+              <div class="glass-card rounded-xl p-4">
+                <label class="text-xs text-white/50 block mb-2">🇯🇵 日圓 JPY</label>
+                <input type="number" v-model="jpyAmount" @input="convertToTwd"
+                       class="w-full bg-transparent text-2xl font-bold text-white outline-none"
+                       placeholder="0">
+              </div>
+            </div>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">💡 快速換算</h3>
+            <div class="grid grid-cols-2 gap-2">
+              <div v-for="amt in [1000, 5000, 10000, 50000]" :key="amt" 
+                   @click="twdAmount = amt; convertToJpy()"
+                   class="glass-card p-3 rounded-xl text-center cursor-pointer hover:bg-white/10 transition-colors">
+                <div class="text-xs text-white/50">{{ amt.toLocaleString() }} TWD</div>
+                <div class="text-sm font-bold gem-text">≈ {{ Math.round(amt * exchangeRate).toLocaleString() }} JPY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Phrasebook -->
         <div v-else-if="activeKind === 'phrase'" class="grid grid-cols-1 gap-3">
           <div v-for="p in config.phrasebook" @click="speak(p.jp)" class="glass-card p-4 rounded-2xl active:scale-[0.98] transition-all cursor-pointer hover:bg-white/[0.08] group">
@@ -396,6 +548,177 @@
             <div class="flex justify-between items-center mt-2">
               <div class="text-[10px] text-white/40">{{ p.note }}</div>
               <div class="text-[10px] bg-white/10 text-white/60 px-2.5 py-1 rounded-full group-hover:bg-purple-500/30 group-hover:text-purple-300 transition-colors">🔊 播放</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photos -->
+        <div v-else-if="activeKind === 'photos'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-bold text-white">📸 旅途回憶</h3>
+              <label class="glass-card px-3 py-1.5 rounded-lg text-xs font-bold text-purple-300 cursor-pointer hover:bg-white/10 transition-colors">
+                + 新增照片
+                <input type="file" accept="image/*" multiple @change="addPhotos" class="hidden">
+              </label>
+            </div>
+            
+            <div v-if="photos.length === 0" class="text-center py-8 text-white/30">
+              <div class="text-4xl mb-2">📷</div>
+              <div class="text-sm">還沒有照片</div>
+              <div class="text-xs">開始旅程後記錄美好回憶吧！</div>
+            </div>
+            
+            <div v-else class="photo-grid">
+              <div v-for="(photo, idx) in photos" :key="idx" class="relative group">
+                <img :src="photo.data" class="photo-item w-full cursor-pointer" @click="viewPhoto(idx)">
+                <button @click.stop="removePhoto(idx)" class="absolute top-1 right-1 w-6 h-6 bg-red-500/80 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity">×</button>
+              </div>
+            </div>
+          </div>
+          
+          <div v-if="photos.length > 0" class="text-center text-xs text-white/30">
+            共 {{ photos.length }} 張照片
+          </div>
+        </div>
+
+        <!-- Weather -->
+        <div v-else-if="activeKind === 'weather'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-6 text-center gem-glow">
+            <div class="text-6xl mb-2">{{ weatherData.icon }}</div>
+            <div class="text-4xl font-black gem-text">{{ weatherData.temp }}°C</div>
+            <div class="text-white/60 mt-1">{{ weatherData.description }}</div>
+            <div class="text-xs text-white/40 mt-2">東京 · {{ weatherData.updateTime }}</div>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-3">
+            <div class="glass-card rounded-xl p-3 text-center">
+              <div class="text-xl mb-1">💧</div>
+              <div class="text-lg font-bold text-white">{{ weatherData.humidity }}%</div>
+              <div class="text-xs text-white/40">濕度</div>
+            </div>
+            <div class="glass-card rounded-xl p-3 text-center">
+              <div class="text-xl mb-1">💨</div>
+              <div class="text-lg font-bold text-white">{{ weatherData.wind }} m/s</div>
+              <div class="text-xs text-white/40">風速</div>
+            </div>
+            <div class="glass-card rounded-xl p-3 text-center">
+              <div class="text-xl mb-1">🌡️</div>
+              <div class="text-lg font-bold text-white">{{ weatherData.feelsLike }}°C</div>
+              <div class="text-xs text-white/40">體感</div>
+            </div>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">未來 5 天</h3>
+            <div class="space-y-2">
+              <div v-for="day in weatherForecast" :key="day.date" class="flex justify-between items-center p-2 rounded-lg hover:bg-white/5">
+                <div class="text-sm text-white/70">{{ day.date }}</div>
+                <div class="text-xl">{{ day.icon }}</div>
+                <div class="text-sm font-bold text-white">{{ day.high }}° / {{ day.low }}°</div>
+              </div>
+            </div>
+          </div>
+          
+          <button @click="refreshWeather" class="w-full glass-card py-3 rounded-xl text-sm font-bold text-purple-300 hover:bg-white/10 transition-colors">
+            🔄 更新天氣
+          </button>
+        </div>
+
+        <!-- Emergency -->
+        <div v-else-if="activeKind === 'emergency'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-4 border-l-4 border-l-red-500">
+            <h3 class="text-sm font-bold text-red-400 mb-3">🆘 緊急聯絡</h3>
+            <div class="space-y-3">
+              <a href="tel:110" class="flex items-center gap-3 p-3 bg-red-500/20 rounded-xl">
+                <span class="text-2xl">👮</span>
+                <div>
+                  <div class="font-bold text-white">警察</div>
+                  <div class="text-xs text-white/50">110</div>
+                </div>
+              </a>
+              <a href="tel:119" class="flex items-center gap-3 p-3 bg-orange-500/20 rounded-xl">
+                <span class="text-2xl">🚑</span>
+                <div>
+                  <div class="font-bold text-white">救護車 / 消防</div>
+                  <div class="text-xs text-white/50">119</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">🏛️ 台灣駐日代表處</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between">
+                <span class="text-white/50">地址</span>
+                <span class="text-white">東京都港区白金台5-20-2</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-white/50">電話</span>
+                <a href="tel:+81-3-3280-7811" class="text-purple-400">03-3280-7811</a>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-white/50">急難救助</span>
+                <a href="tel:+81-80-6552-4764" class="text-purple-400">080-6552-4764</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">🏨 住宿資訊</h3>
+            <div v-for="s in config.stays" :key="s.id" class="p-3 bg-white/5 rounded-xl mb-2">
+              <div class="font-bold text-white text-sm">{{ s.name }}</div>
+              <div class="text-xs text-white/50 mt-1">{{ s.area }}</div>
+              <div class="text-xs text-white/50">{{ shortDate(s.checkIn) }} - {{ shortDate(s.checkOut) }}</div>
+            </div>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">💊 常用日語（緊急）</h3>
+            <div class="space-y-2">
+              <div @click="speak('助けてください')" class="p-2 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10">
+                <div class="text-sm text-white">助けてください</div>
+                <div class="text-xs text-white/40">請幫幫我</div>
+              </div>
+              <div @click="speak('病院はどこですか')" class="p-2 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10">
+                <div class="text-sm text-white">病院はどこですか</div>
+                <div class="text-xs text-white/40">醫院在哪裡？</div>
+              </div>
+              <div @click="speak('警察を呼んでください')" class="p-2 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10">
+                <div class="text-sm text-white">警察を呼んでください</div>
+                <div class="text-xs text-white/40">請叫警察</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Share -->
+        <div v-else-if="activeKind === 'share'" class="space-y-4">
+          <div class="glass-card crystal-border rounded-2xl p-6 text-center gem-glow">
+            <h3 class="text-sm font-bold text-white mb-4">🔗 分享行程</h3>
+            <div id="qrcode" class="inline-block p-4 bg-white rounded-2xl mb-4"></div>
+            <div class="text-xs text-white/50 mb-4">掃描 QR Code 查看行程</div>
+            <button @click="copyLink" class="w-full glass-card py-3 rounded-xl text-sm font-bold text-purple-300 hover:bg-white/10 transition-colors">
+              📋 複製連結
+            </button>
+          </div>
+          
+          <div class="glass-card rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-white mb-3">📱 分享到</h3>
+            <div class="grid grid-cols-3 gap-3">
+              <a :href="'https://line.me/R/msg/text/?' + encodeURIComponent('2026東京旅行 ' + shareUrl)" target="_blank" class="glass-card p-4 rounded-xl text-center hover:bg-white/10 transition-colors">
+                <div class="text-2xl mb-1">💬</div>
+                <div class="text-xs text-white/60">LINE</div>
+              </a>
+              <a :href="'mailto:?subject=2026東京旅行&body=' + encodeURIComponent(shareUrl)" class="glass-card p-4 rounded-xl text-center hover:bg-white/10 transition-colors">
+                <div class="text-2xl mb-1">📧</div>
+                <div class="text-xs text-white/60">Email</div>
+              </a>
+              <button @click="nativeShare" class="glass-card p-4 rounded-xl text-center hover:bg-white/10 transition-colors">
+                <div class="text-2xl mb-1">📤</div>
+                <div class="text-xs text-white/60">其他</div>
+              </button>
             </div>
           </div>
         </div>
@@ -426,11 +749,19 @@
 
       </main>
     </div>
+    
+    <!-- Photo Viewer Modal -->
+    <div v-if="viewingPhoto !== null" @click="viewingPhoto = null" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+      <img :src="photos[viewingPhoto]?.data" class="max-w-full max-h-full object-contain rounded-lg">
+      <button @click="viewingPhoto = null" class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full text-xl">×</button>
+    </div>
   </div>
 
   <script>
-    const { createApp, ref, computed, onMounted } = Vue;
+    const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
     const BUDGET_KEY = "trip-budget-v2";
+    const PACKING_KEY = "trip-packing-v1";
+    const PHOTOS_KEY = "trip-photos-v1";
 
     createApp({
       setup() {
@@ -439,8 +770,42 @@
         const activeKind = ref('overview');
         const activeDayDate = ref('');
         const budgetData = ref({});
-        const budgetForm = ref({ amount: '', note: '' });
-        const showBudget = ref(false);
+        const packedItems = ref({});
+        const photos = ref([]);
+        const viewingPhoto = ref(null);
+        
+        // Currency
+        const twdAmount = ref('');
+        const jpyAmount = ref('');
+        const exchangeRate = ref(4.6); // Default rate
+        const rateUpdateTime = ref('--');
+        
+        // Weather
+        const weatherData = ref({
+          icon: '☀️',
+          temp: '--',
+          description: '載入中...',
+          humidity: '--',
+          wind: '--',
+          feelsLike: '--',
+          updateTime: '--'
+        });
+        const weatherForecast = ref([]);
+        
+        // Map
+        let map = null;
+        
+        // Share
+        const shareUrl = window.location.href;
+
+        // Packing categories
+        const packingCategories = ref([
+          { name: '證件文件', icon: '📄', items: ['護照', '身分證', '機票', '飯店訂房確認', '旅平險保單', '日幣現金', '信用卡'] },
+          { name: '電子產品', icon: '🔌', items: ['手機', '充電器', '行動電源', '相機', '記憶卡', '轉接頭', '耳機'] },
+          { name: '衣物', icon: '👕', items: ['上衣 x3', '褲子 x2', '內衣褲 x4', '外套', '睡衣', '襪子 x4', '舒適走路鞋'] },
+          { name: '盥洗用品', icon: '🧴', items: ['牙刷牙膏', '洗面乳', '保養品', '防曬乳', '梳子', '毛巾'] },
+          { name: '其他', icon: '🎒', items: ['雨傘/雨衣', '藥品', '零食', '水壺', '購物袋', '旅遊書'] }
+        ]);
 
         // Icons map
         const getBlockIcon = (type) => {
@@ -461,6 +826,36 @@
         const timeOnly = (s) => s ? s.split('T')[1]?.substring(0,5) : '';
         const stayName = (id) => config.value?.stays.find(s => s.id === id)?.name;
 
+        // Countdown
+        const countdownDays = computed(() => {
+          if (!config.value) return '--';
+          const start = new Date(config.value.tripMeta.startDate);
+          const now = new Date();
+          const diff = Math.ceil((start - now) / (1000 * 60 * 60 * 24));
+          if (diff < 0) return Math.abs(diff);
+          return diff;
+        });
+        
+        const countdownLabel = computed(() => {
+          if (!config.value) return '';
+          const start = new Date(config.value.tripMeta.startDate);
+          const end = new Date(config.value.tripMeta.endDate);
+          const now = new Date();
+          if (now < start) return '距離出發還有';
+          if (now >= start && now <= end) return '旅程進行中！第';
+          return '旅程結束';
+        });
+        
+        const countdownSubtext = computed(() => {
+          if (!config.value) return '';
+          const start = new Date(config.value.tripMeta.startDate);
+          const end = new Date(config.value.tripMeta.endDate);
+          const now = new Date();
+          if (now < start) return '天';
+          if (now >= start && now <= end) return '天';
+          return '天前結束';
+        });
+
         // Compute
         const currentDay = computed(() => config.value?.days.find(d => d.date === activeDayDate.value));
 
@@ -468,7 +863,6 @@
         const selectDay = (date) => {
            activeKind.value = 'day';
            activeDayDate.value = date;
-           showBudget.value = false;
         };
         
         const speak = (text) => {
@@ -476,8 +870,6 @@
            u.lang = 'ja-JP';
            window.speechSynthesis.speak(u);
         };
-        
-        const openMaps = (url) => window.open(url, '_blank');
 
         // Budget
         const loadBudget = () => {
@@ -487,27 +879,270 @@
            } catch(e) {}
         };
         const saveBudget = () => localStorage.setItem(BUDGET_KEY, JSON.stringify(budgetData.value));
-        const budgetEntriesFor = (date) => budgetData.value[date] || [];
         const dayTotal = (date) => (budgetData.value[date] || []).reduce((a,b) => a + Number(b.amount), 0);
         const totalBudget = () => Object.values(budgetData.value).flat().reduce((a,b) => a + Number(b.amount), 0);
-        
-        const addBudgetEntryFor = (date) => {
-           if(!budgetForm.value.amount) return;
-           if(!budgetData.value[date]) budgetData.value[date] = [];
-           budgetData.value[date].push({ id: Date.now(), amount: budgetForm.value.amount, note: budgetForm.value.note });
-           budgetForm.value = { amount: '', note: '' };
-           saveBudget();
-        };
-        const removeBudgetEntry = (date, id) => {
-           budgetData.value[date] = budgetData.value[date].filter(e => e.id !== id);
-           saveBudget();
-        };
         const clearAllBudget = () => {
-           if(confirm('Clear all data?')) {
+           if(confirm('清除所有記帳資料？')) {
               budgetData.value = {};
               saveBudget();
            }
         };
+
+        // Packing
+        const loadPacking = () => {
+          try {
+            const raw = localStorage.getItem(PACKING_KEY);
+            if(raw) packedItems.value = JSON.parse(raw);
+          } catch(e) {}
+        };
+        const savePacking = () => localStorage.setItem(PACKING_KEY, JSON.stringify(packedItems.value));
+        const togglePackingItem = (cat, item) => {
+          const key = `${cat}:${item}`;
+          if(packedItems.value[key]) {
+            delete packedItems.value[key];
+          } else {
+            packedItems.value[key] = true;
+          }
+          savePacking();
+        };
+        const isPackedItem = (cat, item) => !!packedItems.value[`${cat}:${item}`];
+        const packingProgress = computed(() => {
+          const total = packingCategories.value.reduce((sum, cat) => sum + cat.items.length, 0);
+          const packed = Object.keys(packedItems.value).length;
+          return Math.round((packed / total) * 100);
+        });
+        const resetPacking = () => {
+          if(confirm('重置所有打包進度？')) {
+            packedItems.value = {};
+            savePacking();
+          }
+        };
+
+        // Currency
+        const convertToJpy = () => {
+          if(twdAmount.value) {
+            jpyAmount.value = Math.round(twdAmount.value * exchangeRate.value);
+          } else {
+            jpyAmount.value = '';
+          }
+        };
+        const convertToTwd = () => {
+          if(jpyAmount.value) {
+            twdAmount.value = Math.round(jpyAmount.value / exchangeRate.value);
+          } else {
+            twdAmount.value = '';
+          }
+        };
+        const fetchExchangeRate = async () => {
+          try {
+            // Using a free API or fallback to default
+            const res = await fetch('https://api.exchangerate-api.com/v4/latest/TWD');
+            const data = await res.json();
+            exchangeRate.value = data.rates.JPY.toFixed(2);
+            rateUpdateTime.value = new Date().toLocaleTimeString('zh-TW');
+          } catch(e) {
+            rateUpdateTime.value = '使用預設匯率';
+          }
+        };
+
+        // Weather
+        const refreshWeather = async () => {
+          try {
+            // Using Open-Meteo (free, no API key)
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6762&longitude=139.6503&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
+            const data = await res.json();
+            
+            const weatherIcons = {
+              0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+              45: '🌫️', 48: '🌫️',
+              51: '🌧️', 53: '🌧️', 55: '🌧️',
+              61: '🌧️', 63: '🌧️', 65: '🌧️',
+              71: '❄️', 73: '❄️', 75: '❄️',
+              80: '🌧️', 81: '🌧️', 82: '🌧️',
+              95: '⛈️', 96: '⛈️', 99: '⛈️'
+            };
+            
+            const weatherDesc = {
+              0: '晴朗', 1: '大致晴朗', 2: '局部多雲', 3: '多雲',
+              45: '有霧', 48: '有霧',
+              51: '小雨', 53: '中雨', 55: '大雨',
+              61: '小雨', 63: '中雨', 65: '大雨',
+              71: '小雪', 73: '中雪', 75: '大雪',
+              80: '陣雨', 81: '陣雨', 82: '大陣雨',
+              95: '雷雨', 96: '雷雨', 99: '雷雨'
+            };
+            
+            const code = data.current.weather_code;
+            weatherData.value = {
+              icon: weatherIcons[code] || '🌤️',
+              temp: Math.round(data.current.temperature_2m),
+              description: weatherDesc[code] || '未知',
+              humidity: data.current.relative_humidity_2m,
+              wind: data.current.wind_speed_10m,
+              feelsLike: Math.round(data.current.apparent_temperature),
+              updateTime: new Date().toLocaleTimeString('zh-TW')
+            };
+            
+            // Forecast
+            const days = ['日', '一', '二', '三', '四', '五', '六'];
+            weatherForecast.value = data.daily.time.slice(1, 6).map((date, i) => {
+              const d = new Date(date);
+              return {
+                date: `${d.getMonth()+1}/${d.getDate()} (${days[d.getDay()]})`,
+                icon: weatherIcons[data.daily.weather_code[i+1]] || '🌤️',
+                high: Math.round(data.daily.temperature_2m_max[i+1]),
+                low: Math.round(data.daily.temperature_2m_min[i+1])
+              };
+            });
+          } catch(e) {
+            console.error('Weather fetch error:', e);
+          }
+        };
+
+        // Photos
+        const loadPhotos = () => {
+          try {
+            const raw = localStorage.getItem(PHOTOS_KEY);
+            if(raw) photos.value = JSON.parse(raw);
+          } catch(e) {}
+        };
+        const savePhotos = () => {
+          try {
+            localStorage.setItem(PHOTOS_KEY, JSON.stringify(photos.value));
+          } catch(e) {
+            alert('照片太多，儲存空間不足！');
+          }
+        };
+        const addPhotos = (e) => {
+          const files = e.target.files;
+          for(let file of files) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+              // Compress image
+              const img = new Image();
+              img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const maxSize = 800;
+                let w = img.width, h = img.height;
+                if(w > h && w > maxSize) { h = h * maxSize / w; w = maxSize; }
+                else if(h > maxSize) { w = w * maxSize / h; h = maxSize; }
+                canvas.width = w;
+                canvas.height = h;
+                canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                photos.value.push({
+                  data: canvas.toDataURL('image/jpeg', 0.7),
+                  date: new Date().toISOString()
+                });
+                savePhotos();
+              };
+              img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        const removePhoto = (idx) => {
+          if(confirm('刪除這張照片？')) {
+            photos.value.splice(idx, 1);
+            savePhotos();
+          }
+        };
+        const viewPhoto = (idx) => {
+          viewingPhoto.value = idx;
+        };
+
+        // Map
+        const initMap = () => {
+          if(map) return;
+          nextTick(() => {
+            const container = document.getElementById('map-container');
+            if(!container) return;
+            
+            map = L.map('map-container', {
+              zoomControl: false
+            }).setView([35.6762, 139.7503], 11);
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+              attribution: '© CartoDB'
+            }).addTo(map);
+            
+            // Add markers from stays
+            if(config.value?.stays) {
+              config.value.stays.forEach(s => {
+                if(s.lat && s.lng) {
+                  L.circleMarker([s.lat, s.lng], {
+                    radius: 8,
+                    fillColor: '#3b82f6',
+                    color: '#fff',
+                    weight: 2,
+                    fillOpacity: 0.8
+                  }).addTo(map).bindPopup(`<b>${s.name}</b><br>${s.area}`);
+                }
+              });
+            }
+            
+            // Sample landmarks
+            const landmarks = [
+              { name: '東京車站', lat: 35.6812, lng: 139.7671, type: 'spot' },
+              { name: '淺草寺', lat: 35.7148, lng: 139.7967, type: 'spot' },
+              { name: '東京塔', lat: 35.6586, lng: 139.7454, type: 'spot' },
+              { name: '新宿', lat: 35.6896, lng: 139.7006, type: 'shop' },
+              { name: '澀谷', lat: 35.6580, lng: 139.7016, type: 'shop' }
+            ];
+            
+            landmarks.forEach(l => {
+              const color = l.type === 'spot' ? '#a855f7' : '#14b8a6';
+              L.circleMarker([l.lat, l.lng], {
+                radius: 6,
+                fillColor: color,
+                color: '#fff',
+                weight: 2,
+                fillOpacity: 0.8
+              }).addTo(map).bindPopup(`<b>${l.name}</b>`);
+            });
+          });
+        };
+
+        // Share
+        const generateQR = () => {
+          nextTick(() => {
+            const container = document.getElementById('qrcode');
+            if(!container || container.hasChildNodes()) return;
+            
+            const qr = qrcode(0, 'M');
+            qr.addData(shareUrl);
+            qr.make();
+            container.innerHTML = qr.createImgTag(5, 0);
+          });
+        };
+        
+        const copyLink = async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            alert('已複製連結！');
+          } catch(e) {
+            prompt('複製此連結：', shareUrl);
+          }
+        };
+        
+        const nativeShare = async () => {
+          if(navigator.share) {
+            try {
+              await navigator.share({
+                title: '2026 東京家庭旅行',
+                url: shareUrl
+              });
+            } catch(e) {}
+          } else {
+            copyLink();
+          }
+        };
+
+        // Watch for tab changes
+        watch(activeKind, (val) => {
+          if(val === 'map') initMap();
+          if(val === 'share') generateQR();
+          if(val === 'weather' && weatherData.value.temp === '--') refreshWeather();
+        });
 
         onMounted(async () => {
           try {
@@ -515,15 +1150,36 @@
              config.value = await res.json();
              if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
              loadBudget();
+             loadPacking();
+             loadPhotos();
+             fetchExchangeRate();
           } catch(e) { console.error(e); } 
           finally { loading.value = false; }
+          
+          // Register service worker
+          if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW:', e));
+          }
         });
 
         return {
            config, loading, activeKind, activeDayDate, currentDay,
            shortDate, dateOnly, timeOnly, stayName, getBlockIcon,
-           selectDay, speak, openMaps,
-           budgetForm, showBudget, budgetEntriesFor, dayTotal, totalBudget, addBudgetEntryFor, removeBudgetEntry, clearAllBudget
+           selectDay, speak,
+           // Countdown
+           countdownDays, countdownLabel, countdownSubtext,
+           // Budget
+           dayTotal, totalBudget, clearAllBudget,
+           // Packing
+           packingCategories, packingProgress, togglePackingItem, isPackedItem, resetPacking,
+           // Currency
+           twdAmount, jpyAmount, exchangeRate, rateUpdateTime, convertToJpy, convertToTwd,
+           // Weather
+           weatherData, weatherForecast, refreshWeather,
+           // Photos
+           photos, viewingPhoto, addPhotos, removePhoto, viewPhoto,
+           // Share
+           shareUrl, copyLink, nativeShare
         };
       }
     }).mount('#app');
