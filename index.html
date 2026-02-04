@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 東京家庭旅行 💎</title>
-  <meta name="description" content="2026年東京家庭旅行行程規劃 - 礦石風格互動式旅遊指南">
-  <meta name="theme-color" content="#0c0a1d">
+  <title>2026 東京家庭旅行 🌸</title>
+  <meta name="description" content="2026年東京家庭旅行行程規劃 - 櫻花風格互動式旅遊指南">
+  <meta name="theme-color" content="#fdf2f8">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,75 +13,66 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --crystal-purple: #a855f7;
-      --crystal-blue: #3b82f6;
-      --crystal-teal: #14b8a6;
-      --crystal-pink: #ec4899;
-      --crystal-amber: #f59e0b;
-      --bg-dark: #0c0a1d;
-      --bg-card: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
+      --sakura-50: #fdf2f8;
+      --sakura-100: #fce7f3;
+      --sakura-200: #fbcfe8;
+      --sakura-300: #f9a8d4;
+      --sakura-400: #f472b6;
+      --sakura-500: #ec4899;
+      --sakura-600: #db2777;
+      --rose-warm: #fff1f2;
     }
     
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-dark);
-      background-image: 
-        radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(20, 184, 166, 0.08) 0%, transparent 60%);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background: linear-gradient(180deg, #fff1f2 0%, #fdf2f8 50%, #fce7f3 100%);
       min-height: 100vh;
     }
     
     .scrollbar-hide::-webkit-scrollbar { display: none; }
     .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     
-    .crystal-bg {
-      background: linear-gradient(135deg, 
-        rgba(168, 85, 247, 0.2) 0%, 
-        rgba(59, 130, 246, 0.15) 50%, 
-        rgba(20, 184, 166, 0.2) 100%);
+    .sakura-pattern {
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(244, 114, 182, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(251, 207, 232, 0.2) 0%, transparent 40%);
     }
     
     .glass-card {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.8);
       box-shadow: 
-        0 4px 30px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 4px 30px rgba(236, 72, 153, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
-    .gem-glow {
+    .sakura-glow {
       box-shadow: 
-        0 0 20px rgba(168, 85, 247, 0.3),
-        0 0 40px rgba(59, 130, 246, 0.2),
-        0 0 60px rgba(20, 184, 166, 0.1);
+        0 0 30px rgba(244, 114, 182, 0.2),
+        0 0 60px rgba(251, 207, 232, 0.3);
     }
     
-    .gem-text {
-      background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%);
+    .sakura-text {
+      background: linear-gradient(135deg, #ec4899 0%, #f472b6 50%, #db2777 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     
-    .crystal-border {
+    .sakura-border {
       position: relative;
     }
-    .crystal-border::before {
+    .sakura-border::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, 
-        rgba(168, 85, 247, 0.5), 
-        rgba(59, 130, 246, 0.3), 
-        rgba(20, 184, 166, 0.5));
+      padding: 2px;
+      background: linear-gradient(135deg, #f9a8d4, #f472b6, #fce7f3);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -89,51 +80,32 @@
       pointer-events: none;
     }
     
-    .shimmer {
-      background: linear-gradient(
-        110deg,
-        transparent 20%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 80%
-      );
-      background-size: 200% 100%;
-      animation: shimmer 3s ease-in-out infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-    
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
     }
     
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.5; }
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
     }
     
-    @keyframes countdown-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
     .float-anim {
-      animation: float 6s ease-in-out infinite;
+      animation: float 4s ease-in-out infinite;
     }
     
-    .pulse-glow {
-      animation: pulse-glow 3s ease-in-out infinite;
-    }
-    
-    .countdown-pulse {
-      animation: countdown-pulse 2s ease-in-out infinite;
-    }
-    
-    .facet-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='rgba(168,85,247,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+    .petal {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      animation: fall linear infinite;
     }
     
     .nav-btn {
@@ -143,26 +115,21 @@
       transform: translateY(-2px);
     }
     .nav-btn.active {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(59, 130, 246, 0.2));
-      border-color: rgba(168, 85, 247, 0.5);
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+      background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+      border-color: #f9a8d4;
+      color: #be185d;
+      box-shadow: 0 4px 15px rgba(244, 114, 182, 0.3);
     }
     
     .timeline-line {
-      background: linear-gradient(180deg, 
-        rgba(168, 85, 247, 0.5) 0%, 
-        rgba(59, 130, 246, 0.3) 50%, 
-        rgba(20, 184, 166, 0.5) 100%);
+      background: linear-gradient(180deg, #f9a8d4 0%, #fbcfe8 50%, #f9a8d4 100%);
     }
     
     .timeline-dot {
-      background: linear-gradient(135deg, #a855f7, #3b82f6);
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      box-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
     }
     
-    .checklist-item {
-      transition: all 0.3s ease;
-    }
     .checklist-item.checked {
       opacity: 0.5;
       text-decoration: line-through;
@@ -174,10 +141,6 @@
       overflow: hidden;
     }
     
-    .leaflet-container {
-      background: #1a1a2e;
-    }
-    
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -187,103 +150,104 @@
     .photo-item {
       aspect-ratio: 1;
       object-fit: cover;
-      border-radius: 0.5rem;
+      border-radius: 0.75rem;
+    }
+
+    /* Falling petals */
+    .petal-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 50;
     }
   </style>
 </head>
-<body class="facet-pattern min-h-screen text-white pb-20">
-  <div id="app" class="max-w-md mx-auto min-h-screen relative overflow-hidden">
+<body class="sakura-pattern min-h-screen text-slate-700 pb-20">
+  <!-- Falling Petals -->
+  <div class="petal-container" id="petals"></div>
+  
+  <div id="app" class="max-w-md mx-auto min-h-screen relative">
     
     <!-- Loading -->
     <div v-if="loading" class="flex flex-col items-center justify-center h-screen space-y-6">
-      <div class="text-6xl float-anim">💎</div>
-      <div class="gem-text font-bold tracking-[0.3em] text-sm">LOADING...</div>
-      <div class="w-32 h-1 rounded-full overflow-hidden bg-white/10">
-        <div class="h-full crystal-bg shimmer"></div>
+      <div class="text-6xl float-anim">🌸</div>
+      <div class="sakura-text font-bold tracking-[0.3em] text-sm">LOADING...</div>
+      <div class="w-32 h-1 rounded-full overflow-hidden bg-pink-100">
+        <div class="h-full bg-gradient-to-r from-pink-300 via-pink-400 to-pink-300 animate-pulse"></div>
       </div>
     </div>
 
     <div v-else class="pb-24">
       <!-- Hero -->
       <header class="relative pt-10 pb-20 px-6 overflow-hidden">
-        <!-- Decorative crystals -->
-        <div class="absolute top-10 right-10 w-20 h-20 opacity-20 float-anim" style="animation-delay: -2s;">
-          <svg viewBox="0 0 100 100" fill="none">
-            <polygon points="50,0 100,50 50,100 0,50" stroke="url(#grad1)" stroke-width="2"/>
-            <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#a855f7"/>
-              <stop offset="100%" style="stop-color:#3b82f6"/>
-            </linearGradient></defs>
-          </svg>
-        </div>
-        <div class="absolute bottom-20 left-5 w-12 h-12 opacity-15 float-anim" style="animation-delay: -4s;">
-          <svg viewBox="0 0 100 100" fill="none">
-            <polygon points="50,0 100,50 50,100 0,50" stroke="#14b8a6" stroke-width="2"/>
-          </svg>
-        </div>
+        <!-- Decorative elements -->
+        <div class="absolute top-5 right-5 text-5xl opacity-30 float-anim">🌸</div>
+        <div class="absolute top-20 left-8 text-3xl opacity-20 float-anim" style="animation-delay: -1s;">🌸</div>
+        <div class="absolute bottom-10 right-10 text-4xl opacity-25 float-anim" style="animation-delay: -2s;">🌸</div>
         
         <div class="relative z-10 text-center">
-          <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 rounded-full px-4 py-1.5 mb-4">
-            <span class="w-2 h-2 rounded-full bg-green-400 pulse-glow"></span>
-            <span class="text-xs font-medium text-white/70 tracking-wider uppercase">Tokyo Trip 2026</span>
+          <div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur border border-pink-200 rounded-full px-4 py-1.5 mb-4 shadow-sm">
+            <span class="text-lg">🌸</span>
+            <span class="text-xs font-bold text-pink-600 tracking-wider uppercase">Tokyo Trip 2026</span>
           </div>
           
           <h1 class="text-4xl font-black tracking-tight leading-tight mb-3">
-            <span class="gem-text">{{ config.tripMeta.title }}</span>
+            <span class="sakura-text">{{ config.tripMeta.title }}</span>
           </h1>
-          <p class="text-white/50 text-sm font-medium">{{ config.tripMeta.subtitle }}</p>
+          <p class="text-pink-400 text-sm font-medium">{{ config.tripMeta.subtitle }}</p>
           
           <!-- Countdown -->
-          <div class="mt-6 glass-card crystal-border rounded-2xl p-4 countdown-pulse">
-            <div class="text-xs text-purple-400 font-bold mb-1">{{ countdownLabel }}</div>
-            <div class="text-3xl font-black gem-text">{{ countdownDays }}</div>
-            <div class="text-xs text-white/40">{{ countdownSubtext }}</div>
+          <div class="mt-6 glass-card sakura-border rounded-2xl p-5 sakura-glow">
+            <div class="text-xs text-pink-500 font-bold mb-1">{{ countdownLabel }}</div>
+            <div class="text-4xl font-black sakura-text">{{ countdownDays }}</div>
+            <div class="text-xs text-pink-400/70 mt-1">{{ countdownSubtext }}</div>
           </div>
           
           <div class="mt-6 flex justify-center gap-3">
             <div class="glass-card px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2">
-              <span class="text-purple-400">📅</span>
-              <span class="text-white/80">{{ shortDate(config.tripMeta.startDate) }} - {{ shortDate(config.tripMeta.endDate) }}</span>
+              <span class="text-pink-500">📅</span>
+              <span class="text-slate-600">{{ shortDate(config.tripMeta.startDate) }} - {{ shortDate(config.tripMeta.endDate) }}</span>
             </div>
             <div class="glass-card px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2">
-              <span class="text-blue-400">📍</span>
-              <span class="text-white/80">{{ config.tripMeta.baseCity }}</span>
+              <span class="text-pink-500">📍</span>
+              <span class="text-slate-600">{{ config.tripMeta.baseCity }}</span>
             </div>
           </div>
         </div>
-        
-        <!-- Bottom glow -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
       </header>
 
       <!-- Floating Nav -->
       <div class="sticky top-0 z-30 px-4 -mt-8 mb-6">
-        <div class="glass-card rounded-2xl p-2">
+        <div class="glass-card rounded-2xl p-2 shadow-lg">
           <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide snap-x">
             <button 
               @click="activeKind = 'overview'"
-              class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5"
-              :class="activeKind === 'overview' ? 'active' : 'text-white/60 hover:text-white hover:bg-white/10'"
-            >✨ 總覽</button>
+              class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50"
+              :class="activeKind === 'overview' ? 'active' : 'text-slate-500 hover:text-pink-600 hover:bg-pink-50'"
+            >🌸 總覽</button>
             <button 
               v-for="day in config.days" 
               :key="day.date"
               @click="selectDay(day.date)"
-              class="nav-btn snap-start flex-shrink-0 px-3 py-2 rounded-xl border border-white/10 bg-white/5 flex flex-col items-center justify-center min-w-[60px]"
-              :class="activeKind === 'day' && activeDayDate === day.date ? 'active' : 'text-white/60 hover:text-white hover:bg-white/10'"
+              class="nav-btn snap-start flex-shrink-0 px-3 py-2 rounded-xl border border-pink-100 bg-white/50 flex flex-col items-center justify-center min-w-[60px]"
+              :class="activeKind === 'day' && activeDayDate === day.date ? 'active' : 'text-slate-500 hover:text-pink-600 hover:bg-pink-50'"
             >
               <span class="text-[10px] font-bold">{{ day.label }}</span>
               <span class="text-[9px] opacity-50">{{ shortDate(day.date) }}</span>
             </button>
-            <button @click="activeKind = 'map'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'map' ? 'active' : 'text-white/60'">🗺️ 地圖</button>
-            <button @click="activeKind = 'packing'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'packing' ? 'active' : 'text-white/60'">📦 打包</button>
-            <button @click="activeKind = 'budget'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'budget' ? 'active' : 'text-white/60'">💰 記帳</button>
-            <button @click="activeKind = 'currency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'currency' ? 'active' : 'text-white/60'">💱 匯率</button>
-            <button @click="activeKind = 'phrase'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'phrase' ? 'active' : 'text-white/60'">🗣️ 日語</button>
-            <button @click="activeKind = 'photos'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'photos' ? 'active' : 'text-white/60'">📸 照片</button>
-            <button @click="activeKind = 'weather'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'weather' ? 'active' : 'text-white/60'">☁️ 天氣</button>
-            <button @click="activeKind = 'emergency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'emergency' ? 'active' : 'text-white/60'">🆘 緊急</button>
-            <button @click="activeKind = 'share'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 bg-white/5" :class="activeKind === 'share' ? 'active' : 'text-white/60'">🔗 分享</button>
+            <button @click="activeKind = 'map'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'map' ? 'active' : 'text-slate-500'">🗺️ 地圖</button>
+            <button @click="activeKind = 'packing'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'packing' ? 'active' : 'text-slate-500'">📦 打包</button>
+            <button @click="activeKind = 'budget'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'budget' ? 'active' : 'text-slate-500'">💰 記帳</button>
+            <button @click="activeKind = 'currency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'currency' ? 'active' : 'text-slate-500'">💱 匯率</button>
+            <button @click="activeKind = 'phrase'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'phrase' ? 'active' : 'text-slate-500'">🗣️ 日語</button>
+            <button @click="activeKind = 'photos'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'photos' ? 'active' : 'text-slate-500'">📸 照片</button>
+            <button @click="activeKind = 'weather'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'weather' ? 'active' : 'text-slate-500'">☁️ 天氣</button>
+            <button @click="activeKind = 'emergency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'emergency' ? 'active' : 'text-slate-500'">🆘 緊急</button>
+            <button @click="activeKind = 'share'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'share' ? 'active' : 'text-slate-500'">🔗 分享</button>
           </div>
         </div>
       </div>
@@ -295,31 +259,30 @@
         <div v-if="activeKind === 'overview'" class="space-y-6">
           <!-- Flight Card -->
           <section>
-            <h3 class="text-xs font-bold text-purple-400/80 uppercase tracking-widest mb-3 pl-1 flex items-center gap-2">
-              <span class="w-4 h-px bg-purple-500/50"></span>
-              Flights
+            <h3 class="text-xs font-bold text-pink-400 uppercase tracking-widest mb-3 pl-1 flex items-center gap-2">
+              <span class="w-4 h-px bg-pink-300"></span>
+              Flights ✈️
             </h3>
-            <div v-for="f in config.flights" :key="f.id" class="mb-3 glass-card crystal-border rounded-2xl p-5 relative overflow-hidden">
-              <div class="absolute top-0 right-0 w-full h-full shimmer pointer-events-none"></div>
-              <div class="absolute -top-5 -right-5 text-7xl opacity-5">✈️</div>
+            <div v-for="f in config.flights" :key="f.id" class="mb-3 glass-card sakura-border rounded-2xl p-5 relative overflow-hidden">
+              <div class="absolute -top-5 -right-5 text-7xl opacity-10">✈️</div>
               <div class="flex justify-between items-center mb-4 relative z-10">
-                <span class="bg-purple-500/20 text-purple-300 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-purple-500/30">{{ f.airline }}</span>
-                <span class="text-xs font-bold text-white/40">{{ dateOnly(f.departure) }}</span>
+                <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2.5 py-1 rounded-lg">{{ f.airline }}</span>
+                <span class="text-xs font-bold text-slate-400">{{ dateOnly(f.departure) }}</span>
               </div>
               <div class="flex justify-between items-center relative z-10">
                 <div>
-                  <div class="text-3xl font-black gem-text">{{ f.from.code }}</div>
-                  <div class="text-xs font-bold text-white/50">{{ timeOnly(f.departure) }}</div>
+                  <div class="text-3xl font-black sakura-text">{{ f.from.code }}</div>
+                  <div class="text-xs font-bold text-slate-400">{{ timeOnly(f.departure) }}</div>
                 </div>
                 <div class="flex flex-col items-center px-4 w-full">
-                  <div class="text-[10px] text-white/40 font-bold mb-2">{{ f.flightNo }}</div>
-                  <div class="w-full h-0.5 bg-gradient-to-r from-purple-500/50 via-blue-500/50 to-teal-500/50 relative rounded-full">
-                    <div class="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-teal-400 rounded-full shadow-lg shadow-teal-500/50"></div>
+                  <div class="text-[10px] text-slate-400 font-bold mb-2">{{ f.flightNo }}</div>
+                  <div class="w-full h-0.5 bg-gradient-to-r from-pink-300 via-pink-400 to-pink-300 relative rounded-full">
+                    <div class="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-pink-500 rounded-full shadow-lg shadow-pink-500/50"></div>
                   </div>
                 </div>
                 <div class="text-right">
-                  <div class="text-3xl font-black gem-text">{{ f.to.code }}</div>
-                  <div class="text-xs font-bold text-white/50">{{ timeOnly(f.arrival) }}</div>
+                  <div class="text-3xl font-black sakura-text">{{ f.to.code }}</div>
+                  <div class="text-xs font-bold text-slate-400">{{ timeOnly(f.arrival) }}</div>
                 </div>
               </div>
             </div>
@@ -327,20 +290,20 @@
 
           <!-- Stays Card -->
           <section>
-            <h3 class="text-xs font-bold text-blue-400/80 uppercase tracking-widest mb-3 pl-1 flex items-center gap-2">
-              <span class="w-4 h-px bg-blue-500/50"></span>
-              Accommodation
+            <h3 class="text-xs font-bold text-pink-400 uppercase tracking-widest mb-3 pl-1 flex items-center gap-2">
+              <span class="w-4 h-px bg-pink-300"></span>
+              Accommodation 🏨
             </h3>
             <div class="space-y-3">
-              <div v-for="s in config.stays" :key="s.id" class="glass-card rounded-2xl p-4 flex gap-4 items-center group hover:bg-white/[0.08] transition-all duration-300 cursor-pointer">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center text-xl border border-white/10 group-hover:scale-110 transition-transform">
+              <div v-for="s in config.stays" :key="s.id" class="glass-card rounded-2xl p-4 flex gap-4 items-center group hover:shadow-lg hover:shadow-pink-200/50 transition-all duration-300 cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-100 to-pink-200 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                   🏨
                 </div>
                 <div class="flex-1">
-                  <h4 class="font-bold text-white text-sm">{{ s.name }}</h4>
-                  <div class="text-xs text-white/40 mt-0.5">{{ s.area }} · {{ shortDate(s.checkIn) }}-{{ shortDate(s.checkOut) }}</div>
+                  <h4 class="font-bold text-slate-700 text-sm">{{ s.name }}</h4>
+                  <div class="text-xs text-slate-400 mt-0.5">{{ s.area }} · {{ shortDate(s.checkIn) }}-{{ shortDate(s.checkOut) }}</div>
                 </div>
-                <div class="text-white/20 group-hover:text-purple-400 transition-colors">→</div>
+                <div class="text-pink-300 group-hover:text-pink-500 transition-colors">→</div>
               </div>
             </div>
           </section>
@@ -350,19 +313,18 @@
         <div v-else-if="activeKind === 'day'" class="space-y-6">
           <div v-if="currentDay">
             <!-- Day Header -->
-            <div class="glass-card crystal-border rounded-3xl p-6 text-center relative overflow-hidden gem-glow">
-              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500"></div>
-              <div class="absolute inset-0 shimmer pointer-events-none"></div>
+            <div class="glass-card sakura-border rounded-3xl p-6 text-center relative overflow-hidden sakura-glow">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-300 via-pink-500 to-pink-300"></div>
+              <div class="absolute top-3 right-3 text-2xl opacity-30">🌸</div>
               
               <div class="relative z-10">
-                <div class="text-xs font-bold text-purple-400 mb-2">{{ currentDay.date }} · {{ currentDay.label }}</div>
-                <h2 class="text-2xl font-black mb-3 leading-tight gem-text">{{ currentDay.title }}</h2>
-                <div v-if="currentDay.weather" class="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 px-3 py-1.5 rounded-full text-xs font-bold mb-4 border border-blue-500/30">
+                <div class="text-xs font-bold text-pink-500 mb-2">{{ currentDay.date }} · {{ currentDay.label }}</div>
+                <h2 class="text-2xl font-black mb-3 leading-tight sakura-text">{{ currentDay.title }}</h2>
+                <div v-if="currentDay.weather" class="inline-flex items-center gap-1.5 bg-sky-50 text-sky-600 px-3 py-1.5 rounded-full text-xs font-bold mb-4 border border-sky-100">
                   <span>{{ currentDay.weather }}</span>
                 </div>
                 
-                <!-- Stay Badge -->
-                <div v-if="currentDay.stayId" class="flex items-center justify-center gap-2 text-xs text-white/60 bg-white/5 rounded-xl p-3 mt-2 border border-white/10">
+                <div v-if="currentDay.stayId" class="flex items-center justify-center gap-2 text-xs text-slate-500 bg-pink-50 rounded-xl p-3 mt-2 border border-pink-100">
                   <span>🏠</span>
                   <span class="font-bold">{{ stayName(currentDay.stayId) }}</span>
                 </div>
@@ -372,70 +334,62 @@
             <!-- Blocks -->
             <div class="space-y-4">
               <div v-for="(block, idx) in currentDay.blocks" :key="idx" class="relative pl-8">
-                <!-- Timeline Line -->
                 <div class="absolute left-[11px] top-8 bottom-0 w-0.5 timeline-line -z-10" v-if="idx !== currentDay.blocks.length - 1"></div>
                 
-                <!-- Icon -->
-                <div class="absolute left-0 top-1 w-6 h-6 rounded-full timeline-dot flex items-center justify-center text-xs z-10">
+                <div class="absolute left-0 top-1 w-6 h-6 rounded-full timeline-dot flex items-center justify-center text-xs z-10 text-white">
                   {{ getBlockIcon(block.type) }}
                 </div>
 
-                <!-- Content Card -->
-                <div :class="['glass-card rounded-2xl p-4 ml-2 transition-all hover:bg-white/[0.08]', block.type === 'dinnerRecommend' ? 'border-l-2 border-l-amber-500/50' : '']">
+                <div :class="['glass-card rounded-2xl p-4 ml-2 transition-all hover:shadow-lg hover:shadow-pink-100', block.type === 'dinnerRecommend' ? 'border-l-2 border-l-orange-300' : '']">
                   
-                  <!-- Header -->
                   <div class="flex justify-between items-start mb-3">
-                    <h3 class="font-bold text-white text-sm">{{ block.title }}</h3>
-                    <span v-if="block.timeOfDay" class="text-[10px] font-bold bg-white/10 text-white/60 px-2 py-0.5 rounded-full">{{ block.timeOfDay }}</span>
+                    <h3 class="font-bold text-slate-700 text-sm">{{ block.title }}</h3>
+                    <span v-if="block.timeOfDay" class="text-[10px] font-bold bg-pink-50 text-pink-500 px-2 py-0.5 rounded-full">{{ block.timeOfDay }}</span>
                   </div>
 
-                  <!-- Transport -->
                   <div v-if="block.type === 'transport'" class="space-y-3">
-                    <div class="flex items-center gap-2 text-xs font-bold text-white/60">
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                       <span>{{ block.from }}</span>
-                      <span class="text-purple-400">→</span>
+                      <span class="text-pink-400">→</span>
                       <span>{{ block.to }}</span>
                     </div>
-                    <div v-for="route in block.routes" class="bg-white/5 rounded-xl p-3 border border-white/5">
-                      <div class="font-bold text-white/90 text-sm mb-1">{{ route.label }}</div>
-                      <div class="text-[10px] text-white/40 mb-2 flex gap-3">
-                        <span v-if="route.estimatedDurationMinutes" class="flex items-center gap-1"><span class="text-blue-400">⏱</span> {{ route.estimatedDurationMinutes }}分</span>
-                        <span v-if="route.estimatedCost" class="flex items-center gap-1"><span class="text-teal-400">💰</span> {{ route.estimatedCost }}</span>
+                    <div v-for="route in block.routes" class="bg-pink-50/50 rounded-xl p-3 border border-pink-100">
+                      <div class="font-bold text-slate-600 text-sm mb-1">{{ route.label }}</div>
+                      <div class="text-[10px] text-slate-400 mb-2 flex gap-3">
+                        <span v-if="route.estimatedDurationMinutes" class="flex items-center gap-1">⏱ {{ route.estimatedDurationMinutes }}分</span>
+                        <span v-if="route.estimatedCost" class="flex items-center gap-1">💰 {{ route.estimatedCost }}</span>
                       </div>
                       <div v-if="route.via" class="space-y-1.5">
-                        <div v-for="step in route.via" class="text-xs text-white/60 flex items-start gap-2">
-                          <span class="text-purple-400 mt-0.5">◆</span>
+                        <div v-for="step in route.via" class="text-xs text-slate-500 flex items-start gap-2">
+                          <span class="text-pink-400 mt-0.5">🌸</span>
                           <span class="leading-relaxed">{{ step }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Dinner Recommend -->
                   <div v-else-if="block.type === 'dinnerRecommend'" class="space-y-3">
-                    <div v-for="opt in block.options" class="bg-gradient-to-r from-amber-500/10 to-orange-500/5 rounded-xl p-3 border border-amber-500/20">
+                    <div v-for="opt in block.options" class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-3 border border-orange-100">
                       <div class="flex justify-between items-start">
-                        <div class="font-bold text-white text-sm">{{ opt.name }}</div>
-                        <div class="text-xs font-bold text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded-lg">{{ opt.rating }}</div>
+                        <div class="font-bold text-slate-700 text-sm">{{ opt.name }}</div>
+                        <div class="text-xs font-bold text-orange-500 bg-orange-100 px-2 py-0.5 rounded-lg">{{ opt.rating }}</div>
                       </div>
                       <div class="flex flex-wrap gap-1.5 my-2">
-                        <span v-for="tag in opt.tags" class="text-[10px] bg-white/10 text-white/60 px-2 py-0.5 rounded-full">{{ tag }}</span>
+                        <span v-for="tag in opt.tags" class="text-[10px] bg-white text-slate-500 px-2 py-0.5 rounded-full border border-orange-100">{{ tag }}</span>
                       </div>
-                      <div class="text-xs text-white/50 leading-relaxed">{{ opt.desc }}</div>
-                      <a v-if="opt.url" :href="opt.url" target="_blank" class="mt-3 block text-center bg-amber-500/20 text-amber-300 text-xs font-bold py-2 rounded-lg hover:bg-amber-500/30 transition-colors border border-amber-500/30">📍 Google Maps</a>
+                      <div class="text-xs text-slate-500 leading-relaxed">{{ opt.desc }}</div>
+                      <a v-if="opt.url" :href="opt.url" target="_blank" class="mt-3 block text-center bg-orange-100 text-orange-600 text-xs font-bold py-2 rounded-lg hover:bg-orange-200 transition-colors">📍 Google Maps</a>
                     </div>
                   </div>
 
-                  <!-- List Items -->
                   <ul v-else-if="block.items" class="space-y-2">
-                    <li v-for="item in block.items" class="text-sm text-white/70 flex items-start gap-2">
-                      <span class="text-teal-400 font-bold mt-0.5">✓</span>
+                    <li v-for="item in block.items" class="text-sm text-slate-600 flex items-start gap-2">
+                      <span class="text-pink-400 font-bold mt-0.5">✓</span>
                       <span class="leading-relaxed">{{ item }}</span>
                     </li>
                   </ul>
 
-                  <!-- Note/Lines -->
-                  <div v-else-if="block.lines" class="text-sm text-white/60 space-y-1">
+                  <div v-else-if="block.lines" class="text-sm text-slate-500 space-y-1">
                     <p v-for="line in block.lines">{{ line }}</p>
                   </div>
 
@@ -447,94 +401,94 @@
 
         <!-- Map -->
         <div v-else-if="activeKind === 'map'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
-              <span class="text-purple-400">🗺️</span> 景點地圖
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+              <span class="text-pink-500">🗺️</span> 景點地圖
             </h3>
-            <div id="map-container" class="glass-card"></div>
-            <div class="mt-3 text-xs text-white/40 text-center">點擊標記查看詳情</div>
+            <div id="map-container" class="rounded-xl overflow-hidden"></div>
+            <div class="mt-3 text-xs text-slate-400 text-center">點擊標記查看詳情</div>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">圖例</h3>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">圖例</h3>
             <div class="grid grid-cols-2 gap-2 text-xs">
-              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-purple-500"></span> 景點</div>
-              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-blue-500"></span> 住宿</div>
-              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-amber-500"></span> 餐廳</div>
-              <div class="flex items-center gap-2 text-white/60"><span class="w-3 h-3 rounded-full bg-teal-500"></span> 購物</div>
+              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-pink-400"></span> 景點</div>
+              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-blue-400"></span> 住宿</div>
+              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-orange-400"></span> 餐廳</div>
+              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-green-400"></span> 購物</div>
             </div>
           </div>
         </div>
 
         <!-- Packing List -->
         <div v-else-if="activeKind === 'packing'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-4 text-center">
-            <div class="text-3xl font-black gem-text">{{ packingProgress }}%</div>
-            <div class="text-xs text-white/50 mt-1">打包進度</div>
-            <div class="w-full h-2 bg-white/10 rounded-full mt-3 overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-purple-500 to-teal-500 transition-all duration-500" :style="{width: packingProgress + '%'}"></div>
+          <div class="glass-card sakura-border rounded-2xl p-4 text-center sakura-glow">
+            <div class="text-3xl font-black sakura-text">{{ packingProgress }}%</div>
+            <div class="text-xs text-slate-400 mt-1">打包進度</div>
+            <div class="w-full h-3 bg-pink-100 rounded-full mt-3 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-pink-400 to-pink-500 transition-all duration-500 rounded-full" :style="{width: packingProgress + '%'}"></div>
             </div>
           </div>
           
           <div v-for="cat in packingCategories" :key="cat.name" class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
               <span>{{ cat.icon }}</span> {{ cat.name }}
             </h3>
             <div class="space-y-2">
               <div v-for="item in cat.items" :key="item" 
                    @click="togglePackingItem(cat.name, item)"
-                   class="checklist-item flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-all"
+                   class="checklist-item flex items-center gap-3 p-2 rounded-lg hover:bg-pink-50 cursor-pointer transition-all"
                    :class="{ 'checked': isPackedItem(cat.name, item) }">
-                <div class="w-5 h-5 rounded border-2 flex items-center justify-center transition-all"
-                     :class="isPackedItem(cat.name, item) ? 'bg-teal-500 border-teal-500' : 'border-white/30'">
+                <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all"
+                     :class="isPackedItem(cat.name, item) ? 'bg-pink-500 border-pink-500 text-white' : 'border-pink-300'">
                   <span v-if="isPackedItem(cat.name, item)" class="text-xs">✓</span>
                 </div>
-                <span class="text-sm text-white/80">{{ item }}</span>
+                <span class="text-sm text-slate-600">{{ item }}</span>
               </div>
             </div>
           </div>
           
-          <button @click="resetPacking" class="w-full py-3 text-xs font-bold text-white/30 hover:text-red-400 transition-colors">
+          <button @click="resetPacking" class="w-full py-3 text-xs font-bold text-slate-400 hover:text-red-400 transition-colors">
             🔄 重置打包清單
           </button>
         </div>
 
         <!-- Currency Converter -->
         <div v-else-if="activeKind === 'currency'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-6 gem-glow">
+          <div class="glass-card sakura-border rounded-2xl p-6 sakura-glow">
             <div class="text-center mb-6">
-              <div class="text-xs text-purple-400 font-bold mb-1">即時匯率</div>
-              <div class="text-2xl font-black gem-text">1 TWD = {{ exchangeRate }} JPY</div>
-              <div class="text-xs text-white/40 mt-1">更新時間：{{ rateUpdateTime }}</div>
+              <div class="text-xs text-pink-500 font-bold mb-1">即時匯率</div>
+              <div class="text-2xl font-black sakura-text">1 TWD = {{ exchangeRate }} JPY</div>
+              <div class="text-xs text-slate-400 mt-1">更新時間：{{ rateUpdateTime }}</div>
             </div>
             
             <div class="space-y-4">
-              <div class="glass-card rounded-xl p-4">
-                <label class="text-xs text-white/50 block mb-2">🇹🇼 台幣 TWD</label>
+              <div class="bg-white/50 rounded-xl p-4 border border-pink-100">
+                <label class="text-xs text-slate-500 block mb-2">🇹🇼 台幣 TWD</label>
                 <input type="number" v-model="twdAmount" @input="convertToJpy"
-                       class="w-full bg-transparent text-2xl font-bold text-white outline-none"
+                       class="w-full bg-transparent text-2xl font-bold text-slate-700 outline-none"
                        placeholder="0">
               </div>
               
-              <div class="text-center text-white/30">↓↑</div>
+              <div class="text-center text-pink-300 text-xl">↕️</div>
               
-              <div class="glass-card rounded-xl p-4">
-                <label class="text-xs text-white/50 block mb-2">🇯🇵 日圓 JPY</label>
+              <div class="bg-white/50 rounded-xl p-4 border border-pink-100">
+                <label class="text-xs text-slate-500 block mb-2">🇯🇵 日圓 JPY</label>
                 <input type="number" v-model="jpyAmount" @input="convertToTwd"
-                       class="w-full bg-transparent text-2xl font-bold text-white outline-none"
+                       class="w-full bg-transparent text-2xl font-bold text-slate-700 outline-none"
                        placeholder="0">
               </div>
             </div>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">💡 快速換算</h3>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">💡 快速換算</h3>
             <div class="grid grid-cols-2 gap-2">
               <div v-for="amt in [1000, 5000, 10000, 50000]" :key="amt" 
                    @click="twdAmount = amt; convertToJpy()"
-                   class="glass-card p-3 rounded-xl text-center cursor-pointer hover:bg-white/10 transition-colors">
-                <div class="text-xs text-white/50">{{ amt.toLocaleString() }} TWD</div>
-                <div class="text-sm font-bold gem-text">≈ {{ Math.round(amt * exchangeRate).toLocaleString() }} JPY</div>
+                   class="bg-pink-50 p-3 rounded-xl text-center cursor-pointer hover:bg-pink-100 transition-colors border border-pink-100">
+                <div class="text-xs text-slate-500">{{ amt.toLocaleString() }} TWD</div>
+                <div class="text-sm font-bold sakura-text">≈ {{ Math.round(amt * exchangeRate).toLocaleString() }} JPY</div>
               </div>
             </div>
           </div>
@@ -542,28 +496,28 @@
 
         <!-- Phrasebook -->
         <div v-else-if="activeKind === 'phrase'" class="grid grid-cols-1 gap-3">
-          <div v-for="p in config.phrasebook" @click="speak(p.jp)" class="glass-card p-4 rounded-2xl active:scale-[0.98] transition-all cursor-pointer hover:bg-white/[0.08] group">
-            <div class="text-xs font-bold text-purple-400 mb-1">{{ p.label }}</div>
-            <div class="text-lg font-bold text-white">{{ p.jp }}</div>
+          <div v-for="p in config.phrasebook" @click="speak(p.jp)" class="glass-card p-4 rounded-2xl active:scale-[0.98] transition-all cursor-pointer hover:shadow-lg hover:shadow-pink-100 group">
+            <div class="text-xs font-bold text-pink-500 mb-1">{{ p.label }}</div>
+            <div class="text-lg font-bold text-slate-700">{{ p.jp }}</div>
             <div class="flex justify-between items-center mt-2">
-              <div class="text-[10px] text-white/40">{{ p.note }}</div>
-              <div class="text-[10px] bg-white/10 text-white/60 px-2.5 py-1 rounded-full group-hover:bg-purple-500/30 group-hover:text-purple-300 transition-colors">🔊 播放</div>
+              <div class="text-[10px] text-slate-400">{{ p.note }}</div>
+              <div class="text-[10px] bg-pink-50 text-pink-500 px-2.5 py-1 rounded-full group-hover:bg-pink-500 group-hover:text-white transition-colors">🔊 播放</div>
             </div>
           </div>
         </div>
 
         <!-- Photos -->
         <div v-else-if="activeKind === 'photos'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
             <div class="flex justify-between items-center mb-4">
-              <h3 class="text-sm font-bold text-white">📸 旅途回憶</h3>
-              <label class="glass-card px-3 py-1.5 rounded-lg text-xs font-bold text-purple-300 cursor-pointer hover:bg-white/10 transition-colors">
+              <h3 class="text-sm font-bold text-slate-700">📸 旅途回憶</h3>
+              <label class="bg-pink-100 hover:bg-pink-200 px-3 py-1.5 rounded-lg text-xs font-bold text-pink-600 cursor-pointer transition-colors">
                 + 新增照片
                 <input type="file" accept="image/*" multiple @change="addPhotos" class="hidden">
               </label>
             </div>
             
-            <div v-if="photos.length === 0" class="text-center py-8 text-white/30">
+            <div v-if="photos.length === 0" class="text-center py-8 text-slate-400">
               <div class="text-4xl mb-2">📷</div>
               <div class="text-sm">還沒有照片</div>
               <div class="text-xs">開始旅程後記錄美好回憶吧！</div>
@@ -571,123 +525,123 @@
             
             <div v-else class="photo-grid">
               <div v-for="(photo, idx) in photos" :key="idx" class="relative group">
-                <img :src="photo.data" class="photo-item w-full cursor-pointer" @click="viewPhoto(idx)">
-                <button @click.stop="removePhoto(idx)" class="absolute top-1 right-1 w-6 h-6 bg-red-500/80 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity">×</button>
+                <img :src="photo.data" class="photo-item w-full cursor-pointer border-2 border-white shadow-md" @click="viewPhoto(idx)">
+                <button @click.stop="removePhoto(idx)" class="absolute top-1 right-1 w-6 h-6 bg-red-500 rounded-full text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">×</button>
               </div>
             </div>
           </div>
           
-          <div v-if="photos.length > 0" class="text-center text-xs text-white/30">
-            共 {{ photos.length }} 張照片
+          <div v-if="photos.length > 0" class="text-center text-xs text-slate-400">
+            共 {{ photos.length }} 張照片 🌸
           </div>
         </div>
 
         <!-- Weather -->
         <div v-else-if="activeKind === 'weather'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-6 text-center gem-glow">
+          <div class="glass-card sakura-border rounded-2xl p-6 text-center sakura-glow">
             <div class="text-6xl mb-2">{{ weatherData.icon }}</div>
-            <div class="text-4xl font-black gem-text">{{ weatherData.temp }}°C</div>
-            <div class="text-white/60 mt-1">{{ weatherData.description }}</div>
-            <div class="text-xs text-white/40 mt-2">東京 · {{ weatherData.updateTime }}</div>
+            <div class="text-4xl font-black sakura-text">{{ weatherData.temp }}°C</div>
+            <div class="text-slate-500 mt-1">{{ weatherData.description }}</div>
+            <div class="text-xs text-slate-400 mt-2">東京 · {{ weatherData.updateTime }}</div>
           </div>
           
           <div class="grid grid-cols-3 gap-3">
             <div class="glass-card rounded-xl p-3 text-center">
               <div class="text-xl mb-1">💧</div>
-              <div class="text-lg font-bold text-white">{{ weatherData.humidity }}%</div>
-              <div class="text-xs text-white/40">濕度</div>
+              <div class="text-lg font-bold text-slate-700">{{ weatherData.humidity }}%</div>
+              <div class="text-xs text-slate-400">濕度</div>
             </div>
             <div class="glass-card rounded-xl p-3 text-center">
               <div class="text-xl mb-1">💨</div>
-              <div class="text-lg font-bold text-white">{{ weatherData.wind }} m/s</div>
-              <div class="text-xs text-white/40">風速</div>
+              <div class="text-lg font-bold text-slate-700">{{ weatherData.wind }} m/s</div>
+              <div class="text-xs text-slate-400">風速</div>
             </div>
             <div class="glass-card rounded-xl p-3 text-center">
               <div class="text-xl mb-1">🌡️</div>
-              <div class="text-lg font-bold text-white">{{ weatherData.feelsLike }}°C</div>
-              <div class="text-xs text-white/40">體感</div>
+              <div class="text-lg font-bold text-slate-700">{{ weatherData.feelsLike }}°C</div>
+              <div class="text-xs text-slate-400">體感</div>
             </div>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">未來 5 天</h3>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">未來 5 天</h3>
             <div class="space-y-2">
-              <div v-for="day in weatherForecast" :key="day.date" class="flex justify-between items-center p-2 rounded-lg hover:bg-white/5">
-                <div class="text-sm text-white/70">{{ day.date }}</div>
+              <div v-for="day in weatherForecast" :key="day.date" class="flex justify-between items-center p-2 rounded-lg hover:bg-pink-50">
+                <div class="text-sm text-slate-600">{{ day.date }}</div>
                 <div class="text-xl">{{ day.icon }}</div>
-                <div class="text-sm font-bold text-white">{{ day.high }}° / {{ day.low }}°</div>
+                <div class="text-sm font-bold text-slate-700">{{ day.high }}° / {{ day.low }}°</div>
               </div>
             </div>
           </div>
           
-          <button @click="refreshWeather" class="w-full glass-card py-3 rounded-xl text-sm font-bold text-purple-300 hover:bg-white/10 transition-colors">
+          <button @click="refreshWeather" class="w-full glass-card py-3 rounded-xl text-sm font-bold text-pink-500 hover:bg-pink-50 transition-colors">
             🔄 更新天氣
           </button>
         </div>
 
         <!-- Emergency -->
         <div v-else-if="activeKind === 'emergency'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-4 border-l-4 border-l-red-500">
-            <h3 class="text-sm font-bold text-red-400 mb-3">🆘 緊急聯絡</h3>
+          <div class="glass-card rounded-2xl p-4 border-l-4 border-l-red-400">
+            <h3 class="text-sm font-bold text-red-500 mb-3">🆘 緊急聯絡</h3>
             <div class="space-y-3">
-              <a href="tel:110" class="flex items-center gap-3 p-3 bg-red-500/20 rounded-xl">
+              <a href="tel:110" class="flex items-center gap-3 p-3 bg-red-50 rounded-xl border border-red-100">
                 <span class="text-2xl">👮</span>
                 <div>
-                  <div class="font-bold text-white">警察</div>
-                  <div class="text-xs text-white/50">110</div>
+                  <div class="font-bold text-slate-700">警察</div>
+                  <div class="text-xs text-slate-500">110</div>
                 </div>
               </a>
-              <a href="tel:119" class="flex items-center gap-3 p-3 bg-orange-500/20 rounded-xl">
+              <a href="tel:119" class="flex items-center gap-3 p-3 bg-orange-50 rounded-xl border border-orange-100">
                 <span class="text-2xl">🚑</span>
                 <div>
-                  <div class="font-bold text-white">救護車 / 消防</div>
-                  <div class="text-xs text-white/50">119</div>
+                  <div class="font-bold text-slate-700">救護車 / 消防</div>
+                  <div class="text-xs text-slate-500">119</div>
                 </div>
               </a>
             </div>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">🏛️ 台灣駐日代表處</h3>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">🏛️ 台灣駐日代表處</h3>
             <div class="space-y-2 text-sm">
               <div class="flex justify-between">
-                <span class="text-white/50">地址</span>
-                <span class="text-white">東京都港区白金台5-20-2</span>
+                <span class="text-slate-400">地址</span>
+                <span class="text-slate-700 text-right">東京都港区白金台5-20-2</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-white/50">電話</span>
-                <a href="tel:+81-3-3280-7811" class="text-purple-400">03-3280-7811</a>
+                <span class="text-slate-400">電話</span>
+                <a href="tel:+81-3-3280-7811" class="text-pink-500">03-3280-7811</a>
               </div>
               <div class="flex justify-between">
-                <span class="text-white/50">急難救助</span>
-                <a href="tel:+81-80-6552-4764" class="text-purple-400">080-6552-4764</a>
+                <span class="text-slate-400">急難救助</span>
+                <a href="tel:+81-80-6552-4764" class="text-pink-500">080-6552-4764</a>
               </div>
             </div>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">🏨 住宿資訊</h3>
-            <div v-for="s in config.stays" :key="s.id" class="p-3 bg-white/5 rounded-xl mb-2">
-              <div class="font-bold text-white text-sm">{{ s.name }}</div>
-              <div class="text-xs text-white/50 mt-1">{{ s.area }}</div>
-              <div class="text-xs text-white/50">{{ shortDate(s.checkIn) }} - {{ shortDate(s.checkOut) }}</div>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">🏨 住宿資訊</h3>
+            <div v-for="s in config.stays" :key="s.id" class="p-3 bg-pink-50 rounded-xl mb-2 border border-pink-100">
+              <div class="font-bold text-slate-700 text-sm">{{ s.name }}</div>
+              <div class="text-xs text-slate-500 mt-1">{{ s.area }}</div>
+              <div class="text-xs text-slate-500">{{ shortDate(s.checkIn) }} - {{ shortDate(s.checkOut) }}</div>
             </div>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">💊 常用日語（緊急）</h3>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">💊 常用日語（緊急）</h3>
             <div class="space-y-2">
-              <div @click="speak('助けてください')" class="p-2 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10">
-                <div class="text-sm text-white">助けてください</div>
-                <div class="text-xs text-white/40">請幫幫我</div>
+              <div @click="speak('助けてください')" class="p-2 bg-pink-50 rounded-lg cursor-pointer hover:bg-pink-100 border border-pink-100">
+                <div class="text-sm text-slate-700">助けてください</div>
+                <div class="text-xs text-slate-400">請幫幫我</div>
               </div>
-              <div @click="speak('病院はどこですか')" class="p-2 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10">
-                <div class="text-sm text-white">病院はどこですか</div>
-                <div class="text-xs text-white/40">醫院在哪裡？</div>
+              <div @click="speak('病院はどこですか')" class="p-2 bg-pink-50 rounded-lg cursor-pointer hover:bg-pink-100 border border-pink-100">
+                <div class="text-sm text-slate-700">病院はどこですか</div>
+                <div class="text-xs text-slate-400">醫院在哪裡？</div>
               </div>
-              <div @click="speak('警察を呼んでください')" class="p-2 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10">
-                <div class="text-sm text-white">警察を呼んでください</div>
-                <div class="text-xs text-white/40">請叫警察</div>
+              <div @click="speak('警察を呼んでください')" class="p-2 bg-pink-50 rounded-lg cursor-pointer hover:bg-pink-100 border border-pink-100">
+                <div class="text-sm text-slate-700">警察を呼んでください</div>
+                <div class="text-xs text-slate-400">請叫警察</div>
               </div>
             </div>
           </div>
@@ -695,29 +649,29 @@
 
         <!-- Share -->
         <div v-else-if="activeKind === 'share'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-6 text-center gem-glow">
-            <h3 class="text-sm font-bold text-white mb-4">🔗 分享行程</h3>
-            <div id="qrcode" class="inline-block p-4 bg-white rounded-2xl mb-4"></div>
-            <div class="text-xs text-white/50 mb-4">掃描 QR Code 查看行程</div>
-            <button @click="copyLink" class="w-full glass-card py-3 rounded-xl text-sm font-bold text-purple-300 hover:bg-white/10 transition-colors">
+          <div class="glass-card sakura-border rounded-2xl p-6 text-center sakura-glow">
+            <h3 class="text-sm font-bold text-slate-700 mb-4">🔗 分享行程</h3>
+            <div id="qrcode" class="inline-block p-4 bg-white rounded-2xl mb-4 shadow-lg"></div>
+            <div class="text-xs text-slate-400 mb-4">掃描 QR Code 查看行程</div>
+            <button @click="copyLink" class="w-full bg-pink-100 hover:bg-pink-200 py-3 rounded-xl text-sm font-bold text-pink-600 transition-colors">
               📋 複製連結
             </button>
           </div>
           
           <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-white mb-3">📱 分享到</h3>
+            <h3 class="text-sm font-bold text-slate-700 mb-3">📱 分享到</h3>
             <div class="grid grid-cols-3 gap-3">
-              <a :href="'https://line.me/R/msg/text/?' + encodeURIComponent('2026東京旅行 ' + shareUrl)" target="_blank" class="glass-card p-4 rounded-xl text-center hover:bg-white/10 transition-colors">
+              <a :href="'https://line.me/R/msg/text/?' + encodeURIComponent('2026東京旅行🌸 ' + shareUrl)" target="_blank" class="bg-[#06C755] p-4 rounded-xl text-center hover:opacity-90 transition-opacity">
                 <div class="text-2xl mb-1">💬</div>
-                <div class="text-xs text-white/60">LINE</div>
+                <div class="text-xs text-white font-bold">LINE</div>
               </a>
-              <a :href="'mailto:?subject=2026東京旅行&body=' + encodeURIComponent(shareUrl)" class="glass-card p-4 rounded-xl text-center hover:bg-white/10 transition-colors">
+              <a :href="'mailto:?subject=2026東京旅行🌸&body=' + encodeURIComponent(shareUrl)" class="bg-blue-500 p-4 rounded-xl text-center hover:opacity-90 transition-opacity">
                 <div class="text-2xl mb-1">📧</div>
-                <div class="text-xs text-white/60">Email</div>
+                <div class="text-xs text-white font-bold">Email</div>
               </a>
-              <button @click="nativeShare" class="glass-card p-4 rounded-xl text-center hover:bg-white/10 transition-colors">
+              <button @click="nativeShare" class="bg-pink-500 p-4 rounded-xl text-center hover:opacity-90 transition-opacity">
                 <div class="text-2xl mb-1">📤</div>
-                <div class="text-xs text-white/60">其他</div>
+                <div class="text-xs text-white font-bold">其他</div>
               </button>
             </div>
           </div>
@@ -725,26 +679,23 @@
 
         <!-- Budget -->
         <div v-else-if="activeKind === 'budget'" class="space-y-4">
-          <div class="glass-card crystal-border rounded-2xl p-6 text-center relative overflow-hidden gem-glow">
-            <div class="absolute inset-0 shimmer pointer-events-none"></div>
-            <div class="relative z-10">
-              <div class="text-xs font-bold text-teal-400 mb-2 tracking-wider">Total Expenses</div>
-              <div class="text-5xl font-black gem-text">{{ totalBudget() }}</div>
-              <div class="text-sm font-bold text-white/50 mt-1">{{ config.budget.currency }}</div>
-            </div>
+          <div class="glass-card sakura-border rounded-2xl p-6 text-center sakura-glow">
+            <div class="text-xs font-bold text-pink-500 mb-2 tracking-wider">Total Expenses</div>
+            <div class="text-5xl font-black sakura-text">{{ totalBudget() }}</div>
+            <div class="text-sm font-bold text-slate-400 mt-1">{{ config.budget.currency }}</div>
           </div>
           
           <div class="space-y-2">
-            <div v-for="d in config.days" class="glass-card p-4 rounded-xl flex justify-between items-center hover:bg-white/[0.08] transition-colors">
+            <div v-for="d in config.days" class="glass-card p-4 rounded-xl flex justify-between items-center hover:shadow-lg hover:shadow-pink-100 transition-all">
               <div>
-                <div class="font-bold text-white text-sm">{{ d.label }}</div>
-                <div class="text-xs text-white/40">{{ shortDate(d.date) }}</div>
+                <div class="font-bold text-slate-700 text-sm">{{ d.label }}</div>
+                <div class="text-xs text-slate-400">{{ shortDate(d.date) }}</div>
               </div>
-              <div class="font-mono font-bold text-lg gem-text">{{ dayTotal(d.date) }}</div>
+              <div class="font-mono font-bold text-lg sakura-text">{{ dayTotal(d.date) }}</div>
             </div>
           </div>
           
-          <button @click="clearAllBudget" class="w-full py-4 text-xs font-bold text-white/30 hover:text-red-400 transition-colors">⚠️ 清除所有記錄</button>
+          <button @click="clearAllBudget" class="w-full py-4 text-xs font-bold text-slate-400 hover:text-red-400 transition-colors">⚠️ 清除所有記錄</button>
         </div>
 
       </main>
@@ -753,11 +704,30 @@
     <!-- Photo Viewer Modal -->
     <div v-if="viewingPhoto !== null" @click="viewingPhoto = null" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
       <img :src="photos[viewingPhoto]?.data" class="max-w-full max-h-full object-contain rounded-lg">
-      <button @click="viewingPhoto = null" class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full text-xl">×</button>
+      <button @click="viewingPhoto = null" class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full text-xl text-white">×</button>
     </div>
   </div>
 
   <script>
+    // Create falling petals
+    function createPetals() {
+      const container = document.getElementById('petals');
+      const petalCount = 15;
+      
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.innerHTML = '🌸';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        petal.style.opacity = Math.random() * 0.5 + 0.3;
+        petal.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        petal.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(petal);
+      }
+    }
+    createPetals();
+
     const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
     const BUDGET_KEY = "trip-budget-v2";
     const PACKING_KEY = "trip-packing-v1";
@@ -774,31 +744,20 @@
         const photos = ref([]);
         const viewingPhoto = ref(null);
         
-        // Currency
         const twdAmount = ref('');
         const jpyAmount = ref('');
-        const exchangeRate = ref(4.6); // Default rate
+        const exchangeRate = ref(4.6);
         const rateUpdateTime = ref('--');
         
-        // Weather
         const weatherData = ref({
-          icon: '☀️',
-          temp: '--',
-          description: '載入中...',
-          humidity: '--',
-          wind: '--',
-          feelsLike: '--',
-          updateTime: '--'
+          icon: '☀️', temp: '--', description: '載入中...',
+          humidity: '--', wind: '--', feelsLike: '--', updateTime: '--'
         });
         const weatherForecast = ref([]);
         
-        // Map
         let map = null;
-        
-        // Share
         const shareUrl = window.location.href;
 
-        // Packing categories
         const packingCategories = ref([
           { name: '證件文件', icon: '📄', items: ['護照', '身分證', '機票', '飯店訂房確認', '旅平險保單', '日幣現金', '信用卡'] },
           { name: '電子產品', icon: '🔌', items: ['手機', '充電器', '行動電源', '相機', '記憶卡', '轉接頭', '耳機'] },
@@ -807,26 +766,16 @@
           { name: '其他', icon: '🎒', items: ['雨傘/雨衣', '藥品', '零食', '水壺', '購物袋', '旅遊書'] }
         ]);
 
-        // Icons map
         const getBlockIcon = (type) => {
-          const map = {
-            'transport': '🚆',
-            'packingToday': '🎒',
-            'todo': '✅',
-            'mealOptions': '🍔',
-            'dinnerRecommend': '🍽️',
-            'note': '📝'
-          };
+          const map = { 'transport': '🚆', 'packingToday': '🎒', 'todo': '✅', 'mealOptions': '🍔', 'dinnerRecommend': '🍽️', 'note': '📝' };
           return map[type] || '📍';
         };
 
-        // Helpers
         const shortDate = (s) => s ? s.split('-').slice(1).join('/') : '';
         const dateOnly = (s) => s ? s.split('T')[0] : '';
         const timeOnly = (s) => s ? s.split('T')[1]?.substring(0,5) : '';
         const stayName = (id) => config.value?.stays.find(s => s.id === id)?.name;
 
-        // Countdown
         const countdownDays = computed(() => {
           if (!config.value) return '--';
           const start = new Date(config.value.tripMeta.startDate);
@@ -856,169 +805,48 @@
           return '天前結束';
         });
 
-        // Compute
         const currentDay = computed(() => config.value?.days.find(d => d.date === activeDayDate.value));
 
-        // Logic
-        const selectDay = (date) => {
-           activeKind.value = 'day';
-           activeDayDate.value = date;
-        };
-        
-        const speak = (text) => {
-           const u = new SpeechSynthesisUtterance(text);
-           u.lang = 'ja-JP';
-           window.speechSynthesis.speak(u);
-        };
+        const selectDay = (date) => { activeKind.value = 'day'; activeDayDate.value = date; };
+        const speak = (text) => { const u = new SpeechSynthesisUtterance(text); u.lang = 'ja-JP'; window.speechSynthesis.speak(u); };
 
-        // Budget
-        const loadBudget = () => {
-           try {
-              const raw = localStorage.getItem(BUDGET_KEY);
-              if(raw) budgetData.value = JSON.parse(raw);
-           } catch(e) {}
-        };
+        const loadBudget = () => { try { const raw = localStorage.getItem(BUDGET_KEY); if(raw) budgetData.value = JSON.parse(raw); } catch(e) {} };
         const saveBudget = () => localStorage.setItem(BUDGET_KEY, JSON.stringify(budgetData.value));
         const dayTotal = (date) => (budgetData.value[date] || []).reduce((a,b) => a + Number(b.amount), 0);
         const totalBudget = () => Object.values(budgetData.value).flat().reduce((a,b) => a + Number(b.amount), 0);
-        const clearAllBudget = () => {
-           if(confirm('清除所有記帳資料？')) {
-              budgetData.value = {};
-              saveBudget();
-           }
-        };
+        const clearAllBudget = () => { if(confirm('清除所有記帳資料？')) { budgetData.value = {}; saveBudget(); } };
 
-        // Packing
-        const loadPacking = () => {
-          try {
-            const raw = localStorage.getItem(PACKING_KEY);
-            if(raw) packedItems.value = JSON.parse(raw);
-          } catch(e) {}
-        };
+        const loadPacking = () => { try { const raw = localStorage.getItem(PACKING_KEY); if(raw) packedItems.value = JSON.parse(raw); } catch(e) {} };
         const savePacking = () => localStorage.setItem(PACKING_KEY, JSON.stringify(packedItems.value));
-        const togglePackingItem = (cat, item) => {
-          const key = `${cat}:${item}`;
-          if(packedItems.value[key]) {
-            delete packedItems.value[key];
-          } else {
-            packedItems.value[key] = true;
-          }
-          savePacking();
-        };
+        const togglePackingItem = (cat, item) => { const key = `${cat}:${item}`; if(packedItems.value[key]) delete packedItems.value[key]; else packedItems.value[key] = true; savePacking(); };
         const isPackedItem = (cat, item) => !!packedItems.value[`${cat}:${item}`];
-        const packingProgress = computed(() => {
-          const total = packingCategories.value.reduce((sum, cat) => sum + cat.items.length, 0);
-          const packed = Object.keys(packedItems.value).length;
-          return Math.round((packed / total) * 100);
-        });
-        const resetPacking = () => {
-          if(confirm('重置所有打包進度？')) {
-            packedItems.value = {};
-            savePacking();
-          }
-        };
+        const packingProgress = computed(() => { const total = packingCategories.value.reduce((sum, cat) => sum + cat.items.length, 0); return Math.round((Object.keys(packedItems.value).length / total) * 100); });
+        const resetPacking = () => { if(confirm('重置所有打包進度？')) { packedItems.value = {}; savePacking(); } };
 
-        // Currency
-        const convertToJpy = () => {
-          if(twdAmount.value) {
-            jpyAmount.value = Math.round(twdAmount.value * exchangeRate.value);
-          } else {
-            jpyAmount.value = '';
-          }
-        };
-        const convertToTwd = () => {
-          if(jpyAmount.value) {
-            twdAmount.value = Math.round(jpyAmount.value / exchangeRate.value);
-          } else {
-            twdAmount.value = '';
-          }
-        };
-        const fetchExchangeRate = async () => {
-          try {
-            // Using a free API or fallback to default
-            const res = await fetch('https://api.exchangerate-api.com/v4/latest/TWD');
-            const data = await res.json();
-            exchangeRate.value = data.rates.JPY.toFixed(2);
-            rateUpdateTime.value = new Date().toLocaleTimeString('zh-TW');
-          } catch(e) {
-            rateUpdateTime.value = '使用預設匯率';
-          }
-        };
+        const convertToJpy = () => { if(twdAmount.value) jpyAmount.value = Math.round(twdAmount.value * exchangeRate.value); else jpyAmount.value = ''; };
+        const convertToTwd = () => { if(jpyAmount.value) twdAmount.value = Math.round(jpyAmount.value / exchangeRate.value); else twdAmount.value = ''; };
+        const fetchExchangeRate = async () => { try { const res = await fetch('https://api.exchangerate-api.com/v4/latest/TWD'); const data = await res.json(); exchangeRate.value = data.rates.JPY.toFixed(2); rateUpdateTime.value = new Date().toLocaleTimeString('zh-TW'); } catch(e) { rateUpdateTime.value = '使用預設匯率'; } };
 
-        // Weather
         const refreshWeather = async () => {
           try {
-            // Using Open-Meteo (free, no API key)
             const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6762&longitude=139.6503&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
             const data = await res.json();
-            
-            const weatherIcons = {
-              0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
-              45: '🌫️', 48: '🌫️',
-              51: '🌧️', 53: '🌧️', 55: '🌧️',
-              61: '🌧️', 63: '🌧️', 65: '🌧️',
-              71: '❄️', 73: '❄️', 75: '❄️',
-              80: '🌧️', 81: '🌧️', 82: '🌧️',
-              95: '⛈️', 96: '⛈️', 99: '⛈️'
-            };
-            
-            const weatherDesc = {
-              0: '晴朗', 1: '大致晴朗', 2: '局部多雲', 3: '多雲',
-              45: '有霧', 48: '有霧',
-              51: '小雨', 53: '中雨', 55: '大雨',
-              61: '小雨', 63: '中雨', 65: '大雨',
-              71: '小雪', 73: '中雪', 75: '大雪',
-              80: '陣雨', 81: '陣雨', 82: '大陣雨',
-              95: '雷雨', 96: '雷雨', 99: '雷雨'
-            };
-            
+            const weatherIcons = { 0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️', 51: '🌧️', 53: '🌧️', 55: '🌧️', 61: '🌧️', 63: '🌧️', 65: '🌧️', 71: '❄️', 73: '❄️', 75: '❄️', 80: '🌧️', 81: '🌧️', 82: '🌧️', 95: '⛈️', 96: '⛈️', 99: '⛈️' };
+            const weatherDesc = { 0: '晴朗', 1: '大致晴朗', 2: '局部多雲', 3: '多雲', 45: '有霧', 48: '有霧', 51: '小雨', 53: '中雨', 55: '大雨', 61: '小雨', 63: '中雨', 65: '大雨', 71: '小雪', 73: '中雪', 75: '大雪', 80: '陣雨', 81: '陣雨', 82: '大陣雨', 95: '雷雨', 96: '雷雨', 99: '雷雨' };
             const code = data.current.weather_code;
-            weatherData.value = {
-              icon: weatherIcons[code] || '🌤️',
-              temp: Math.round(data.current.temperature_2m),
-              description: weatherDesc[code] || '未知',
-              humidity: data.current.relative_humidity_2m,
-              wind: data.current.wind_speed_10m,
-              feelsLike: Math.round(data.current.apparent_temperature),
-              updateTime: new Date().toLocaleTimeString('zh-TW')
-            };
-            
-            // Forecast
+            weatherData.value = { icon: weatherIcons[code] || '🌤️', temp: Math.round(data.current.temperature_2m), description: weatherDesc[code] || '未知', humidity: data.current.relative_humidity_2m, wind: data.current.wind_speed_10m, feelsLike: Math.round(data.current.apparent_temperature), updateTime: new Date().toLocaleTimeString('zh-TW') };
             const days = ['日', '一', '二', '三', '四', '五', '六'];
-            weatherForecast.value = data.daily.time.slice(1, 6).map((date, i) => {
-              const d = new Date(date);
-              return {
-                date: `${d.getMonth()+1}/${d.getDate()} (${days[d.getDay()]})`,
-                icon: weatherIcons[data.daily.weather_code[i+1]] || '🌤️',
-                high: Math.round(data.daily.temperature_2m_max[i+1]),
-                low: Math.round(data.daily.temperature_2m_min[i+1])
-              };
-            });
-          } catch(e) {
-            console.error('Weather fetch error:', e);
-          }
+            weatherForecast.value = data.daily.time.slice(1, 6).map((date, i) => { const d = new Date(date); return { date: `${d.getMonth()+1}/${d.getDate()} (${days[d.getDay()]})`, icon: weatherIcons[data.daily.weather_code[i+1]] || '🌤️', high: Math.round(data.daily.temperature_2m_max[i+1]), low: Math.round(data.daily.temperature_2m_min[i+1]) }; });
+          } catch(e) { console.error('Weather fetch error:', e); }
         };
 
-        // Photos
-        const loadPhotos = () => {
-          try {
-            const raw = localStorage.getItem(PHOTOS_KEY);
-            if(raw) photos.value = JSON.parse(raw);
-          } catch(e) {}
-        };
-        const savePhotos = () => {
-          try {
-            localStorage.setItem(PHOTOS_KEY, JSON.stringify(photos.value));
-          } catch(e) {
-            alert('照片太多，儲存空間不足！');
-          }
-        };
+        const loadPhotos = () => { try { const raw = localStorage.getItem(PHOTOS_KEY); if(raw) photos.value = JSON.parse(raw); } catch(e) {} };
+        const savePhotos = () => { try { localStorage.setItem(PHOTOS_KEY, JSON.stringify(photos.value)); } catch(e) { alert('照片太多，儲存空間不足！'); } };
         const addPhotos = (e) => {
           const files = e.target.files;
           for(let file of files) {
             const reader = new FileReader();
             reader.onload = (ev) => {
-              // Compress image
               const img = new Image();
               img.onload = () => {
                 const canvas = document.createElement('canvas');
@@ -1026,13 +854,9 @@
                 let w = img.width, h = img.height;
                 if(w > h && w > maxSize) { h = h * maxSize / w; w = maxSize; }
                 else if(h > maxSize) { w = w * maxSize / h; h = maxSize; }
-                canvas.width = w;
-                canvas.height = h;
+                canvas.width = w; canvas.height = h;
                 canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                photos.value.push({
-                  data: canvas.toDataURL('image/jpeg', 0.7),
-                  date: new Date().toISOString()
-                });
+                photos.value.push({ data: canvas.toDataURL('image/jpeg', 0.7), date: new Date().toISOString() });
                 savePhotos();
               };
               img.src = ev.target.result;
@@ -1040,74 +864,31 @@
             reader.readAsDataURL(file);
           }
         };
-        const removePhoto = (idx) => {
-          if(confirm('刪除這張照片？')) {
-            photos.value.splice(idx, 1);
-            savePhotos();
-          }
-        };
-        const viewPhoto = (idx) => {
-          viewingPhoto.value = idx;
-        };
+        const removePhoto = (idx) => { if(confirm('刪除這張照片？')) { photos.value.splice(idx, 1); savePhotos(); } };
+        const viewPhoto = (idx) => { viewingPhoto.value = idx; };
 
-        // Map
         const initMap = () => {
           if(map) return;
           nextTick(() => {
             const container = document.getElementById('map-container');
             if(!container) return;
-            
-            map = L.map('map-container', {
-              zoomControl: false
-            }).setView([35.6762, 139.7503], 11);
-            
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-              attribution: '© CartoDB'
-            }).addTo(map);
-            
-            // Add markers from stays
-            if(config.value?.stays) {
-              config.value.stays.forEach(s => {
-                if(s.lat && s.lng) {
-                  L.circleMarker([s.lat, s.lng], {
-                    radius: 8,
-                    fillColor: '#3b82f6',
-                    color: '#fff',
-                    weight: 2,
-                    fillOpacity: 0.8
-                  }).addTo(map).bindPopup(`<b>${s.name}</b><br>${s.area}`);
-                }
-              });
-            }
-            
-            // Sample landmarks
+            map = L.map('map-container', { zoomControl: false }).setView([35.6762, 139.7503], 11);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }).addTo(map);
             const landmarks = [
-              { name: '東京車站', lat: 35.6812, lng: 139.7671, type: 'spot' },
-              { name: '淺草寺', lat: 35.7148, lng: 139.7967, type: 'spot' },
-              { name: '東京塔', lat: 35.6586, lng: 139.7454, type: 'spot' },
-              { name: '新宿', lat: 35.6896, lng: 139.7006, type: 'shop' },
-              { name: '澀谷', lat: 35.6580, lng: 139.7016, type: 'shop' }
+              { name: '東京車站', lat: 35.6812, lng: 139.7671 },
+              { name: '淺草寺', lat: 35.7148, lng: 139.7967 },
+              { name: '東京塔', lat: 35.6586, lng: 139.7454 },
+              { name: '新宿', lat: 35.6896, lng: 139.7006 },
+              { name: '澀谷', lat: 35.6580, lng: 139.7016 }
             ];
-            
-            landmarks.forEach(l => {
-              const color = l.type === 'spot' ? '#a855f7' : '#14b8a6';
-              L.circleMarker([l.lat, l.lng], {
-                radius: 6,
-                fillColor: color,
-                color: '#fff',
-                weight: 2,
-                fillOpacity: 0.8
-              }).addTo(map).bindPopup(`<b>${l.name}</b>`);
-            });
+            landmarks.forEach(l => { L.circleMarker([l.lat, l.lng], { radius: 8, fillColor: '#ec4899', color: '#fff', weight: 2, fillOpacity: 0.8 }).addTo(map).bindPopup(`<b>${l.name}</b>`); });
           });
         };
 
-        // Share
         const generateQR = () => {
           nextTick(() => {
             const container = document.getElementById('qrcode');
             if(!container || container.hasChildNodes()) return;
-            
             const qr = qrcode(0, 'M');
             qr.addData(shareUrl);
             qr.make();
@@ -1115,29 +896,9 @@
           });
         };
         
-        const copyLink = async () => {
-          try {
-            await navigator.clipboard.writeText(shareUrl);
-            alert('已複製連結！');
-          } catch(e) {
-            prompt('複製此連結：', shareUrl);
-          }
-        };
-        
-        const nativeShare = async () => {
-          if(navigator.share) {
-            try {
-              await navigator.share({
-                title: '2026 東京家庭旅行',
-                url: shareUrl
-              });
-            } catch(e) {}
-          } else {
-            copyLink();
-          }
-        };
+        const copyLink = async () => { try { await navigator.clipboard.writeText(shareUrl); alert('已複製連結！'); } catch(e) { prompt('複製此連結：', shareUrl); } };
+        const nativeShare = async () => { if(navigator.share) { try { await navigator.share({ title: '2026 東京家庭旅行 🌸', url: shareUrl }); } catch(e) {} } else { copyLink(); } };
 
-        // Watch for tab changes
         watch(activeKind, (val) => {
           if(val === 'map') initMap();
           if(val === 'share') generateQR();
@@ -1149,36 +910,21 @@
              const res = await fetch('./trip-config.json?t=' + Date.now());
              config.value = await res.json();
              if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
-             loadBudget();
-             loadPacking();
-             loadPhotos();
-             fetchExchangeRate();
+             loadBudget(); loadPacking(); loadPhotos(); fetchExchangeRate();
           } catch(e) { console.error(e); } 
           finally { loading.value = false; }
-          
-          // Register service worker
-          if('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW:', e));
-          }
+          if('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW:', e)); }
         });
 
         return {
            config, loading, activeKind, activeDayDate, currentDay,
            shortDate, dateOnly, timeOnly, stayName, getBlockIcon,
-           selectDay, speak,
-           // Countdown
-           countdownDays, countdownLabel, countdownSubtext,
-           // Budget
+           selectDay, speak, countdownDays, countdownLabel, countdownSubtext,
            dayTotal, totalBudget, clearAllBudget,
-           // Packing
            packingCategories, packingProgress, togglePackingItem, isPackedItem, resetPacking,
-           // Currency
            twdAmount, jpyAmount, exchangeRate, rateUpdateTime, convertToJpy, convertToTwd,
-           // Weather
            weatherData, weatherForecast, refreshWeather,
-           // Photos
            photos, viewingPhoto, addPhotos, removePhoto, viewPhoto,
-           // Share
            shareUrl, copyLink, nativeShare
         };
       }
