@@ -10,9 +10,7 @@
   <link rel="apple-touch-icon" href="icon-192.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -135,10 +133,6 @@
       text-decoration: line-through;
     }
     
-    #map-container {
-      height: 300px;
-      border-radius: 1rem;
-      overflow: hidden;
     }
     
     .photo-grid {
@@ -239,7 +233,6 @@
               <span class="text-[10px] font-bold">{{ day.label }}</span>
               <span class="text-[9px] opacity-50">{{ shortDate(day.date) }}</span>
             </button>
-            <button @click="activeKind = 'map'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'map' ? 'active' : 'text-slate-500'">🗺️ 地圖</button>
             <button @click="activeKind = 'packing'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'packing' ? 'active' : 'text-slate-500'">📦 打包</button>
             <button @click="activeKind = 'budget'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'budget' ? 'active' : 'text-slate-500'">💰 記帳</button>
             <button @click="activeKind = 'currency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'currency' ? 'active' : 'text-slate-500'">💱 匯率</button>
@@ -489,27 +482,6 @@
                   <span class="font-bold text-pink-500">{{ msg.author }}:</span> {{ msg.text }}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Map -->
-        <div v-else-if="activeKind === 'map'" class="space-y-4">
-          <div class="glass-card sakura-border rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-              <span class="text-pink-500">🗺️</span> 景點地圖
-            </h3>
-            <div id="map-container" class="rounded-xl overflow-hidden"></div>
-            <div class="mt-3 text-xs text-slate-400 text-center">點擊標記查看詳情</div>
-          </div>
-          
-          <div class="glass-card rounded-2xl p-4">
-            <h3 class="text-sm font-bold text-slate-700 mb-3">圖例</h3>
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-pink-400"></span> 景點</div>
-              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-blue-400"></span> 住宿</div>
-              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-orange-400"></span> 餐廳</div>
-              <div class="flex items-center gap-2 text-slate-500"><span class="w-3 h-3 rounded-full bg-green-400"></span> 購物</div>
             </div>
           </div>
         </div>
@@ -847,7 +819,7 @@
             <div class="space-y-2">
               <div class="flex gap-2">
                 <select v-model="newExpense.date" class="flex-1 p-2 rounded-lg border border-pink-200 text-sm">
-                  <option v-for="d in config?.days" :key="d.date" :value="d.date">{{ d.label }}</option>
+                  <option v-for="d in (config?.days || [])" :key="d.date" :value="d.date">{{ d.label }}</option>
                 </select>
                 <input v-model.number="newExpense.amount" type="number" placeholder="金額 ¥" class="w-28 p-2 rounded-lg border border-pink-200 text-sm">
               </div>
@@ -881,7 +853,7 @@
           </div>
           
           <!-- Expenses by Day -->
-          <div v-for="d in config?.days" :key="d.date" class="glass-card rounded-2xl p-4">
+          <div v-for="d in (config?.days || [])" :key="d.date" class="glass-card rounded-2xl p-4">
             <div class="flex justify-between items-center mb-3">
               <span class="font-bold text-slate-700 text-sm">{{ d.label }}</span>
               <span class="font-mono font-bold sakura-text">¥{{ dayTotal(d.date).toLocaleString() }}</span>
@@ -1049,7 +1021,6 @@
         });
         const weatherForecast = ref([]);
         
-        let map = null;
         const shareUrl = window.location.href;
 
         const packingCategories = ref([
@@ -1232,35 +1203,6 @@
         const addShoppingItem = () => { if(newShoppingItem.value) { shoppingList.value.push({ name: newShoppingItem.value, bought: false }); newShoppingItem.value = ''; showAddShopping.value = false; saveShopping(); } };
         const toggleShoppingItem = (i) => { shoppingList.value[i].bought = !shoppingList.value[i].bought; saveShopping(); };
 
-        const initMap = () => {
-          if(map) return;
-          nextTick(() => {
-            const container = document.getElementById('map-container');
-            if(!container) return;
-            map = L.map('map-container', { zoomControl: true }).setView([35.6762, 139.7503], 11);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-            // Add markers from config stays and landmarks
-            const landmarks = [
-              { name: '東京車站', lat: 35.6812, lng: 139.7671, type: 'spot' },
-              { name: '淺草寺', lat: 35.7148, lng: 139.7967, type: 'spot' },
-              { name: '東京塔', lat: 35.6586, lng: 139.7454, type: 'spot' },
-              { name: '新宿', lat: 35.6896, lng: 139.7006, type: 'spot' },
-              { name: '澀谷', lat: 35.6580, lng: 139.7016, type: 'spot' },
-              { name: '上野公園', lat: 35.7146, lng: 139.7732, type: 'spot' },
-              { name: '國立科學博物館', lat: 35.7164, lng: 139.7763, type: 'spot' },
-              { name: '橫濱', lat: 35.4437, lng: 139.6380, type: 'spot' }
-            ];
-            landmarks.forEach(l => { 
-              const color = l.type === 'stay' ? '#3b82f6' : '#ec4899';
-              L.circleMarker([l.lat, l.lng], { radius: 10, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.9 })
-                .addTo(map)
-                .bindPopup(`<b>${l.name}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${l.lat},${l.lng}" target="_blank">導航 →</a>`); 
-            });
-            // Force resize after render
-            setTimeout(() => { map.invalidateSize(); }, 100);
-          });
-        };
-
         const generateQR = () => {
           nextTick(() => {
             const container = document.getElementById('qrcode');
@@ -1276,11 +1218,9 @@
         const nativeShare = async () => { if(navigator.share) { try { await navigator.share({ title: '2026 東京家庭旅行 🌸', url: shareUrl }); } catch(e) {} } else { copyLink(); } };
 
         watch(activeKind, (val) => {
-          if(val === 'map') initMap();
           if(val === 'share') generateQR();
           if(val === 'weather' && weatherData.value.temp === '--') refreshWeather();
-          if(val === 'clock') { updateClock(); clockInterval = setInterval(updateClock, 1000); }
-          else { if(clockInterval) { clearInterval(clockInterval); clockInterval = null; } }
+        });
         });
 
         onMounted(async () => {
