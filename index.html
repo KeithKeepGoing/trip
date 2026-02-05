@@ -244,7 +244,17 @@
             <button @click="activeKind = 'budget'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'budget' ? 'active' : 'text-slate-500'">💰 記帳</button>
             <button @click="activeKind = 'currency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'currency' ? 'active' : 'text-slate-500'">💱 匯率</button>
             <button @click="activeKind = 'phrase'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'phrase' ? 'active' : 'text-slate-500'">🗣️ 日語</button>
-            <button @click="activeKind = 'photos'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'photos' ? 'active' : 'text-slate-500'">📸 照片</button>
+            <button @click="activeKind = 'location'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'location' ? 'active' : 'text-slate-500'">📍 導航</button>
+            <button @click="activeKind = 'iccard'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'iccard' ? 'active' : 'text-slate-500'">🚃 交通卡</button>
+            <button @click="activeKind = 'food'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'food' ? 'active' : 'text-slate-500'">🍜 美食</button>
+            <button @click="activeKind = 'diary'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'diary' ? 'active' : 'text-slate-500'">📝 日記</button>
+            <button @click="activeKind = 'clock'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'clock' ? 'active' : 'text-slate-500'">⏰ 時區</button>
+            <button @click="activeKind = 'events'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'events' ? 'active' : 'text-slate-500'">🎌 節慶</button>
+            <button @click="activeKind = 'reservation'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'reservation' ? 'active' : 'text-slate-500'">🎫 預約</button>
+            <button @click="activeKind = 'members'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'members' ? 'active' : 'text-slate-500'">👨‍👩‍👧‍👦 分工</button>
+            <button @click="activeKind = 'board'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'board' ? 'active' : 'text-slate-500'">💬 留言</button>
+            <button @click="activeKind = 'shopping'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'shopping' ? 'active' : 'text-slate-500'">🛒 購物</button>
+            <button @click="activeKind = 'chart'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'chart' ? 'active' : 'text-slate-500'">📊 統計</button>
             <button @click="activeKind = 'weather'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'weather' ? 'active' : 'text-slate-500'">☁️ 天氣</button>
             <button @click="activeKind = 'emergency'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'emergency' ? 'active' : 'text-slate-500'">🆘 緊急</button>
             <button @click="activeKind = 'share'" class="nav-btn snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border border-pink-100 bg-white/50" :class="activeKind === 'share' ? 'active' : 'text-slate-500'">🔗 分享</button>
@@ -506,33 +516,272 @@
           </div>
         </div>
 
-        <!-- Photos -->
-        <div v-else-if="activeKind === 'photos'" class="space-y-4">
-          <div class="glass-card sakura-border rounded-2xl p-4">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-sm font-bold text-slate-700">📸 旅途回憶</h3>
-              <label class="bg-pink-100 hover:bg-pink-200 px-3 py-1.5 rounded-lg text-xs font-bold text-pink-600 cursor-pointer transition-colors">
-                + 新增照片
-                <input type="file" accept="image/*" multiple @change="addPhotos" class="hidden">
-              </label>
+        <!-- 📍 Location / Navigation -->
+        <div v-else-if="activeKind === 'location'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4 sakura-glow">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
+              <span class="text-pink-500">📍</span> 即時位置導航
+            </h3>
+            <div class="text-center py-4">
+              <div v-if="currentLocation" class="mb-4">
+                <div class="text-xs text-slate-400">目前位置</div>
+                <div class="text-sm font-bold text-slate-700">{{ currentLocation.lat.toFixed(4) }}, {{ currentLocation.lng.toFixed(4) }}</div>
+              </div>
+              <button @click="getLocation" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl text-sm font-bold transition-colors">
+                🎯 取得目前位置
+              </button>
             </div>
-            
-            <div v-if="photos.length === 0" class="text-center py-8 text-slate-400">
-              <div class="text-4xl mb-2">📷</div>
-              <div class="text-sm">還沒有照片</div>
-              <div class="text-xs">開始旅程後記錄美好回憶吧！</div>
-            </div>
-            
-            <div v-else class="photo-grid">
-              <div v-for="(photo, idx) in photos" :key="idx" class="relative group">
-                <img :src="photo.data" class="photo-item w-full cursor-pointer border-2 border-white shadow-md" @click="viewPhoto(idx)">
-                <button @click.stop="removePhoto(idx)" class="absolute top-1 right-1 w-6 h-6 bg-red-500 rounded-full text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">×</button>
+          </div>
+          <div class="glass-card rounded-2xl p-4">
+            <h4 class="text-sm font-bold text-slate-700 mb-3">景點導航</h4>
+            <div class="space-y-2">
+              <div v-for="spot in navSpots" :key="spot.name" class="flex justify-between items-center p-3 bg-pink-50 rounded-xl">
+                <span class="text-sm text-slate-700">{{ spot.name }}</span>
+                <a :href="'https://www.google.com/maps/dir/?api=1&destination=' + spot.lat + ',' + spot.lng" target="_blank" class="bg-pink-100 text-pink-600 px-3 py-1 rounded-lg text-xs font-bold">導航 →</a>
               </div>
             </div>
           </div>
-          
-          <div v-if="photos.length > 0" class="text-center text-xs text-slate-400">
-            共 {{ photos.length }} 張照片 🌸
+        </div>
+
+        <!-- 🚃 IC Card -->
+        <div v-else-if="activeKind === 'iccard'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-6 text-center sakura-glow">
+            <div class="text-xs text-pink-500 font-bold mb-1">交通卡餘額</div>
+            <div class="text-4xl font-black sakura-text">¥{{ icBalance.toLocaleString() }}</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4">
+            <h4 class="text-sm font-bold text-slate-700 mb-3">儲值 / 扣款</h4>
+            <div class="flex gap-2 mb-3">
+              <input v-model.number="icAmount" type="number" placeholder="金額" class="flex-1 p-3 rounded-xl border border-pink-200 text-sm">
+              <button @click="icTopup" class="bg-green-500 text-white px-4 rounded-xl text-xs font-bold">+儲值</button>
+              <button @click="icDeduct" class="bg-orange-500 text-white px-4 rounded-xl text-xs font-bold">-扣款</button>
+            </div>
+          </div>
+          <div class="glass-card rounded-2xl p-4">
+            <h4 class="text-sm font-bold text-slate-700 mb-3">交易記錄</h4>
+            <div class="space-y-2 max-h-48 overflow-y-auto">
+              <div v-for="(tx, i) in icHistory" :key="i" class="flex justify-between text-sm p-2 rounded-lg" :class="tx.type === 'topup' ? 'bg-green-50' : 'bg-orange-50'">
+                <span>{{ tx.note || (tx.type === 'topup' ? '儲值' : '扣款') }}</span>
+                <span :class="tx.type === 'topup' ? 'text-green-600' : 'text-orange-600'">{{ tx.type === 'topup' ? '+' : '-' }}¥{{ tx.amount }}</span>
+              </div>
+              <div v-if="icHistory.length === 0" class="text-center text-slate-400 text-xs py-4">尚無記錄</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🍜 Food List -->
+        <div v-else-if="activeKind === 'food'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-bold text-slate-700">🍜 美食清單</h3>
+              <button @click="showAddFood = true" class="bg-pink-100 hover:bg-pink-200 px-3 py-1.5 rounded-lg text-xs font-bold text-pink-600">+ 新增</button>
+            </div>
+            <div v-if="showAddFood" class="mb-4 p-3 bg-pink-50 rounded-xl space-y-2">
+              <input v-model="newFood.name" placeholder="餐廳名稱" class="w-full p-2 rounded-lg border border-pink-200 text-sm">
+              <input v-model="newFood.note" placeholder="備註（推薦餐點等）" class="w-full p-2 rounded-lg border border-pink-200 text-sm">
+              <div class="flex gap-2">
+                <button @click="addFood" class="flex-1 bg-pink-500 text-white py-2 rounded-lg text-xs font-bold">確認新增</button>
+                <button @click="showAddFood = false" class="px-4 bg-slate-200 rounded-lg text-xs">取消</button>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div v-for="(f, i) in foodList" :key="i" class="p-3 rounded-xl border" :class="f.visited ? 'bg-green-50 border-green-200' : 'bg-white border-pink-100'">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <div class="font-bold text-slate-700 text-sm">{{ f.name }}</div>
+                    <div class="text-xs text-slate-400">{{ f.note }}</div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="flex">
+                      <span v-for="s in 5" :key="s" @click="rateFood(i, s)" class="cursor-pointer text-lg" :class="s <= f.rating ? 'text-yellow-400' : 'text-slate-200'">★</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <button @click="toggleFoodVisited(i)" class="text-xs px-2 py-1 rounded" :class="f.visited ? 'bg-green-200 text-green-700' : 'bg-slate-100 text-slate-500'">{{ f.visited ? '✓ 已吃' : '標記已吃' }}</button>
+                  <button @click="removeFood(i)" class="text-xs px-2 py-1 rounded bg-red-100 text-red-500">刪除</button>
+                </div>
+              </div>
+              <div v-if="foodList.length === 0" class="text-center text-slate-400 text-xs py-8">還沒有收藏餐廳</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📝 Diary -->
+        <div v-else-if="activeKind === 'diary'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">📝 旅遊日記</h3>
+            <div class="mb-4 p-4 bg-pink-50 rounded-xl">
+              <textarea v-model="newDiaryText" placeholder="今天發生了什麼有趣的事？✨" class="w-full p-3 rounded-xl border border-pink-200 text-sm min-h-[100px] resize-none"></textarea>
+              <div class="flex gap-2 mt-2">
+                <input v-model="diaryAuthor" placeholder="你的名字" class="flex-1 p-2 rounded-lg border border-pink-200 text-sm">
+                <button @click="addDiary" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-xl text-sm font-bold transition-colors">
+                  📮 發布
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div v-for="(d, i) in diaryEntries" :key="i" class="glass-card rounded-2xl p-4">
+              <div class="flex justify-between items-start mb-2">
+                <span class="text-xs text-pink-500 font-bold">{{ d.author }}</span>
+                <span class="text-xs text-slate-400">{{ d.date }}</span>
+              </div>
+              <p class="text-sm text-slate-700 leading-relaxed">{{ d.text }}</p>
+              <button @click="removeDiary(i)" class="mt-2 text-xs text-red-400">刪除</button>
+            </div>
+            <div v-if="diaryEntries.length === 0" class="text-center text-slate-400 text-xs py-8">還沒有日記，快來寫第一篇！</div>
+          </div>
+        </div>
+
+        <!-- ⏰ Dual Clock -->
+        <div v-else-if="activeKind === 'clock'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-6 text-center sakura-glow">
+            <div class="text-xs text-pink-500 font-bold mb-2">🇯🇵 東京時間</div>
+            <div class="text-4xl font-black sakura-text">{{ tokyoTime }}</div>
+          </div>
+          <div class="glass-card rounded-2xl p-6 text-center">
+            <div class="text-xs text-slate-400 font-bold mb-2">🇹🇼 台灣時間</div>
+            <div class="text-3xl font-bold text-slate-600">{{ taiwanTime }}</div>
+          </div>
+          <div class="glass-card rounded-2xl p-4 text-center">
+            <div class="text-xs text-slate-400">時差</div>
+            <div class="text-lg font-bold text-slate-600">東京比台灣快 1 小時</div>
+          </div>
+        </div>
+
+        <!-- 🎌 Events -->
+        <div v-else-if="activeKind === 'events'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">🎌 旅行期間日本節慶</h3>
+            <div class="space-y-3">
+              <div v-for="e in japanEvents" :key="e.date" class="flex items-center gap-3 p-3 bg-pink-50 rounded-xl">
+                <div class="text-2xl">{{ e.icon }}</div>
+                <div>
+                  <div class="font-bold text-slate-700 text-sm">{{ e.name }}</div>
+                  <div class="text-xs text-slate-400">{{ e.date }} · {{ e.desc }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🎫 Reservations -->
+        <div v-else-if="activeKind === 'reservation'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-bold text-slate-700">🎫 預約管理</h3>
+              <button @click="showAddRes = true" class="bg-pink-100 hover:bg-pink-200 px-3 py-1.5 rounded-lg text-xs font-bold text-pink-600">+ 新增</button>
+            </div>
+            <div v-if="showAddRes" class="mb-4 p-3 bg-pink-50 rounded-xl space-y-2">
+              <input v-model="newRes.name" placeholder="預約項目（餐廳/景點）" class="w-full p-2 rounded-lg border border-pink-200 text-sm">
+              <input v-model="newRes.datetime" type="datetime-local" class="w-full p-2 rounded-lg border border-pink-200 text-sm">
+              <input v-model="newRes.code" placeholder="確認碼（選填）" class="w-full p-2 rounded-lg border border-pink-200 text-sm">
+              <div class="flex gap-2">
+                <button @click="addReservation" class="flex-1 bg-pink-500 text-white py-2 rounded-lg text-xs font-bold">確認</button>
+                <button @click="showAddRes = false" class="px-4 bg-slate-200 rounded-lg text-xs">取消</button>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div v-for="(r, i) in reservations" :key="i" class="p-3 bg-white rounded-xl border border-pink-100">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <div class="font-bold text-slate-700 text-sm">{{ r.name }}</div>
+                    <div class="text-xs text-slate-400">{{ r.datetime }}</div>
+                  </div>
+                  <span v-if="r.code" class="text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded">{{ r.code }}</span>
+                </div>
+                <button @click="removeReservation(i)" class="mt-2 text-xs text-red-400">刪除</button>
+              </div>
+              <div v-if="reservations.length === 0" class="text-center text-slate-400 text-xs py-8">尚無預約</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 👨‍👩‍👧‍👦 Members -->
+        <div v-else-if="activeKind === 'members'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">👨‍👩‍👧‍👦 成員分工</h3>
+            <div class="space-y-3">
+              <div v-for="m in familyMembers" :key="m.name" class="p-3 bg-pink-50 rounded-xl">
+                <div class="font-bold text-slate-700 text-sm mb-2">{{ m.emoji }} {{ m.name }}</div>
+                <div class="flex flex-wrap gap-1">
+                  <span v-for="task in m.tasks" :key="task" class="text-xs bg-white text-pink-600 px-2 py-1 rounded-full border border-pink-200">{{ task }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 💬 Board -->
+        <div v-else-if="activeKind === 'board'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">💬 家庭留言板</h3>
+            <div class="mb-4 flex gap-2">
+              <input v-model="boardAuthor" placeholder="你的名字" class="w-20 p-2 rounded-lg border border-pink-200 text-sm">
+              <input v-model="newBoardMsg" placeholder="留言..." class="flex-1 p-2 rounded-lg border border-pink-200 text-sm" @keyup.enter="addBoardMessage">
+              <button @click="addBoardMessage" class="bg-pink-500 text-white px-4 rounded-lg text-xs font-bold">送出</button>
+            </div>
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+              <div v-for="(msg, i) in boardMessages" :key="i" class="p-3 bg-white rounded-xl border border-pink-100">
+                <div class="flex justify-between items-start">
+                  <span class="text-xs font-bold text-pink-500">{{ msg.author }}</span>
+                  <span class="text-xs text-slate-400">{{ msg.time }}</span>
+                </div>
+                <p class="text-sm text-slate-700 mt-1">{{ msg.text }}</p>
+              </div>
+              <div v-if="boardMessages.length === 0" class="text-center text-slate-400 text-xs py-8">還沒有留言</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🛒 Shopping -->
+        <div v-else-if="activeKind === 'shopping'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-sm font-bold text-slate-700">🛒 購物清單</h3>
+              <button @click="showAddShopping = true" class="bg-pink-100 hover:bg-pink-200 px-3 py-1.5 rounded-lg text-xs font-bold text-pink-600">+ 新增</button>
+            </div>
+            <div v-if="showAddShopping" class="mb-4 flex gap-2">
+              <input v-model="newShoppingItem" placeholder="要買的東西" class="flex-1 p-2 rounded-lg border border-pink-200 text-sm">
+              <button @click="addShoppingItem" class="bg-pink-500 text-white px-4 rounded-lg text-xs font-bold">加入</button>
+              <button @click="showAddShopping = false" class="px-3 bg-slate-200 rounded-lg text-xs">✕</button>
+            </div>
+            <div class="space-y-2">
+              <div v-for="(item, i) in shoppingList" :key="i" 
+                   @click="toggleShoppingItem(i)"
+                   class="flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all"
+                   :class="item.bought ? 'bg-green-50 opacity-60' : 'bg-white border border-pink-100'">
+                <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center"
+                     :class="item.bought ? 'bg-green-500 border-green-500 text-white' : 'border-pink-300'">
+                  <span v-if="item.bought" class="text-xs">✓</span>
+                </div>
+                <span class="text-sm" :class="item.bought ? 'line-through text-slate-400' : 'text-slate-700'">{{ item.name }}</span>
+              </div>
+              <div v-if="shoppingList.length === 0" class="text-center text-slate-400 text-xs py-8">購物清單是空的</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📊 Chart -->
+        <div v-else-if="activeKind === 'chart'" class="space-y-4">
+          <div class="glass-card sakura-border rounded-2xl p-4 sakura-glow">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">📊 消費統計</h3>
+            <div class="text-center mb-4">
+              <div class="text-xs text-pink-500 font-bold">總支出</div>
+              <div class="text-3xl font-black sakura-text">¥{{ totalBudget().toLocaleString() }}</div>
+            </div>
+            <div class="space-y-3">
+              <div v-for="d in config?.days || []" :key="d.date" class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-slate-600">{{ d.label }}</span>
+                  <span class="font-bold text-slate-700">¥{{ dayTotal(d.date).toLocaleString() }}</span>
+                </div>
+                <div class="w-full h-4 bg-pink-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-pink-400 to-pink-500 rounded-full transition-all" :style="{width: (totalBudget() > 0 ? (dayTotal(d.date) / totalBudget() * 100) : 0) + '%'}"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -701,11 +950,6 @@
       </main>
     </div>
     
-    <!-- Photo Viewer Modal -->
-    <div v-if="viewingPhoto !== null" @click="viewingPhoto = null" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-      <img :src="photos[viewingPhoto]?.data" class="max-w-full max-h-full object-contain rounded-lg">
-      <button @click="viewingPhoto = null" class="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full text-xl text-white">×</button>
-    </div>
   </div>
 
   <script>
@@ -728,10 +972,15 @@
     }
     createPetals();
 
-    const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
+    const { createApp, ref, computed, onMounted, onUnmounted, watch, nextTick } = Vue;
     const BUDGET_KEY = "trip-budget-v2";
     const PACKING_KEY = "trip-packing-v1";
-    const PHOTOS_KEY = "trip-photos-v1";
+    const ICCARD_KEY = "trip-iccard-v1";
+    const FOOD_KEY = "trip-food-v1";
+    const DIARY_KEY = "trip-diary-v1";
+    const RES_KEY = "trip-reservations-v1";
+    const BOARD_KEY = "trip-board-v1";
+    const SHOPPING_KEY = "trip-shopping-v1";
 
     createApp({
       setup() {
@@ -741,8 +990,67 @@
         const activeDayDate = ref('');
         const budgetData = ref({});
         const packedItems = ref({});
-        const photos = ref([]);
-        const viewingPhoto = ref(null);
+        
+        // New feature states
+        const currentLocation = ref(null);
+        const navSpots = ref([
+          { name: '東京車站', lat: 35.6812, lng: 139.7671 },
+          { name: '淺草寺', lat: 35.7148, lng: 139.7967 },
+          { name: '新宿站', lat: 35.6896, lng: 139.7006 },
+          { name: '澀谷站', lat: 35.6580, lng: 139.7016 },
+          { name: '東京晴空塔', lat: 35.7101, lng: 139.8107 }
+        ]);
+        
+        // IC Card
+        const icBalance = ref(0);
+        const icHistory = ref([]);
+        const icAmount = ref('');
+        
+        // Food
+        const foodList = ref([]);
+        const showAddFood = ref(false);
+        const newFood = ref({ name: '', note: '' });
+        
+        // Diary
+        const diaryEntries = ref([]);
+        const newDiaryText = ref('');
+        const diaryAuthor = ref('');
+        
+        // Clock
+        const tokyoTime = ref('--:--:--');
+        const taiwanTime = ref('--:--:--');
+        let clockInterval = null;
+        
+        // Events
+        const japanEvents = ref([
+          { date: '2/11', name: '建國紀念日', icon: '🇯🇵', desc: '日本國定假日' },
+          { date: '2/14', name: '情人節', icon: '💝', desc: '女生送巧克力給男生' },
+          { date: '2/23', name: '天皇誕生日', icon: '👑', desc: '日本國定假日' }
+        ]);
+        
+        // Reservations
+        const reservations = ref([]);
+        const showAddRes = ref(false);
+        const newRes = ref({ name: '', datetime: '', code: '' });
+        
+        // Members
+        const familyMembers = ref([
+          { name: '爸爸', emoji: '👨', tasks: ['導航', '行李搬運', '拍照'] },
+          { name: '媽媽', emoji: '👩', tasks: ['訂餐', '購物清單', '行程確認'] },
+          { name: '大寶', emoji: '🧑', tasks: ['翻譯協助', '地圖查詢'] },
+          { name: '二寶', emoji: '👦', tasks: ['日記記錄', '計算花費'] },
+          { name: '三寶', emoji: '👧', tasks: ['拍照', '收集印章'] }
+        ]);
+        
+        // Board
+        const boardMessages = ref([]);
+        const newBoardMsg = ref('');
+        const boardAuthor = ref('');
+        
+        // Shopping
+        const shoppingList = ref([]);
+        const showAddShopping = ref(false);
+        const newShoppingItem = ref('');
         
         const twdAmount = ref('');
         const jpyAmount = ref('');
@@ -840,32 +1148,61 @@
           } catch(e) { console.error('Weather fetch error:', e); }
         };
 
-        const loadPhotos = () => { try { const raw = localStorage.getItem(PHOTOS_KEY); if(raw) photos.value = JSON.parse(raw); } catch(e) {} };
-        const savePhotos = () => { try { localStorage.setItem(PHOTOS_KEY, JSON.stringify(photos.value)); } catch(e) { alert('照片太多，儲存空間不足！'); } };
-        const addPhotos = (e) => {
-          const files = e.target.files;
-          for(let file of files) {
-            const reader = new FileReader();
-            reader.onload = (ev) => {
-              const img = new Image();
-              img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const maxSize = 800;
-                let w = img.width, h = img.height;
-                if(w > h && w > maxSize) { h = h * maxSize / w; w = maxSize; }
-                else if(h > maxSize) { w = w * maxSize / h; h = maxSize; }
-                canvas.width = w; canvas.height = h;
-                canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                photos.value.push({ data: canvas.toDataURL('image/jpeg', 0.7), date: new Date().toISOString() });
-                savePhotos();
-              };
-              img.src = ev.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
+        // Location
+        const getLocation = () => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (pos) => { currentLocation.value = { lat: pos.coords.latitude, lng: pos.coords.longitude }; },
+              () => { alert('無法取得位置'); }
+            );
+          } else { alert('此裝置不支援定位'); }
         };
-        const removePhoto = (idx) => { if(confirm('刪除這張照片？')) { photos.value.splice(idx, 1); savePhotos(); } };
-        const viewPhoto = (idx) => { viewingPhoto.value = idx; };
+        
+        // IC Card
+        const loadIcCard = () => { try { const d = localStorage.getItem(ICCARD_KEY); if(d) { const p = JSON.parse(d); icBalance.value = p.balance || 0; icHistory.value = p.history || []; } } catch(e) {} };
+        const saveIcCard = () => { localStorage.setItem(ICCARD_KEY, JSON.stringify({ balance: icBalance.value, history: icHistory.value })); };
+        const icTopup = () => { if(icAmount.value > 0) { icBalance.value += icAmount.value; icHistory.value.unshift({ type: 'topup', amount: icAmount.value, note: '儲值' }); icAmount.value = ''; saveIcCard(); } };
+        const icDeduct = () => { if(icAmount.value > 0 && icBalance.value >= icAmount.value) { icBalance.value -= icAmount.value; icHistory.value.unshift({ type: 'deduct', amount: icAmount.value, note: '扣款' }); icAmount.value = ''; saveIcCard(); } };
+        
+        // Food
+        const loadFood = () => { try { const d = localStorage.getItem(FOOD_KEY); if(d) foodList.value = JSON.parse(d); } catch(e) {} };
+        const saveFood = () => { localStorage.setItem(FOOD_KEY, JSON.stringify(foodList.value)); };
+        const addFood = () => { if(newFood.value.name) { foodList.value.push({ ...newFood.value, rating: 0, visited: false }); newFood.value = { name: '', note: '' }; showAddFood.value = false; saveFood(); } };
+        const rateFood = (i, r) => { foodList.value[i].rating = r; saveFood(); };
+        const toggleFoodVisited = (i) => { foodList.value[i].visited = !foodList.value[i].visited; saveFood(); };
+        const removeFood = (i) => { foodList.value.splice(i, 1); saveFood(); };
+        
+        // Diary
+        const loadDiary = () => { try { const d = localStorage.getItem(DIARY_KEY); if(d) diaryEntries.value = JSON.parse(d); } catch(e) {} };
+        const saveDiary = () => { localStorage.setItem(DIARY_KEY, JSON.stringify(diaryEntries.value)); };
+        const addDiary = () => { if(newDiaryText.value && diaryAuthor.value) { diaryEntries.value.unshift({ text: newDiaryText.value, author: diaryAuthor.value, date: new Date().toLocaleDateString('zh-TW') }); newDiaryText.value = ''; saveDiary(); } };
+        const removeDiary = (i) => { diaryEntries.value.splice(i, 1); saveDiary(); };
+        
+        // Clock
+        const updateClock = () => {
+          const now = new Date();
+          const tokyoOpts = { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+          const taiwanOpts = { timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+          tokyoTime.value = now.toLocaleTimeString('ja-JP', tokyoOpts);
+          taiwanTime.value = now.toLocaleTimeString('zh-TW', taiwanOpts);
+        };
+        
+        // Reservations
+        const loadReservations = () => { try { const d = localStorage.getItem(RES_KEY); if(d) reservations.value = JSON.parse(d); } catch(e) {} };
+        const saveReservations = () => { localStorage.setItem(RES_KEY, JSON.stringify(reservations.value)); };
+        const addReservation = () => { if(newRes.value.name && newRes.value.datetime) { reservations.value.push({ ...newRes.value }); newRes.value = { name: '', datetime: '', code: '' }; showAddRes.value = false; saveReservations(); } };
+        const removeReservation = (i) => { reservations.value.splice(i, 1); saveReservations(); };
+        
+        // Board
+        const loadBoard = () => { try { const d = localStorage.getItem(BOARD_KEY); if(d) boardMessages.value = JSON.parse(d); } catch(e) {} };
+        const saveBoard = () => { localStorage.setItem(BOARD_KEY, JSON.stringify(boardMessages.value)); };
+        const addBoardMessage = () => { if(newBoardMsg.value && boardAuthor.value) { boardMessages.value.unshift({ text: newBoardMsg.value, author: boardAuthor.value, time: new Date().toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' }) }); newBoardMsg.value = ''; saveBoard(); } };
+        
+        // Shopping
+        const loadShopping = () => { try { const d = localStorage.getItem(SHOPPING_KEY); if(d) shoppingList.value = JSON.parse(d); else shoppingList.value = [{ name: '猩猩之握2代', bought: false }]; } catch(e) {} };
+        const saveShopping = () => { localStorage.setItem(SHOPPING_KEY, JSON.stringify(shoppingList.value)); };
+        const addShoppingItem = () => { if(newShoppingItem.value) { shoppingList.value.push({ name: newShoppingItem.value, bought: false }); newShoppingItem.value = ''; showAddShopping.value = false; saveShopping(); } };
+        const toggleShoppingItem = (i) => { shoppingList.value[i].bought = !shoppingList.value[i].bought; saveShopping(); };
 
         const initMap = () => {
           if(map) return;
@@ -903,6 +1240,8 @@
           if(val === 'map') initMap();
           if(val === 'share') generateQR();
           if(val === 'weather' && weatherData.value.temp === '--') refreshWeather();
+          if(val === 'clock') { updateClock(); clockInterval = setInterval(updateClock, 1000); }
+          else { if(clockInterval) { clearInterval(clockInterval); clockInterval = null; } }
         });
 
         onMounted(async () => {
@@ -910,11 +1249,14 @@
              const res = await fetch('./trip-config.json?t=' + Date.now());
              config.value = await res.json();
              if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
-             loadBudget(); loadPacking(); loadPhotos(); fetchExchangeRate();
+             loadBudget(); loadPacking(); fetchExchangeRate();
+             loadIcCard(); loadFood(); loadDiary(); loadReservations(); loadBoard(); loadShopping();
           } catch(e) { console.error(e); } 
           finally { loading.value = false; }
           if('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(e => console.log('SW:', e)); }
         });
+        
+        onUnmounted(() => { if(clockInterval) clearInterval(clockInterval); });
 
         return {
            config, loading, activeKind, activeDayDate, currentDay,
@@ -924,8 +1266,18 @@
            packingCategories, packingProgress, togglePackingItem, isPackedItem, resetPacking,
            twdAmount, jpyAmount, exchangeRate, rateUpdateTime, convertToJpy, convertToTwd,
            weatherData, weatherForecast, refreshWeather,
-           photos, viewingPhoto, addPhotos, removePhoto, viewPhoto,
-           shareUrl, copyLink, nativeShare
+           shareUrl, copyLink, nativeShare,
+           // New features
+           currentLocation, navSpots, getLocation,
+           icBalance, icHistory, icAmount, icTopup, icDeduct,
+           foodList, showAddFood, newFood, addFood, rateFood, toggleFoodVisited, removeFood,
+           diaryEntries, newDiaryText, diaryAuthor, addDiary, removeDiary,
+           tokyoTime, taiwanTime,
+           japanEvents,
+           reservations, showAddRes, newRes, addReservation, removeReservation,
+           familyMembers,
+           boardMessages, newBoardMsg, boardAuthor, addBoardMessage,
+           shoppingList, showAddShopping, newShoppingItem, addShoppingItem, toggleShoppingItem
         };
       }
     }).mount('#app');
