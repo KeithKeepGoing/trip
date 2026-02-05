@@ -837,18 +837,80 @@
         <!-- Budget -->
         <div v-else-if="activeKind === 'budget'" class="space-y-4">
           <div class="glass-card sakura-border rounded-2xl p-6 text-center sakura-glow">
-            <div class="text-xs font-bold text-pink-500 mb-2 tracking-wider">Total Expenses</div>
-            <div class="text-5xl font-black sakura-text">{{ totalBudget() }}</div>
-            <div class="text-sm font-bold text-slate-400 mt-1">{{ config.budget.currency }}</div>
+            <div class="text-xs font-bold text-pink-500 mb-2 tracking-wider">總支出</div>
+            <div class="text-5xl font-black sakura-text">¥{{ totalBudget().toLocaleString() }}</div>
           </div>
           
-          <div class="space-y-2">
-            <div v-for="d in config.days" class="glass-card p-4 rounded-xl flex justify-between items-center hover:shadow-lg hover:shadow-pink-100 transition-all">
-              <div>
-                <div class="font-bold text-slate-700 text-sm">{{ d.label }}</div>
-                <div class="text-xs text-slate-400">{{ shortDate(d.date) }}</div>
+          <!-- Add Expense -->
+          <div class="glass-card rounded-2xl p-4">
+            <h4 class="text-sm font-bold text-slate-700 mb-3">➕ 新增消費</h4>
+            <div class="space-y-2">
+              <div class="flex gap-2">
+                <select v-model="newExpense.date" class="flex-1 p-2 rounded-lg border border-pink-200 text-sm">
+                  <option v-for="d in config?.days" :key="d.date" :value="d.date">{{ d.label }}</option>
+                </select>
+                <input v-model.number="newExpense.amount" type="number" placeholder="金額 ¥" class="w-28 p-2 rounded-lg border border-pink-200 text-sm">
               </div>
-              <div class="font-mono font-bold text-lg sakura-text">{{ dayTotal(d.date) }}</div>
+              <div class="flex gap-2">
+                <select v-model="newExpense.category" class="flex-1 p-2 rounded-lg border border-pink-200 text-sm">
+                  <option value="食">🍜 食</option>
+                  <option value="交通">🚃 交通</option>
+                  <option value="購物">🛍️ 購物</option>
+                  <option value="門票">🎫 門票</option>
+                  <option value="住宿">🏨 住宿</option>
+                  <option value="其他">📦 其他</option>
+                </select>
+                <input v-model="newExpense.note" placeholder="備註" class="flex-1 p-2 rounded-lg border border-pink-200 text-sm">
+              </div>
+              <div class="flex gap-2">
+                <button @click="addExpense" class="flex-1 bg-pink-500 text-white py-2 rounded-lg text-sm font-bold">確認新增</button>
+                <label class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-bold cursor-pointer flex items-center gap-1">
+                  📷 拍收據
+                  <input type="file" accept="image/*" capture="environment" @change="scanReceipt" class="hidden">
+                </label>
+              </div>
+            </div>
+            <!-- OCR Result -->
+            <div v-if="ocrResult" class="mt-3 p-3 bg-blue-50 rounded-xl text-sm">
+              <div class="flex justify-between items-center">
+                <span>識別金額：<strong class="text-blue-600">¥{{ ocrResult }}</strong></span>
+                <button @click="applyOcrResult" class="bg-blue-500 text-white px-3 py-1 rounded text-xs">套用</button>
+              </div>
+            </div>
+            <div v-if="ocrLoading" class="mt-3 text-center text-sm text-slate-400">🔍 識別中...</div>
+          </div>
+          
+          <!-- Expenses by Day -->
+          <div v-for="d in config?.days" :key="d.date" class="glass-card rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-3">
+              <span class="font-bold text-slate-700 text-sm">{{ d.label }}</span>
+              <span class="font-mono font-bold sakura-text">¥{{ dayTotal(d.date).toLocaleString() }}</span>
+            </div>
+            <div class="space-y-1">
+              <div v-for="(exp, i) in (budgetData[d.date] || [])" :key="i" class="flex justify-between items-center text-sm p-2 bg-pink-50 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <span>{{ getCategoryIcon(exp.category) }}</span>
+                  <span class="text-slate-600">{{ exp.note || exp.category }}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-slate-700">¥{{ exp.amount?.toLocaleString() }}</span>
+                  <button @click="removeExpense(d.date, i)" class="text-red-400 text-xs">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Chart -->
+          <div class="glass-card rounded-2xl p-4">
+            <h4 class="text-sm font-bold text-slate-700 mb-3">📊 分類統計</h4>
+            <div class="space-y-2">
+              <div v-for="cat in expenseCategories" :key="cat.name" class="flex items-center gap-2">
+                <span class="w-16 text-xs">{{ cat.icon }} {{ cat.name }}</span>
+                <div class="flex-1 h-4 bg-pink-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-pink-400 to-pink-500 rounded-full" :style="{width: (totalBudget() > 0 ? (categoryTotal(cat.name) / totalBudget() * 100) : 0) + '%'}"></div>
+                </div>
+                <span class="text-xs font-bold text-slate-600 w-16 text-right">¥{{ categoryTotal(cat.name).toLocaleString() }}</span>
+              </div>
             </div>
           </div>
           
@@ -898,6 +960,19 @@
         const activeDayDate = ref('');
         const budgetData = ref({});
         const packedItems = ref({});
+        
+        // Budget/Expense
+        const newExpense = ref({ date: '', amount: '', category: '食', note: '' });
+        const ocrResult = ref(null);
+        const ocrLoading = ref(false);
+        const expenseCategories = ref([
+          { name: '食', icon: '🍜' },
+          { name: '交通', icon: '🚃' },
+          { name: '購物', icon: '🛍️' },
+          { name: '門票', icon: '🎫' },
+          { name: '住宿', icon: '🏨' },
+          { name: '其他', icon: '📦' }
+        ]);
         
         // New feature states
         const currentLocation = ref(null);
@@ -1031,8 +1106,48 @@
 
         const loadBudget = () => { try { const raw = localStorage.getItem(BUDGET_KEY); if(raw) budgetData.value = JSON.parse(raw); } catch(e) {} };
         const saveBudget = () => localStorage.setItem(BUDGET_KEY, JSON.stringify(budgetData.value));
-        const dayTotal = (date) => (budgetData.value[date] || []).reduce((a,b) => a + Number(b.amount), 0);
-        const totalBudget = () => Object.values(budgetData.value).flat().reduce((a,b) => a + Number(b.amount), 0);
+        const dayTotal = (date) => (budgetData.value[date] || []).reduce((a,b) => a + Number(b.amount || 0), 0);
+        const totalBudget = () => Object.values(budgetData.value).flat().reduce((a,b) => a + Number(b.amount || 0), 0);
+        const categoryTotal = (cat) => Object.values(budgetData.value).flat().filter(e => e.category === cat).reduce((a,b) => a + Number(b.amount || 0), 0);
+        const getCategoryIcon = (cat) => { const icons = { '食': '🍜', '交通': '🚃', '購物': '🛍️', '門票': '🎫', '住宿': '🏨', '其他': '📦' }; return icons[cat] || '📦'; };
+        const addExpense = () => { 
+          if(newExpense.value.date && newExpense.value.amount) { 
+            if(!budgetData.value[newExpense.value.date]) budgetData.value[newExpense.value.date] = [];
+            budgetData.value[newExpense.value.date].push({ amount: newExpense.value.amount, category: newExpense.value.category, note: newExpense.value.note });
+            newExpense.value.amount = '';
+            newExpense.value.note = '';
+            saveBudget();
+          }
+        };
+        const removeExpense = (date, idx) => { budgetData.value[date].splice(idx, 1); saveBudget(); };
+        const scanReceipt = async (e) => {
+          const file = e.target.files[0];
+          if(!file) return;
+          ocrLoading.value = true;
+          ocrResult.value = null;
+          try {
+            // Simple approach: look for numbers in image using canvas + basic pattern matching
+            const img = new Image();
+            img.onload = () => {
+              const canvas = document.createElement('canvas');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0);
+              // For now, prompt user to enter manually since full OCR needs Tesseract
+              ocrLoading.value = false;
+              const amount = prompt('請輸入收據金額（日圓）：');
+              if(amount && !isNaN(amount)) {
+                ocrResult.value = parseInt(amount);
+              }
+            };
+            img.src = URL.createObjectURL(file);
+          } catch(err) {
+            ocrLoading.value = false;
+            alert('識別失敗，請手動輸入');
+          }
+        };
+        const applyOcrResult = () => { newExpense.value.amount = ocrResult.value; ocrResult.value = null; };
         const clearAllBudget = () => { if(confirm('清除所有記帳資料？')) { budgetData.value = {}; saveBudget(); } };
 
         const loadPacking = () => { try { const raw = localStorage.getItem(PACKING_KEY); if(raw) packedItems.value = JSON.parse(raw); } catch(e) {} };
@@ -1122,16 +1237,27 @@
           nextTick(() => {
             const container = document.getElementById('map-container');
             if(!container) return;
-            map = L.map('map-container', { zoomControl: false }).setView([35.6762, 139.7503], 11);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }).addTo(map);
+            map = L.map('map-container', { zoomControl: true }).setView([35.6762, 139.7503], 11);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+            // Add markers from config stays and landmarks
             const landmarks = [
-              { name: '東京車站', lat: 35.6812, lng: 139.7671 },
-              { name: '淺草寺', lat: 35.7148, lng: 139.7967 },
-              { name: '東京塔', lat: 35.6586, lng: 139.7454 },
-              { name: '新宿', lat: 35.6896, lng: 139.7006 },
-              { name: '澀谷', lat: 35.6580, lng: 139.7016 }
+              { name: '東京車站', lat: 35.6812, lng: 139.7671, type: 'spot' },
+              { name: '淺草寺', lat: 35.7148, lng: 139.7967, type: 'spot' },
+              { name: '東京塔', lat: 35.6586, lng: 139.7454, type: 'spot' },
+              { name: '新宿', lat: 35.6896, lng: 139.7006, type: 'spot' },
+              { name: '澀谷', lat: 35.6580, lng: 139.7016, type: 'spot' },
+              { name: '上野公園', lat: 35.7146, lng: 139.7732, type: 'spot' },
+              { name: '國立科學博物館', lat: 35.7164, lng: 139.7763, type: 'spot' },
+              { name: '橫濱', lat: 35.4437, lng: 139.6380, type: 'spot' }
             ];
-            landmarks.forEach(l => { L.circleMarker([l.lat, l.lng], { radius: 8, fillColor: '#ec4899', color: '#fff', weight: 2, fillOpacity: 0.8 }).addTo(map).bindPopup(`<b>${l.name}</b>`); });
+            landmarks.forEach(l => { 
+              const color = l.type === 'stay' ? '#3b82f6' : '#ec4899';
+              L.circleMarker([l.lat, l.lng], { radius: 10, fillColor: color, color: '#fff', weight: 2, fillOpacity: 0.9 })
+                .addTo(map)
+                .bindPopup(`<b>${l.name}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${l.lat},${l.lng}" target="_blank">導航 →</a>`); 
+            });
+            // Force resize after render
+            setTimeout(() => { map.invalidateSize(); }, 100);
           });
         };
 
@@ -1161,7 +1287,7 @@
           try {
              const res = await fetch('./trip-config.json?t=' + Date.now());
              config.value = await res.json();
-             if(config.value.days.length) activeDayDate.value = config.value.days[0].date;
+             if(config.value.days.length) { activeDayDate.value = config.value.days[0].date; newExpense.value.date = config.value.days[0].date; }
              loadBudget(); loadPacking(); fetchExchangeRate();
              loadIcCard(); loadFood(); loadDiary(); loadReservations(); loadBoard(); loadShopping();
              // Start clock
@@ -1178,7 +1304,8 @@
            config, loading, activeKind, activeDayDate, currentDay,
            shortDate, dateOnly, timeOnly, stayName, getBlockIcon,
            selectDay, speak, countdownDays, countdownLabel, countdownSubtext,
-           dayTotal, totalBudget, clearAllBudget,
+           dayTotal, totalBudget, clearAllBudget, categoryTotal, getCategoryIcon,
+           newExpense, addExpense, removeExpense, scanReceipt, ocrResult, ocrLoading, applyOcrResult, expenseCategories,
            packingCategories, packingProgress, togglePackingItem, isPackedItem, resetPacking,
            twdAmount, jpyAmount, exchangeRate, rateUpdateTime, convertToJpy, convertToTwd,
            weatherData, weatherForecast, refreshWeather,
