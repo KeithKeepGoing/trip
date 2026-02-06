@@ -206,82 +206,8 @@
     {
       "date": "2026-02-12",
       "label": "D2",
-      "title": "上野公園博物館 ➜ 秋葉原",
+      "title": "淺草雷門 / 晴空塔 / 隅田川步道",
       "weather": "☀️ 晴天 (8°C)",
-      "stayId": "ueno_monday_apart",
-      "blocks": [
-        {
-          "type": "todo",
-          "title": "上野博物館建議",
-          "items": [
-            "國立科學博物館：恐龍、動物標本，小孩友善度高。",
-            "東京國立博物館：若大人有興趣，可輪流進去看。"
-          ]
-        },
-        {
-          "type": "dinnerRecommend",
-          "title": "午餐推薦：上野公園",
-          "options": [
-            {
-              "name": "韻松亭 (Innsyoutei)",
-              "rating": "4.3 ⭐",
-              "tags": ["懷石便當", "公園內", "需預約"],
-              "desc": "就在公園裡，午間的花籠便當精緻又不貴，非常有氣氛。",
-              "url": "https://www.google.com/maps/search/?api=1&query=韻松亭"
-            },
-            {
-              "name": "上野之森 Sakura Terrace",
-              "rating": "4.0 ⭐",
-              "tags": ["美食街", "選擇多", "親子"],
-              "desc": "公園入口對面的美食大樓，有洋食、蕎麥麵等，不用怕找不到吃的。",
-              "url": "https://www.google.com/maps/search/?api=1&query=Ueno+no+Mori+Sakura+Terrace"
-            }
-          ]
-        },
-        {
-          "type": "transport",
-          "title": "上野 ➜ 秋葉原",
-          "timeOfDay": "下午",
-          "from": "上野站",
-          "to": "秋葉原站",
-          "routes": [
-            {
-              "label": "山手線 / 京濱東北線",
-              "estimatedDurationMinutes": 5,
-              "estimatedCost": "約 ¥140",
-              "via": [
-                "從上野站搭山手線或京濱東北線往南一站到秋葉原。"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "dinnerRecommend",
-          "title": "晚餐推薦：肉食者天堂",
-          "options": [
-            {
-              "name": "炸豬排 山家 (御徒町店)",
-              "rating": "4.4 ⭐",
-              "tags": ["炸豬排", "高CP值", "排隊名店"],
-              "desc": "上野最強炸豬排！厚切里肌多汁酥脆，價格卻超親民，必吃！",
-              "url": "https://www.google.com/maps/search/?api=1&query=とんかつ山家+御徒町店"
-            },
-            {
-              "name": "敘敘苑 (上野丸井店)",
-              "rating": "4.5 ⭐",
-              "tags": ["燒肉", "親子友善", "有包廂"],
-              "desc": "0101百貨9樓，環境舒適的高級燒肉，帶小孩想好好吃肉就選這。",
-              "url": "https://www.google.com/maps/search/?api=1&query=叙々苑+上野マルイ店"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "date": "2026-02-13",
-      "label": "D3",
-      "title": "上野 / 淺草 / 晴空塔",
-      "weather": "🌥️ 多雲時晴 (7°C)",
       "stayId": "ueno_monday_apart",
       "blocks": [
         {
@@ -351,6 +277,90 @@
               "tags": ["沾麵", "濃厚豚骨", "排隊"],
               "desc": "晴空塔6樓，超濃厚沾麵，麵條Q彈，小朋友通常很愛。",
               "url": "https://www.google.com/maps/search/?api=1&query=六厘舎+TOKYO+スカイツリータウン・ソラマチ店"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-02-13",
+      "label": "D3",
+      "title": "上野公園全日遊 ➜ 夜訪秋葉原",
+      "weather": "🌥️ 多雲時晴 (7°C)",
+      "stayId": "ueno_monday_apart",
+      "blocks": [
+        {
+          "type": "todo",
+          "title": "上野博物館與公園（上午）",
+          "items": [
+            "國立科學博物館：恐龍、動物標本，小孩友善度高。",
+            "東京國立博物館：若大人有興趣，可輪流進去看。"
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "午餐推薦：上野公園",
+          "options": [
+            {
+              "name": "韻松亭 (Innsyoutei)",
+              "rating": "4.3 ⭐",
+              "tags": ["懷石便當", "公園內", "需預約"],
+              "desc": "就在公園裡，午間的花籠便當精緻又不貴，非常有氣氛。",
+              "url": "https://www.google.com/maps/search/?api=1&query=韻松亭"
+            },
+            {
+              "name": "上野之森 Sakura Terrace",
+              "rating": "4.0 ⭐",
+              "tags": ["美食街", "選擇多", "親子"],
+              "desc": "公園入口對面的美食大樓，有洋食、蕎麥麵等，不用怕找不到吃的。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Ueno+no+Mori+Sakura+Terrace"
+            }
+          ]
+        },
+        {
+          "type": "todo",
+          "title": "上野公園深度遊（下午）",
+          "items": [
+            "上野動物園：熊貓🐼、北極熊🐻‍❄️（大人小孩都愛）。",
+            "不忍池：踩天鵝船🦢，欣賞湖畔風光。",
+            "上野東照宮：祈求學業進步與健康。"
+          ]
+        },
+        {
+          "type": "transport",
+          "title": "上野 ➜ 秋葉原",
+          "timeOfDay": "晚上",
+          "from": "上野站",
+          "to": "秋葉原站",
+          "routes": [
+            {
+              "label": "山手線 / 京濱東北線",
+              "estimatedDurationMinutes": 5,
+              "estimatedCost": "約 ¥140",
+              "via": [
+                "從上野站搭山手線或京濱東北線往南一站到秋葉原。",
+                "晚上去秋葉原看電玩店、扭蛋會館，燈光很熱鬧。"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：肉食者天堂",
+          "options": [
+            {
+              "name": "炸豬排 山家 (御徒町店)",
+              "rating": "4.4 ⭐",
+              "tags": ["炸豬排", "高CP值", "排隊名店"],
+              "desc": "上野最強炸豬排！厚切里肌多汁酥脆，價格卻超親民，必吃！",
+              "url": "https://www.google.com/maps/search/?api=1&query=とんかつ山家+御徒町店"
+            },
+            {
+              "name": "敘敘苑 (上野丸井店)",
+              "rating": "4.5 ⭐",
+              "tags": ["燒肉", "親子友善", "有包廂"],
+              "desc": "0101百貨9樓，環境舒適的高級燒肉，帶小孩想好好吃肉就選這。",
+              "url": "https://www.google.com/maps/search/?api=1&query=叙々苑+上野マルイ店"
             }
           ]
         }
