@@ -66,7 +66,7 @@
       "area": "Shizuoka",
       "checkIn": "2026-02-14",
       "checkOut": "2026-02-16",
-      "notes": "伊東溫泉住宿，河津櫻與大室山的前哨站。"
+      "notes": "伊東溫泉住宿，河津櫻與大室山的前哨站。⚠️ 需自備牙刷牙膏"
     },
     {
       "id": "yokohama_richmond",
@@ -363,6 +363,14 @@
       "weather": "☀️ 晴天 (10°C)",
       "stayId": "ito_laforet",
       "blocks": [
+        {
+          "type": "note",
+          "title": "住宿提醒",
+          "lines": [
+            "⚠️ Laforet Ito Onsen 響應環保，不提供一次性備品（牙刷、牙膏）。",
+            "請記得將自備的盥洗用具放在隨身行李中。"
+          ]
+        },
         {
           "type": "transport",
           "title": "前往礦物展",
