@@ -375,21 +375,21 @@
         },
         {
           "type": "dinnerRecommend",
-          "title": "晚餐推薦：東京站/有樂町",
+          "title": "晚餐推薦：上野阿美橫町",
           "options": [
             {
-              "name": "Tsurutontan (有樂町店)",
-              "rating": "4.3 ⭐",
-              "tags": ["烏龍麵", "大碗公", "時尚"],
-              "desc": "就在附近，器皿超大且裝潢時尚的烏龍麵店，口味選擇極多。",
-              "url": "https://www.google.com/maps/search/?api=1&query=Tsurutontan+Yurakucho"
+              "name": "鳥貴族 (上野阿美橫店)",
+              "rating": "4.0 ⭐",
+              "tags": ["串燒", "平價", "居酒屋"],
+              "desc": "均一價 ¥360 (含稅)，CP值超高的人氣連鎖居酒屋，氣氛熱鬧。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Torikizoku+Ueno+Ameyoko"
             },
             {
-              "name": "銀座 篝 (Kagari)",
-              "rating": "4.5 ⭐",
-              "tags": ["雞白湯拉麵", "米其林推薦", "濃郁"],
-              "desc": "雞白湯拉麵的王者，濃郁如奶油濃湯，值得排隊一試。",
-              "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Kagari+Main+Branch"
+              "name": "肉的大山 (上野店)",
+              "rating": "4.2 ⭐",
+              "tags": ["炸肉餅", "立食", "老店"],
+              "desc": "阿美橫名物！特製炸肉餅多汁酥脆，就在附近，可以順路買來吃。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Niku+no+Ohyama+Ueno"
             }
           ]
         }
