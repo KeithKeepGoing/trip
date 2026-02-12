@@ -296,11 +296,34 @@
       "blocks": [
         {
           "type": "todo",
-          "title": "上午：Artizon 美術館 (莫內特展)",
+          "title": "上午：上野美術館散策",
+          "items": [
+            "飯店就在上野附近，早上可以悠閒地參觀美術館。",
+            "推薦：西洋美術館 (常設展有莫內睡蓮)、科學博物館 (小孩喜歡)。",
+            "或是單純在上野公園散步，欣賞清晨景色 🌳。"
+          ]
+        },
+        {
+          "type": "transport",
+          "title": "移動至東京車站",
+          "timeOfDay": "中午",
+          "from": "上野",
+          "to": "東京車站 / 京橋",
+          "routes": [
+            {
+              "label": "JR 山手線",
+              "estimatedDurationMinutes": 10,
+              "via": ["中午前往東京車站用餐，準備下午的 Artizon 行程。"]
+            }
+          ]
+        },
+        {
+          "type": "todo",
+          "title": "下午：Artizon 美術館 (莫內特展)",
           "items": [
             "展覽：「莫內：風景的探究」(Claude Monet: Questioning Nature)。",
             "地點：Artizon Museum (京橋站/東京站步行5分)。",
-            "⚠️ 建議事先上網預約購票，避開排隊人潮。"
+            "⚠️ 建議預約下午場次，避開人潮。"
           ]
         },
         {
