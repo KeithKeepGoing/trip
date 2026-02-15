@@ -559,30 +559,56 @@
     {
       "date": "2026-02-16",
       "label": "D6",
-      "title": "伊東 ➜ 橫濱 (室內雨備日 ☔)",
+      "title": "伊東 ➜ 小田原 (生命之星博物館) ➜ 橫濱",
       "weather": "🌧️ 雨天備案 (9°C)",
       "stayId": "yokohama_richmond",
       "blocks": [
         {
           "type": "transport",
-          "title": "伊東 ➜ 橫濱 (JR直達)",
-          "timeOfDay": "中午",
+          "title": "伊東 ➜ 小田原 (中途下車)",
+          "timeOfDay": "上午",
           "from": "伊東",
-          "to": "橫濱",
+          "to": "小田原 (Odawara)",
           "routes": [
             {
               "label": "JR 東海道線 / 踊子號",
-              "estimatedDurationMinutes": 90,
+              "estimatedDurationMinutes": 45,
               "via": [
-                "中午前抵達橫濱，先去飯店 (Richmond) 放行李。",
-                "建議利用地下街移動，避開戶外淋雨。"
+                "既然對礦石/化石有興趣，強力推薦中途停靠小田原！",
+                "前往「神奈川縣立生命之星・地球博物館」，這是關東最好的自然史博物館之一。"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "todo",
+          "title": "雨天備案：生命之星・地球博物館 🦖💎",
+          "items": [
+            "地點：小田原站轉箱根登山線一站 (入生田站) 步行3分，全程室內。",
+            "特色：巨大的恐龍骨骼、豐富的礦石收藏、隕石，非常壯觀。",
+            "行李：小田原站或博物館內都有置物櫃可寄放。"
+          ]
+        },
+        {
+          "type": "transport",
+          "title": "小田原 ➜ 橫濱",
+          "timeOfDay": "下午",
+          "from": "小田原",
+          "to": "橫濱",
+          "routes": [
+            {
+              "label": "JR 東海道線 / 湘南新宿線",
+              "estimatedDurationMinutes": 50,
+              "via": [
+                "參觀完後，繼續搭車前往橫濱。",
+                "抵達後直接去飯店 Check-in 休息。"
               ]
             }
           ]
         },
         {
           "type": "dinnerRecommend",
-          "title": "午餐推薦：橫濱站 (室內)",
+          "title": "晚餐推薦：橫濱站 (室內)",
           "options": [
             {
               "name": "AFURI (Lumine B2)",
@@ -592,40 +618,11 @@
               "url": "https://www.google.com/maps/search/?api=1&query=AFURI+Yokohama+Lumine"
             },
             {
-              "name": "Porta 地下街美食",
-              "rating": "4.0 ⭐",
-              "tags": ["選擇多", "避雨", "方便"],
-              "desc": "橫濱東口地下街，有非常多餐廳選擇，完全不怕淋雨。",
-              "url": "https://www.google.com/maps/search/?api=1&query=Yokohama+Porta"
-            }
-          ]
-        },
-        {
-          "type": "todo",
-          "title": "下午：室內親子行程 (雨備)",
-          "items": [
-            "泡麵博物館 (Cup Noodles Museum)：需搭計程車或巴士前往，室內互動多，可自製泡麵 🍜。",
-            "三菱港未來技術館：展示火箭、飛機引擎等高科技，互動性強，小男生會愛 🚀。",
-            "Pokemon Center (丸井 City 8F)：就在橫濱站東口旁，地下連通，完全不用淋雨 ⚡。"
-          ]
-        },
-        {
-          "type": "dinnerRecommend",
-          "title": "晚餐推薦：橫濱站周邊 (室內)",
-          "options": [
-            {
               "name": "勝烈庵 (相鉄 Joinus B1)",
               "rating": "4.2 ⭐",
               "tags": ["炸豬排", "老店", "獨門醬汁"],
               "desc": "橫濱必吃老店！特製醬汁配上酥脆豬排，就在車站連通的 Joinus 地下街。",
               "url": "https://www.google.com/maps/search/?api=1&query=勝烈庵+相鉄ジョイナス店"
-            },
-            {
-              "name": "回し寿司 活 (Sky Building 11F)",
-              "rating": "4.3 ⭐",
-              "tags": ["迴轉壽司", "高CP值", "排隊"],
-              "desc": "就在 Pokemon Center 樓上 (Sky Building)，料大塊又便宜，非常熱門。",
-              "url": "https://www.google.com/maps/search/?api=1&query=回し寿司+活+美登利+横浜スカイビル店"
             }
           ]
         }
