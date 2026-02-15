@@ -559,41 +559,72 @@
     {
       "date": "2026-02-16",
       "label": "D6",
-      "title": "伊東溫泉 ➜ 橫濱",
-      "weather": "☁️ 多雲 (9°C)",
+      "title": "伊東 ➜ 橫濱 (室內雨備日 ☔)",
+      "weather": "🌧️ 雨天備案 (9°C)",
       "stayId": "yokohama_richmond",
       "blocks": [
         {
           "type": "transport",
-          "title": "伊東 ➜ 橫濱 (高CP值)",
+          "title": "伊東 ➜ 橫濱 (JR直達)",
           "timeOfDay": "中午",
           "from": "伊東",
           "to": "橫濱",
           "routes": [
             {
-              "label": "JR 東海道線直通",
-              "estimatedDurationMinutes": 110,
-              "estimatedCost": "約 ¥1,694 (+Green Car ¥1000)",
-              "via": ["刷 Suica 搭普通車直達橫濱，建議加購 Green Car 舒適座位。"]
+              "label": "JR 東海道線 / 踊子號",
+              "estimatedDurationMinutes": 90,
+              "via": [
+                "中午前抵達橫濱，先去飯店 (Richmond) 放行李。",
+                "建議利用地下街移動，避開戶外淋雨。"
+              ]
             }
           ]
         },
         {
           "type": "dinnerRecommend",
-          "title": "晚餐推薦：橫濱老字號",
+          "title": "午餐推薦：橫濱站 (室內)",
           "options": [
             {
-              "name": "勝烈庵 (相鉄ジョイナス店)",
+              "name": "AFURI (Lumine B2)",
+              "rating": "4.3 ⭐",
+              "tags": ["柚子拉麵", "清爽", "站內直結"],
+              "desc": "位於 Lumine 百貨地下，不用出站就能吃到著名的柚子鹽拉麵。",
+              "url": "https://www.google.com/maps/search/?api=1&query=AFURI+Yokohama+Lumine"
+            },
+            {
+              "name": "Porta 地下街美食",
+              "rating": "4.0 ⭐",
+              "tags": ["選擇多", "避雨", "方便"],
+              "desc": "橫濱東口地下街，有非常多餐廳選擇，完全不怕淋雨。",
+              "url": "https://www.google.com/maps/search/?api=1&query=Yokohama+Porta"
+            }
+          ]
+        },
+        {
+          "type": "todo",
+          "title": "下午：室內親子行程 (雨備)",
+          "items": [
+            "泡麵博物館 (Cup Noodles Museum)：需搭計程車或巴士前往，室內互動多，可自製泡麵 🍜。",
+            "三菱港未來技術館：展示火箭、飛機引擎等高科技，互動性強，小男生會愛 🚀。",
+            "Pokemon Center (丸井 City 8F)：就在橫濱站東口旁，地下連通，完全不用淋雨 ⚡。"
+          ]
+        },
+        {
+          "type": "dinnerRecommend",
+          "title": "晚餐推薦：橫濱站周邊 (室內)",
+          "options": [
+            {
+              "name": "勝烈庵 (相鉄 Joinus B1)",
               "rating": "4.2 ⭐",
-              "tags": ["炸豬排", "橫濱老店", "獨門醬汁"],
-              "desc": "橫濱人都知道的炸豬排老店，特製醬汁配上酥脆豬排，白飯殺手。",
+              "tags": ["炸豬排", "老店", "獨門醬汁"],
+              "desc": "橫濱必吃老店！特製醬汁配上酥脆豬排，就在車站連通的 Joinus 地下街。",
               "url": "https://www.google.com/maps/search/?api=1&query=勝烈庵+相鉄ジョイナス店"
             },
             {
-              "name": "回し寿司 活 (美登利)",
+              "name": "回し寿司 活 (Sky Building 11F)",
               "rating": "4.3 ⭐",
-              "tags": ["迴轉壽司", "高CP值", "大排長龍"],
-              "desc": "橫濱Sky Building 11F，料大塊又便宜，想吃海鮮選這。",
+              "tags": ["迴轉壽司", "高CP值", "排隊"],
+              "desc": "就在 Pokemon Center 樓上 (Sky Building)，料大塊又便宜，非常熱門。",
               "url": "https://www.google.com/maps/search/?api=1&query=回し寿司+活+美登利+横浜スカイビル店"
             }
           ]
