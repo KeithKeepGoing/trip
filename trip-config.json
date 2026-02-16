@@ -661,8 +661,26 @@
           "title": "上午：港未來室內散策",
           "items": [
             "Landmark Plaza & Queen's Square：這兩棟與車站連通，全程室內。",
-            "Mark Is：大型商場，內有 Moff Animal World (室內動物園) 可以跟水豚、貓頭鷹互動 (3F)。",
-            "Orbi Yokohama (已歇業，現為室內娛樂設施)。"
+            "Mark Is：大型商場，內有 Moff Animal World (室內動物園) 可以跟水豚、貓頭鷹互動 (3F)。"
+          ]
+        },
+        {
+          "type": "transport",
+          "title": "空中纜車體驗 (Yokohama Air Cabin)",
+          "timeOfDay": "下午",
+          "from": "櫻木町站",
+          "to": "運河公園 (World Porters)",
+          "routes": [
+            {
+              "label": "單程纜車",
+              "estimatedDurationMinutes": 5,
+              "estimatedCost": "¥1,000 (單程)",
+              "via": [
+                "從櫻木町站搭乘纜車，直接跨越海灣。",
+                "車廂是室內的，不用吹風淋雨，還能欣賞港灣雪景 ❄️。",
+                "下車後對面就是 World Porters 和 萬葉俱樂部。"
+              ]
+            }
           ]
         },
         {
