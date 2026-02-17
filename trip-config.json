@@ -666,19 +666,24 @@
         },
         {
           "type": "transport",
-          "title": "空中纜車體驗 (Yokohama Air Cabin)",
+          "title": "移動至新港地區 (World Porters / 萬葉)",
           "timeOfDay": "下午",
-          "from": "櫻木町站",
-          "to": "運河公園 (World Porters)",
+          "from": "櫻木町 / 港未來",
+          "to": "運河公園",
           "routes": [
             {
-              "label": "單程纜車",
-              "estimatedDurationMinutes": 5,
-              "estimatedCost": "¥1,000 (單程)",
+              "label": "紅鞋巴士 (Akai Kutsu)",
+              "estimatedCost": "成人 ¥220 / 兒童 ¥110",
               "via": [
-                "從櫻木町站搭乘纜車，直接跨越海灣。",
-                "車廂是室內的，不用吹風淋雨，還能欣賞港灣雪景 ❄️。",
-                "下車後對面就是 World Porters 和 萬葉俱樂部。"
+                "搭乘復古紅色巴士 (C路線)，溫暖又便宜。",
+                "若人多也可直接搭計程車，比纜車划算且不用淋雨。"
+              ]
+            },
+            {
+              "label": "汽車道步行",
+              "estimatedDurationMinutes": 15,
+              "via": [
+                "若雪不大，可走『汽車道』(Kishamichi)，風景優美但風大。"
               ]
             }
           ]
